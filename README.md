@@ -1,2 +1,2 @@
-# Hasan-Bey-i-in-zet
+# Hasan-Bey-özet
 Çözüm Yayın Grubu Raporları
