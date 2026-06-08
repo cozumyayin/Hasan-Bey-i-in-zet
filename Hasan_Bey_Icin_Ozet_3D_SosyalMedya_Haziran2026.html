@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Bey İçin Özet Rapor</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f7f5f2;
+    color: #1a1816;
+    padding: 2rem 1rem;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    background: #fff;
+    border: 0.5px solid #e2ddd8;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .header-band {
+    background: #C00000;
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .header-band .left .label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.6);
+    margin-bottom: 4px;
+  }
+
+  .header-band .left .title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: #fff;
+    line-height: 1.15;
+  }
+
+  .header-band .right {
+    font-size: 12px;
+    color: rgba(255,255,255,.7);
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  .body {
+    padding: 2rem;
+  }
+
+  .section { margin-bottom: 1.5rem; }
+
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: .65rem;
+  }
+
+  .sec-icon { font-size: 18px; }
+
+  .sec-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #C00000;
+  }
+
+  .sec-body {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #1a1816;
+    padding-left: 2px;
+  }
+
+  .sec-body p { margin-bottom: .4rem; }
+
+  .sec-body ul { padding-left: 1.1rem; }
+
+  .sec-body li { margin-bottom: .35rem; }
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    margin: .6rem 0 .85rem;
+  }
+
+  .metric {
+    background: #f7f5f2;
+    border-radius: 8px;
+    padding: .75rem 1rem;
+  }
+
+  .metric .m-label { font-size: 11px; color: #888; margin-bottom: 3px; }
+  .metric .m-val { font-size: 22px; font-weight: 600; line-height: 1.1; }
+  .metric .m-sub { font-size: 11px; color: #aaa; margin-top: 2px; }
+
+  .flag-item {
+    display: flex;
+    gap: 10px;
+    padding: .6rem .85rem;
+    background: #fff8f8;
+    border-left: 3px solid #C00000;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: .5rem;
+  }
+
+  .flag-num { font-size: 12px; font-weight: 700; color: #C00000; min-width: 16px; margin-top: 2px; }
+  .flag-text { font-size: 13.5px; line-height: 1.6; }
+
+  .aksiyon-item {
+    display: flex;
+    gap: 10px;
+    padding: .7rem .9rem;
+    background: #f7f5f2;
+    border-radius: 8px;
+    border: 0.5px solid #e2ddd8;
+    margin-bottom: .5rem;
+  }
+
+  .ak-num { font-size: 13px; font-weight: 700; color: #C00000; min-width: 18px; margin-top: 2px; }
+  .ak-body { font-size: 13.5px; line-height: 1.6; }
+  .ak-meta { font-size: 12px; color: #888; margin-top: 3px; }
+
+  .gs-note {
+    border-left: 3px solid #C00000;
+    border-radius: 0 8px 8px 0;
+    background: #fff5f5;
+    padding: 1rem 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .gs-note .gn-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #C00000;
+    margin-bottom: 6px;
+  }
+
+  .gs-note .gn-text {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: #8b0000;
+    line-height: 1.65;
+  }
+
+  .divider { height: 0.5px; background: #e2ddd8; margin: 1rem 0; }
+
+  .footer {
+    font-size: 11px;
+    color: #aaa;
+    margin-top: 1.75rem;
+    padding-top: .85rem;
+    border-top: 0.5px solid #e2ddd8;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  strong { font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header-band">
+    <div class="left">
+      <div class="label">İcra Kurulu Genel Sekreteri Çalışması</div>
+      <div class="title">Hasan Bey İçin Özet Rapor</div>
+    </div>
+    <div class="right">
+      3D Yayınları — Sosyal Medya Haziran 2026<br>
+      08 Haziran 2026
+    </div>
+  </div>
+
+  <div class="body">
+
+    <div class="section">
+      <div class="sec-head">
+        <span class="sec-icon">📋</span>
+        <span class="sec-title">3 Cümlede Özet</span>
+      </div>
+      <div class="sec-body">
+        <p>Haziran 2026'da 3D Yayınları sosyal medyasında aylık hedefin <strong>iki katı içerik</strong> üretilmiş, üç platformda toplamda yaklaşık <strong>1,1 milyar izlenme</strong> elde edilmiştir.</p>
+        <p>YouTube içerik başına en verimli platform olarak öne çıkmış; ancak 16 içeriğin <strong>3'ü (%18,75) telif ihlali</strong> nedeniyle YouTube'a hiç yüklenmemiştir.</p>
+        <p>Adet başarısı gerçek olmakla birlikte içerik kalitesi ve platform riski yönetimi henüz kurumsal standartta değildir.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <div class="sec-head">
+        <span class="sec-icon">📊</span>
+        <span class="sec-title">Ana Bulgular</span>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="m-label">Üretilen içerik</div><div class="m-val">16</div><div class="m-sub">Hedef 8 — %200 aşım</div></div>
+        <div class="metric"><div class="m-label">Instagram izlenme</div><div class="m-val">369,6 B</div><div class="m-sub">Ort. 23,1 B / içerik</div></div>
+        <div class="metric"><div class="m-label">YouTube izlenme</div><div class="m-val">582,6 B</div><div class="m-sub">Ort. 48,5 B / içerik</div></div>
+        <div class="metric"><div class="m-label">TikTok izlenme</div><div class="m-val">171,3 B</div><div class="m-sub">Ort. 10,7 B / içerik</div></div>
+      </div>
+      <div class="sec-body">
+        <ul>
+          <li><strong>"Alper Emrah Gümüş vs. Kötü Yorumlar"</strong> ve <strong>"Kim Kaç Netle Nereyi Hedefliyor?"</strong> — 3 platformda eş zamanlı zirve.</li>
+          <li>Kudret Tohan, Özgür Balcı, Aycan Hoca içerikleri sürekli ortalamanın üzerinde — planlı seriye dönüştürülmemiş.</li>
+          <li>Konu odaklı içerikler (TYT Biyoloji, Coğrafya Rotası) 7.000–9.500 izlenme bandında kaldı — format ve başlık gözden geçirilmeli.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <div class="sec-head">
+        <span class="sec-icon">🚩</span>
+        <span class="sec-title">Red Flags</span>
+      </div>
+      <div class="flag-item"><div class="flag-num">1</div><div class="flag-text"><strong>Telif protokolü yok:</strong> 3 içerik (%18,75) müzik kaynaklı ihlal nedeniyle YouTube'a yüklenmedi. Tekrarlanabilir, önlenebilir risk — üretim sürecine dahil edilmemiş.</div></div>
+      <div class="flag-item"><div class="flag-num">2</div><div class="flag-text"><strong>YouTube potansiyeli frenleniyor:</strong> İçerik başına ort. 48,5 B izlenmeyle açık ara önde, ancak telif kısıtlamaları bu platformun değerini doğrudan düşürüyor.</div></div>
+      <div class="flag-item"><div class="flag-num">3</div><div class="flag-text"><strong>Rakip kıyaslaması yok:</strong> 23,1 B Instagram ortalamasının iyi mi kötü mü olduğu belli değil — sektör benchmarkı raporda yer almıyor.</div></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <div class="sec-head">
+        <span class="sec-icon">❓</span>
+        <span class="sec-title">Hasan Bey'in Soracağı 3 Soru</span>
+      </div>
+      <div class="sec-body">
+        <ul>
+          <li>Telif engeli nedeniyle YouTube'a yüklenemeyen 3 içerik tahminen kaç izlenme kaybettirdi — ve bu durum neden üretim sürecine dahil edilmemiş?</li>
+          <li>16 içerik ürettik ama ortalama 23 B izlenme — rakiplerimiz aynı formatla ne elde ediyor?</li>
+          <li>Hoca serisi sürekli üstte; düzenli takvime bağlasak izlenme ne olur, bir projeksiyon var mı?</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <div class="sec-head">
+        <span class="sec-icon">🎯</span>
+        <span class="sec-title">Önerilen Aksiyon — Onayla + Takibe Al</span>
+      </div>
+      <div class="aksiyon-item"><div class="ak-num">1</div><div class="ak-body"><strong>İçerik Üretim Birimi</strong> — Telif protokolü yazılı hale getirilsin; royalty-free müzik zorunlu kural, yayın öncesi Content ID kontrolü sürece eklensin.<div class="ak-meta">Tamamlanma: 15 Temmuz 2026</div></div></div>
+      <div class="aksiyon-item"><div class="ak-num">2</div><div class="ak-body"><strong>Pazarlama Müdürü</strong> — Kudret Tohan, Özgür Balcı, Aycan Hoca ile aylık düzenli içerik serisi planlanmalı ve Temmuz programına yansıtılmalı.<div class="ak-meta">Tamamlanma: 30 Haziran 2026</div></div></div>
+      <div class="aksiyon-item"><div class="ak-num">3</div><div class="ak-body"><strong>Pazarlama Müdürü</strong> — Temmuz planının en az %50'si YouTube uyumlu, telif güvenli içeriklerden oluşmalı.<div class="ak-meta">Tamamlanma: Temmuz 2026 içerik planı onayında</div></div></div>
+      <div class="aksiyon-item"><div class="ak-num">4</div><div class="ak-body"><strong>Pazarlama Müdürü</strong> — Rakip kıyaslaması hazırlanmalı; mevcut izlenme ortalamalarının sektörde nerede durduğu sunulmalı.<div class="ak-meta">Tamamlanma: 30 Haziran 2026</div></div></div>
+    </div>
+
+    <div class="gs-note">
+      <div class="gn-label">GS Notu</div>
+      <div class="gn-text">"Sosyal medyada adette iyiyiz ama strateji henüz oturmamış; Hasan Bey'e sunmadan önce Pazarlama Müdürü'nden telif aksiyon planı ve rakip kıyaslaması talep edilmesini öneririm."</div>
+    </div>
+
+    <div class="footer">
+      <span>İcra Kurulu Genel Sekreteri — 08.06.2026</span>
+      <span>3D Yayınları / Sosyal Medya Haziran 2026</span>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
