@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Bey İçin Özet Rapor</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --red: #C00000;
+    --red-light: #f9eaea;
+    --dark: #1a1a1a;
+    --gray: #595959;
+    --gray-light: #f5f5f5;
+    --border: #e0e0e0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f2f0ed;
+    color: var(--dark);
+    padding: 40px 20px;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    background: #fff;
+    border-top: 6px solid var(--red);
+    box-shadow: 0 4px 40px rgba(0,0,0,0.10);
+    padding: 52px 60px 60px;
+  }
+
+  /* Header */
+  .header { margin-bottom: 36px; }
+
+  .header-meta {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 34px;
+    font-weight: 400;
+    color: var(--dark);
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .header-sub {
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 20px;
+  }
+
+  .header-divider {
+    height: 2px;
+    background: linear-gradient(to right, var(--red) 60px, var(--border) 60px);
+  }
+
+  /* Sections */
+  .section { margin-bottom: 36px; }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--red);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--red);
+    margin-bottom: 16px;
+  }
+
+  .section-title .icon { font-size: 14px; }
+
+  /* Özet */
+  .ozet-text {
+    font-size: 14.5px;
+    line-height: 1.8;
+    color: var(--dark);
+    background: var(--gray-light);
+    border-left: 4px solid var(--red);
+    padding: 16px 20px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* Ana Bulgular */
+  .bulgu-group { margin-bottom: 16px; }
+
+  .bulgu-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 8px;
+    padding-left: 4px;
+  }
+
+  .bulgu-item {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--dark);
+    padding: 5px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .bulgu-item:last-child { border-bottom: none; }
+
+  .dash { color: var(--red); font-weight: 700; flex-shrink: 0; }
+
+  /* Red Flags */
+  .flag-item {
+    display: flex;
+    gap: 14px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    background: var(--red-light);
+    border-left: 3px solid var(--red);
+    border-radius: 0 4px 4px 0;
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+
+  .flag-num {
+    font-weight: 700;
+    color: var(--red);
+    flex-shrink: 0;
+    width: 18px;
+  }
+
+  /* Aksiyon */
+  .aksiyon-item {
+    display: grid;
+    grid-template-columns: 20px 1fr auto;
+    gap: 10px 14px;
+    align-items: start;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .aksiyon-item:last-child { border-bottom: none; }
+
+  .aksiyon-num {
+    font-weight: 700;
+    color: var(--red);
+    padding-top: 1px;
+  }
+
+  .aksiyon-text { font-size: 13.5px; line-height: 1.65; color: var(--dark); }
+  .aksiyon-text strong { color: var(--dark); }
+
+  .aksiyon-tarih {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--red);
+    white-space: nowrap;
+    background: var(--red-light);
+    padding: 3px 10px;
+    border-radius: 20px;
+    align-self: center;
+  }
+
+  /* GS Notu */
+  .gs-notu {
+    font-family: 'DM Serif Display', serif;
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--gray);
+    font-style: italic;
+    border-left: 5px solid var(--red);
+    padding: 16px 24px;
+    background: var(--gray-light);
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 44px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: #aaa;
+  }
+
+  b { font-weight: 600; }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; border-top: 6px solid var(--red); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-meta">İcra Kurulu Genel Sekreteri Çalışması</div>
+    <h1>Hasan Bey İçin Özet Rapor</h1>
+    <div class="header-sub">3D Yayınları — Trendyol 2026 Genel Durum &nbsp;|&nbsp; 08 Haziran 2026</div>
+    <div class="header-divider"></div>
+  </div>
+
+  <!-- 3 Cümlede Özet -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📋</span> 3 Cümlede Özet</div>
+    <div class="ozet-text">
+      3D Yayınları'nın Trendyol mağazası 2026 yılında <b>4.844.980 ₺ net ciro</b> ve <b>24.167 adet net satış</b> ile sağlıklı bir performans ortaya koymuştur. İptal ve iade oranları sektör ortalamalarının altında, mağaza puanı <b>9.7</b> ve tüm Trendyol rozetleri tam koşullarla aktiftir. Ancak <b style="color:var(--red)">ilk 5 ürün toplam cironun %48'ini taşıyor</b>; bu yoğunlaşma portföy riski olarak öne çıkmaktadır.
+    </div>
+  </div>
+
+  <!-- Ana Bulgular -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📊</span> Ana Bulgular</div>
+
+    <div class="bulgu-group">
+      <div class="bulgu-label">Sayısal</div>
+      <div class="bulgu-item"><span class="dash">—</span><span>Brüt ciro <b>5.026.805 ₺</b>, net ciro <b>4.844.980 ₺</b> — brütten nete kayıp <b>181.825 ₺ (%3,6)</b></span></div>
+      <div class="bulgu-item"><span class="dash">—</span><span>İptal oranı <b>%2,45</b>, iade oranı <b>%0,69</b> — her ikisi sektör ortalamasının altında</span></div>
+      <div class="bulgu-item"><span class="dash">—</span><span>Ortalama komisyon oranı <b>%10,46</b> — yıllık toplam komisyon gideri <b>506.906 ₺</b></span></div>
+      <div class="bulgu-item"><span class="dash">—</span><span>Ortalama satış fiyatı <b>200,48 ₺</b></span></div>
+    </div>
+
+    <div class="bulgu-group">
+      <div class="bulgu-label">Niteliksel</div>
+      <div class="bulgu-item"><span class="dash">—</span><span>Mağaza puanı <b>9.7</b> — kategoride güçlü konum; <b>3 rozet</b> tam koşullarla tamamlandı (Başarılı Satıcı, Hızlı Satıcı, Mavi Tik)</span></div>
+      <div class="bulgu-item"><span class="dash">—</span><span>En çok satan ürünlerin tamamı <b>TYT/AYT simülasyon serisi</b> — tek dönem bağımlılığı, sınav sezonu dışı düşüş riski göz ardı edilmemeli</span></div>
+      <div class="bulgu-item"><span class="dash">—</span><span>3,1 milyar takipçi tabanı var; kampanya araçları (Flash İndirim, Sponsorlu Ürün) henüz yeterince kullanılmıyor</span></div>
+    </div>
+  </div>
+
+  <!-- Red Flags -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🚩</span> Red Flags</div>
+    <div class="flag-item"><span class="flag-num">1.</span><span><b>Portföy yoğunlaşması:</b> İlk 5 ürün toplam net cironun %48'ini taşıyor. Bu ürünlerde stok, fiyat veya listeleme sorunu yaşanırsa ciro doğrudan etkilenir.</span></div>
+    <div class="flag-item"><span class="flag-num">2.</span><span><b>Rozet deadline 23 gün sonra:</b> 3 rozet 1 Temmuz 2026'da yenileniyor. Koşulların mevcut durumu teyit edilmemiş. Rozet kaybı mağaza görünürlüğünü ve dönüşüm oranını doğrudan düşürür.</span></div>
+    <div class="flag-item"><span class="flag-num">3.</span><span><b>Komisyon benchmarki eksik:</b> %10,46 rakamı tek başına sunulmuş, kategori ortalamasıyla kıyaslanmamış. Bu oranın iyileştirilebilir olup olmadığı belirsiz.</span></div>
+    <div class="flag-item"><span class="flag-num">4.</span><span><b>"Teslim Edilemeyen Gönderi" iadesi en yüksek kalem:</b> 59 adet (%0,24). Kargo operasyonu kaynaklı; tekrarlanması mağaza puanını tehdit eder.</span></div>
+  </div>
+
+  <!-- Önerilen Aksiyon -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🎯</span> Önerilen Aksiyon — Onayla + Takibe Al</div>
+    <div class="aksiyon-item">
+      <span class="aksiyon-num">1.</span>
+      <span class="aksiyon-text"><b>Mustafa Gören</b> — Rozet koşullarının güncel durumunu (tamamlanan / risk altındaki koşullar) yazılı olarak raporlasın.</span>
+      <span class="aksiyon-tarih">16 Haz 2026</span>
+    </div>
+    <div class="aksiyon-item">
+      <span class="aksiyon-num">2.</span>
+      <span class="aksiyon-text"><b>Mustafa Gören</b> — Trendyol kategori yöneticisiyle komisyon dilimi görüşmesini başlatsın; kategori ortalamasıyla kıyaslamalı sunum hazırlasın.</span>
+      <span class="aksiyon-tarih">30 Haz 2026</span>
+    </div>
+    <div class="aksiyon-item">
+      <span class="aksiyon-num">3.</span>
+      <span class="aksiyon-text"><b>Mustafa Gören</b> — Q3 kampanya takvimini (Flash İndirim + Sponsorlu Ürün) oluştursun ve onaya sunsun.</span>
+      <span class="aksiyon-tarih">7 Tem 2026</span>
+    </div>
+  </div>
+
+  <!-- GS Notu -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📌</span> GS Notu</div>
+    <div class="gs-notu">
+      "Trendyol mağazamız 2026'da 4,8 milyon net ciroyla sağlam gidiyor, rozetlerimiz 23 gün içinde yenileniyor ve bunu sahipli takibe aldık; tek uyarım ilk 5 ürünün cironun yarısını taşıması — portföy çeşitlendirmesini Q3'e bağladık."
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <span>İcra Kurulu Genel Sekreteri — 08.06.2026</span>
+    <span>3D Yayınları / Trendyol 2026</span>
+  </div>
+
+</div>
+</body>
+</html>
