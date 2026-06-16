@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Bey İçin Özet Rapor — Eğitim Vadisi YKS Deneme 5</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: #f5f4f0; color: #1a1a1a; }
+
+  /* HEADER */
+  .header { background: #C00000; padding: 28px 48px 24px; }
+  .header-label { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-bottom: 6px; }
+  .header-title { font-family: 'DM Serif Display', serif; font-size: 28px; color: #fff; line-height: 1.2; }
+  .header-sub { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 6px; }
+
+  /* CONTAINER */
+  .container { max-width: 860px; margin: 0 auto; padding: 40px 24px 60px; }
+
+  /* SECTION TITLES */
+  .section { background: #fff; border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: 18px; color: #1a1a1a; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .section-title .emoji { font-size: 20px; }
+
+  /* OZET */
+  .ozet-text { font-size: 15px; line-height: 1.75; color: #333; }
+  .ozet-text p { margin-bottom: 10px; }
+  .ozet-text p:last-child { margin-bottom: 0; }
+
+  /* METRIC CARDS */
+  .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
+  .metric-card { background: #faf9f7; border: 1px solid #e8e5df; border-radius: 8px; padding: 16px 18px; }
+  .metric-label { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #888; margin-bottom: 4px; }
+  .metric-value { font-family: 'DM Serif Display', serif; font-size: 26px; color: #C00000; line-height: 1; }
+  .metric-sub { font-size: 12px; color: #999; margin-top: 3px; }
+
+  /* TABLE */
+  .perf-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .perf-table th { background: #f5f4f0; font-weight: 600; text-align: left; padding: 9px 12px; color: #555; border-bottom: 2px solid #e0ddd7; }
+  .perf-table td { padding: 8px 12px; border-bottom: 1px solid #f0ede8; }
+  .perf-table tr:last-child td { border-bottom: none; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
+  .badge-cok-zor { background: #fde8e8; color: #C00000; }
+  .badge-zor { background: #fef3e2; color: #c07000; }
+  .badge-orta { background: #e8f4ee; color: #1e7a48; }
+
+  /* RED FLAGS */
+  .flag-item { border-left: 3px solid #C00000; padding: 10px 16px; margin-bottom: 12px; background: #fff9f9; border-radius: 0 6px 6px 0; font-size: 14px; line-height: 1.6; color: #333; }
+  .flag-item:last-child { margin-bottom: 0; }
+  .flag-title { font-weight: 600; color: #C00000; margin-bottom: 2px; font-size: 13px; }
+
+  /* SORULAR */
+  .soru-item { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px; }
+  .soru-item:last-child { margin-bottom: 0; }
+  .soru-no { background: #C00000; color: #fff; font-family: 'DM Serif Display', serif; font-size: 16px; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .soru-text { font-size: 14px; line-height: 1.65; color: #333; }
+
+  /* AKSIYON */
+  .aksiyon-item { background: #faf9f7; border: 1px solid #e8e5df; border-radius: 8px; padding: 16px 20px; margin-bottom: 12px; }
+  .aksiyon-item:last-child { margin-bottom: 0; }
+  .aksiyon-baslik { font-weight: 600; font-size: 14px; color: #1a1a1a; margin-bottom: 6px; }
+  .aksiyon-detay { font-size: 13px; color: #555; line-height: 1.6; }
+  .aksiyon-meta { margin-top: 8px; display: flex; gap: 16px; }
+  .aksiyon-meta-item { font-size: 12px; font-weight: 600; color: #C00000; display: flex; align-items: center; gap: 4px; }
+
+  /* GS NOTU */
+  .gs-notu { border-left: 3px solid #C00000; padding: 14px 20px; background: #fff9f9; border-radius: 0 8px 8px 0; font-style: italic; font-size: 14px; color: #444; line-height: 1.7; }
+
+  /* UYARI */
+  .uyari-inline { display: inline-block; font-size: 11px; font-weight: 600; color: #c07000; background: #fef3e2; padding: 2px 7px; border-radius: 4px; margin-left: 6px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-label">İcra Kurulu Genel Sekreteri Çalışması</div>
+  <div class="header-title">Hasan Bey İçin Özet Rapor</div>
+  <div class="header-sub">Eğitim Vadisi YKS Deneme 5 — Madde Analizi &nbsp;|&nbsp; 22 Mayıs 2026 &nbsp;|&nbsp; Çözüm Eğitim Kurumları Genel Merkezi</div>
+</div>
+
+<div class="container">
+
+  <!-- 1. 3 CÜMLEDEOZEt -->
+  <div class="section">
+    <div class="section-title"><span class="emoji">📋</span> 3 Cümlede Özet</div>
+    <div class="ozet-text">
+      <p>836 öğrencinin girdiği EV YKS Deneme 5, TYT oturumunda orta zorlukta dengeli bir profil çizerken AYT oturumunda "çok zor" ve "zor" ağırlıklı yapısıyla orta başarı grubunu eleyen, seçici bir sınav karakteri sergilemiştir.</p>
+      <p>TYT genel ortalaması %51 güçlük ile sağlıklı bir bantta konumlanmış; AYT'de ise Geometri (%30), Coğrafya-2 (%17), Felsefe Grubu (%14) ve Tarih-2 (%23) testleri ÖSYM referans dağılımının çok altına düşerek denemeden çıkan "sıralayıcılık" işlevini başarı ölçme işleviyle yer yer takas etmiştir.</p>
+      <p>Rapor, zorluk dengesinin güncellenmesini ve AYT alt testlerinde orta-seviye soru oranının artırılmasını önermektedir; bu adımlar gerçekleştirildiğinde denemeler ÖSYM karakterine daha yakın bir provaya dönüşecektir.</p>
+    </div>
+  </div>
+
+  <!-- 2. ANA BULGULAR -->
+  <div class="section">
+    <div class="section-title"><span class="emoji">📊</span> Ana Bulgular</div>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-label">Toplam Öğrenci</div>
+        <div class="metric-value">836</div>
+        <div class="metric-sub">777'si TYT'ye girdi</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">TYT Genel Ort.</div>
+        <div class="metric-value">%51</div>
+        <div class="metric-sub">Güçlük: Orta bant</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">AYT Genel Ort.</div>
+        <div class="metric-value">%27</div>
+        <div class="metric-sub">Güçlük: Çok Zor / Zor ağırlıklı</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Toplam Soru</div>
+        <div class="metric-value">291</div>
+        <div class="metric-sub">24 test, TYT + AYT</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Genel Güçlük</div>
+        <div class="metric-value">0,34</div>
+        <div class="metric-sub">ÖSYM hedefi: ~0,55</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Ayırt Edicilik</div>
+        <div class="metric-value">0,55</div>
+        <div class="metric-sub">Genel ortalama — yeterli</div>
+      </div>
+    </div>
+
+    <table class="perf-table">
+      <thead>
+        <tr>
+          <th>Test</th>
+          <th>Başarı %</th>
+          <th>Zorluk</th>
+          <th>Güçlük</th>
+          <th>Ayırt Edicilik</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Türkçe (T)</td><td>50</td><td><span class="badge badge-orta">Orta</span></td><td>0,51</td><td>0,68</td></tr>
+        <tr><td>T. Matematik (T)</td><td>34</td><td><span class="badge badge-zor">Zor</span></td><td>0,40</td><td>0,64</td></tr>
+        <tr><td>Geometri (T)</td><td>18</td><td><span class="badge badge-cok-zor">Çok Zor</span></td><td>0,30</td><td>0,54</td></tr>
+        <tr><td>Fizik (T)</td><td>23</td><td><span class="badge badge-zor">Zor</span></td><td>0,33</td><td>0,52</td></tr>
+        <tr><td>Kimya (T)</td><td>24</td><td><span class="badge badge-zor">Zor</span></td><td>0,36</td><td>0,63</td></tr>
+        <tr><td>Biyoloji (T)</td><td>25</td><td><span class="badge badge-zor">Zor</span></td><td>0,34</td><td>0,61</td></tr>
+        <tr><td>Matematik (A)</td><td>25</td><td><span class="badge badge-zor">Zor</span></td><td>0,32</td><td>0,55</td></tr>
+        <tr><td>Geometri (A)</td><td>16</td><td><span class="badge badge-cok-zor">Çok Zor</span></td><td>0,23</td><td>0,36</td></tr>
+        <tr><td>Tarih-2 (A)</td><td>20</td><td><span class="badge badge-cok-zor">Çok Zor</span></td><td>0,23</td><td>0,31</td></tr>
+        <tr><td>Coğrafya-2 (A)</td><td>9</td><td><span class="badge badge-cok-zor">Çok Zor</span></td><td>0,17</td><td>0,35</td></tr>
+        <tr><td>Felsefe Grubu (A)</td><td>8</td><td><span class="badge badge-cok-zor">Çok Zor</span></td><td>0,14</td><td>0,28</td></tr>
+        <tr><td>Türk Dili ve Edebiyatı (A)</td><td>24</td><td><span class="badge badge-zor">Zor</span></td><td>0,31</td><td>0,40</td></tr>
+        <tr><td>Coğrafya (T)</td><td>36</td><td><span class="badge badge-zor">Zor</span></td><td>0,40</td><td>0,73</td></tr>
+        <tr><td>Tarih (T)</td><td>46</td><td><span class="badge badge-orta">Orta</span></td><td>0,51</td><td>0,76</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 3. RED FLAGS -->
+  <div class="section">
+    <div class="section-title"><span class="emoji">🚩</span> Red Flags</div>
+
+    <div class="flag-item">
+      <div class="flag-title">Coğrafya-2 ve Felsefe Grubu (AYT) — ayırt edicilik işlevi zayıflamış</div>
+      Coğrafya-2 genel başarısı %9, Felsefe Grubu %8 ile denemede neredeyse hiç üst-alt grup farkı yaratamamıştır. Alt grup doğru sayısı tüm sorularda 0'dır. Bu testler ölçüm değeri üretmek yerine madde havuzunu yıpratmaktadır; soru zorlukları bir adım aşağı çekilse ölçüm kalitesi artacaktır.
+    </div>
+
+    <div class="flag-item">
+      <div class="flag-title">AYT Geometri — orta başarı grubunu tamamen eliyor</div>
+      Geometri (A) genel başarısı %16; 14 sorunun 5'i Çok Zor, 9'u Zor olup hiç Orta veya Kolay soru yoktur. Orta başarı grubundaki öğrenci bu testten sıfıra yakın puan alarak AYT sıralamasından dezavantajlı çıkmaktadır.
+    </div>
+
+    <div class="flag-item">
+      <div class="flag-title">TYT Geometri — ÖSYM dağılımından belirgin sapma</div>
+      TYT Geometri genel başarısı %18 (güçlük 0,30). ÖSYM'nin %20 kolay – %60 orta – %20 zor dağılımına kıyasla bu test tamamen zor/çok zor sorudan oluşmuştur. Temel kazanım ölçümü devre dışı kalmaktadır.
+    </div>
+
+    <div class="flag-item">
+      <div class="flag-title">Felsefe_Seçmeli (TYT) — veri üretilemiyor</div>
+      Bu testte testi cevaplayan öğrenci sayısı 0 olarak kayıtlıdır; tüm maddeler "Çok Zor" statüsünde görünmektedir. Veri güvenilirliği yoktur; raporlama dışında tutulması değerlendirilebilir.
+    </div>
+  </div>
+
+  <!-- 4. HASAN BEY'İN 3 SORUSU -->
+  <div class="section">
+    <div class="section-title"><span class="emoji">❓</span> Hasan Bey'in 3 Sorusu</div>
+
+    <div class="soru-item">
+      <div class="soru-no">1</div>
+      <div class="soru-text"><strong>Bu denemeyi çözen öğrenci, sınava hazır mı yoksa sadece cesareti mi kırılıyor?</strong><br>
+      AYT alt testlerinin önemli bir kısmında genel başarı %9–20 bandında seyrediyor. Bu oranlar ÖSYM sınavında beklenmedik bir başarı illüzyonu yaratabilir ya da öğrenci motivasyonunu aşındırabilir. Önerilen aksiyon olmadan bu soru açık kalacaktır.</div>
+    </div>
+
+    <div class="soru-item">
+      <div class="soru-no">2</div>
+      <div class="soru-text"><strong>Rakiplerimiz aynı zorluk bandında mı çalışıyor?</strong><br>
+      Piyasa benchmark'ı eksik; EV YKS Deneme 5'in rakip deneme sınavlarıyla güçlük karşılaştırması yapılmamış. Öğrenci tercihi ve kuruma bağlılık açısından bu veri kritik olabilir.</div>
+    </div>
+
+    <div class="soru-item">
+      <div class="soru-no">3</div>
+      <div class="soru-text"><strong>Madde havuzunda yapısal kalıp değiştirilmezse sonraki denemede bu tablo tekrar eder mi?</strong><br>
+      Rapor sorunları tespit etmekte, ancak soru üretim sürecinde (soru yazarları, kalite kontrol, güçlük hedefleme) hangi adımın değiştirileceğini somutlaştırmamaktadır. Sahip ve takvim atanmadan iyileşme sağlanamaz.</div>
+    </div>
+  </div>
+
+  <!-- 5. ÖNERILEN AKSİYON -->
+  <div class="section">
+    <div class="section-title"><span class="emoji">🎯</span> Önerilen Aksiyon</div>
+
+    <div class="aksiyon-item">
+      <div class="aksiyon-baslik">1. AYT Geometri, Coğrafya-2 ve Felsefe Grubu için zorluk kalibrasyonu yapılsın</div>
+      <div class="aksiyon-detay">Her üç testte soru ağırlığı %20 kolay – %60 orta – %20 zor hedefine göre yeniden dengelenmelidir. Bu adım bir sonraki deneme basımından önce uygulanabilir.</div>
+      <div class="aksiyon-meta">
+        <div class="aksiyon-meta-item">👤 Sahip: Ölçme Değerlendirme Birimi</div>
+        <div class="aksiyon-meta-item">📅 Tarih: Deneme 6 baskısından önce</div>
+      </div>
+    </div>
+
+    <div class="aksiyon-item">
+      <div class="aksiyon-baslik">2. ÖSYM güçlük dağılımı referans alınarak madde üretim briefingi güncellenmeli</div>
+      <div class="aksiyon-detay">Soru yazarlarına iletilen brief'e güçlük hedef aralığı (0,45–0,65) ve her test için minimum "orta" soru yüzdesi (%50) eklenmesi, benzer sapmaların önüne geçecektir.</div>
+      <div class="aksiyon-meta">
+        <div class="aksiyon-meta-item">👤 Sahip: Yayın Koordinatörü</div>
+        <div class="aksiyon-meta-item">📅 Tarih: 2 hafta içinde</div>
+      </div>
+    </div>
+
+    <div class="aksiyon-item">
+      <div class="aksiyon-baslik">3. Deneme sonuçları rakip ürünlerle güçlük bazında kıyaslanmalı</div>
+      <div class="aksiyon-detay">Pazar konumlandırması için en az 2 rakip denemeden aynı döneme ait madde analizi özeti temin edilerek iç karşılaştırma raporu hazırlanmalıdır.</div>
+      <div class="aksiyon-meta">
+        <div class="aksiyon-meta-item">👤 Sahip: Ürün / Pazarlama</div>
+        <div class="aksiyon-meta-item">📅 Tarih: 30 gün içinde</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. GS NOTU -->
+  <div class="section">
+    <div class="section-title"><span class="emoji">📝</span> GS Notu</div>
+    <div class="gs-notu">
+      Rapor, AYT'nin yapısal olarak "çok seçici" bir karaktere kaydığını net biçimde ortaya koymaktadır. Teknik bulgular sağlam; ancak ekip tarafından "aşırı seçiciliği önleme" ile "sıralama gücünü koruma" arasındaki dengenin nasıl kurulacağına ilişkin bir ilke kararı henüz verilmemiştir. Bu karar alınmadan aksiyon önerilerinin hangisine ne kadar ağırlık verileceği belirsiz kalacaktır — Hasan Bey'in toplantıda bu soruyu sorması hâlinde bir hazır yanıt olmayacaktır. Konunun önce ürün stratejisi çerçevesinde netleştirilmesini öneriyorum.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
