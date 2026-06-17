@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Bey İçin Özet Rapor — Kitaphane Grubu 7 Ürün</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #F5F5F0;
+    color: #1A1A1A;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* ÜST BANT */
+  .top-banner {
+    background: #C00000;
+    color: #fff;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .top-banner .label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+  .top-banner h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+  }
+  .top-banner .date {
+    font-size: 12px;
+    opacity: 0.75;
+    font-weight: 500;
+  }
+
+  /* ANA KONTEYNER */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 36px 24px 60px;
+  }
+
+  /* BÖLÜM BAŞLIĞI */
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #1A1A1A;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .icon { font-size: 20px; }
+
+  /* KART */
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  }
+
+  /* 3 CÜMLEDE ÖZET */
+  .ozet-text {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #2A2A2A;
+  }
+  .ozet-text p + p { margin-top: 10px; }
+
+  /* METRİK KARTLAR */
+  .metrik-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .metrik-kart {
+    background: #F9F9F7;
+    border: 1px solid #E8E8E4;
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .metrik-kart.up { border-left: 4px solid #1F8A4C; }
+  .metrik-kart.down { border-left: 4px solid #C00000; }
+  .metrik-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #777; margin-bottom: 4px; }
+  .metrik-value { font-family: 'DM Serif Display', serif; font-size: 26px; color: #1A1A1A; margin-bottom: 2px; }
+  .metrik-sub { font-size: 11.5px; color: #888; }
+  .metrik-sub.up { color: #1F8A4C; font-weight: 600; }
+  .metrik-sub.down { color: #C00000; font-weight: 600; }
+
+  /* BULGULAR LİSTESİ */
+  .bulgu-list { list-style: none; padding: 0; }
+  .bulgu-list li {
+    padding: 9px 0;
+    border-bottom: 1px solid #F0F0EC;
+    font-size: 14px;
+    color: #2A2A2A;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .bulgu-list li:last-child { border-bottom: none; }
+  .bulgu-list li .dot { width: 6px; height: 6px; border-radius: 50%; background: #C00000; margin-top: 8px; flex-shrink: 0; }
+
+  /* RED FLAGS */
+  .red-flag-card {
+    background: #fff;
+    border-left: 4px solid #C00000;
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .red-flag-card .flag-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: #C00000;
+    margin-bottom: 5px;
+  }
+  .red-flag-card .flag-text {
+    font-size: 14px;
+    color: #2A2A2A;
+    line-height: 1.65;
+  }
+
+  /* HASAN BEY'İN SORULARI */
+  .soru-item {
+    background: #F9F9F7;
+    border: 1px solid #E8E8E4;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+  .soru-item .soru-no {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: #C00000;
+    float: left;
+    margin-right: 12px;
+    line-height: 1;
+  }
+  .soru-item .soru-text {
+    font-size: 14.5px;
+    color: #2A2A2A;
+    line-height: 1.65;
+  }
+  .soru-item::after { content: ''; display: block; clear: both; }
+
+  /* AKSİYON TABLOSU */
+  .aksiyon-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  .aksiyon-table th {
+    text-align: left;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #888;
+    padding: 8px 12px;
+    border-bottom: 2px solid #E8E8E4;
+  }
+  .aksiyon-table td {
+    padding: 11px 12px;
+    border-bottom: 1px solid #F0F0EC;
+    vertical-align: top;
+    color: #2A2A2A;
+  }
+  .aksiyon-table tr:last-child td { border-bottom: none; }
+  .aksiyon-table .sahip { font-weight: 700; color: #C00000; }
+  .aksiyon-table .tarih { font-weight: 600; color: #1F8A4C; white-space: nowrap; }
+  .aksiyon-table .oncelik {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 10.5px;
+    font-weight: 700;
+  }
+  .aksiyon-table .oncelik.yuksek { background: rgba(192,0,0,0.12); color: #C00000; }
+  .aksiyon-table .oncelik.orta { background: rgba(224,133,60,0.15); color: #B8611A; }
+
+  /* GS NOTU */
+  .gs-notu {
+    background: #fff;
+    border-left: 4px solid #C00000;
+    border-radius: 0 12px 12px 0;
+    padding: 20px 28px;
+    font-style: italic;
+    color: #3A3A3A;
+    font-size: 14px;
+    line-height: 1.75;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .gs-notu .gs-label {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #C00000;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  /* AYRAÇ */
+  .divider { height: 1px; background: #E8E8E4; margin: 8px 0 28px; }
+
+  @media (max-width: 600px) {
+    .top-banner { padding: 14px 20px; }
+    .container { padding: 24px 16px 48px; }
+    .metrik-grid { grid-template-columns: 1fr 1fr; }
+    .metrik-value { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ÜST BANT -->
+<div class="top-banner">
+  <div>
+    <div class="label">İcra Kurulu Genel Sekreteri Çalışması</div>
+    <h1>Hasan Bey İçin Özet Rapor</h1>
+  </div>
+  <div class="date">Kitaphane Grubu 7 Ürün &nbsp;·&nbsp; 1. Raporlama &nbsp;·&nbsp; Haziran 2026</div>
+</div>
+
+<div class="container">
+
+  <!-- BÖLÜM 1: 3 CÜMLEDE ÖZET -->
+  <div class="section-title"><span class="icon">📋</span> 3 Cümlede Özet</div>
+  <div class="card">
+    <div class="ozet-text">
+      <p>Kitaphane Grubu, Haziran 2026 itibarıyla 7 üründe <strong>201.273 adet</strong> satışa ulaştı; geçen yılın aynı dönemine kıyasla <strong>+%41,8</strong> büyüme kaydedildi.</p>
+      <p>Büyümenin motoru Ankara: <strong>3D Ortaokul SB (+%261)</strong> ve <strong>EV TAK-TİK (+%437)</strong> ile Ankara bölgesi toplam performansı tek başına taşıyor; İstanbul ise birden fazla üründe ciddi düşüş yaşıyor.</p>
+      <p>4K KOSB (-%19) ve EV PDF (-%15) iki ürün geçen yılın altında seyrediyor; İstanbul'da EV MSB -%94,7 ile dikkat çeken bir sapma gösteriyor.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- BÖLÜM 2: ANA BULGULAR -->
+  <div class="section-title"><span class="icon">📊</span> Ana Bulgular</div>
+  <div class="card">
+
+    <!-- Metrik Kartlar -->
+    <div class="metrik-grid">
+      <div class="metrik-kart up">
+        <div class="metrik-label">Genel Toplam BGK</div>
+        <div class="metrik-value">201.273</div>
+        <div class="metrik-sub up">GY: 141.940 &nbsp;·&nbsp; +%41,8</div>
+      </div>
+      <div class="metrik-kart up">
+        <div class="metrik-label">En Yüksek Büyüme</div>
+        <div class="metrik-value">4K ESB</div>
+        <div class="metrik-sub up">15.693 adet &nbsp;·&nbsp; +%381,8</div>
+      </div>
+      <div class="metrik-kart down">
+        <div class="metrik-label">En Büyük Düşüş</div>
+        <div class="metrik-value">4K KOSB</div>
+        <div class="metrik-sub down">29.287 adet &nbsp;·&nbsp; -%19,0</div>
+      </div>
+      <div class="metrik-kart up">
+        <div class="metrik-label">Ankara Dominant Ürün</div>
+        <div class="metrik-value">EV TAK-TİK</div>
+        <div class="metrik-sub up">41.057 adet (Ankara tek başına)</div>
+      </div>
+      <div class="metrik-kart down">
+        <div class="metrik-label">İstanbul Kritik Sapma</div>
+        <div class="metrik-value">EV MSB</div>
+        <div class="metrik-sub down">239 adet &nbsp;·&nbsp; GY: 4.550 → -%94,7</div>
+      </div>
+      <div class="metrik-kart up">
+        <div class="metrik-label">İzmir Yıldızı</div>
+        <div class="metrik-value">EV MSB</div>
+        <div class="metrik-sub up">14.825 adet &nbsp;·&nbsp; +%61,8</div>
+      </div>
+    </div>
+
+    <!-- Detay Listesi -->
+    <ul class="bulgu-list">
+      <li><span class="dot"></span><strong>3D Ortaokul SB:</strong> 46.830 adet (+%178,8) — 3 şehirde de büyüme; Ankara +%261 ile öne çıkıyor.</li>
+      <li><span class="dot"></span><strong>EV TAK-TİK:</strong> 41.457 adet (+%237,9) — Neredeyse tamamı Ankara (41.057); İzmir'de dramatik düşüş (150 adet, GY 4.620).</li>
+      <li><span class="dot"></span><strong>EV PDF TYT-AYT:</strong> 30.220 adet (-%15,4) — Ankara -%55,7 ile sürüklüyor; İzmir +%49 ile telafi ediyor.</li>
+      <li><span class="dot"></span><strong>4K TKT TYT-AYT:</strong> 12.193 adet (+%18,4) — Ankara +%294 büyüdü, İstanbul ve İzmir geriledi.</li>
+      <li><span class="dot"></span><strong>4K ESB:</strong> 15.693 adet (+%381,8) — Ankara +%600 ile patlama; İstanbul ve İzmir henüz çok düşük hacimde.</li>
+      <li><span class="dot"></span><strong>4K KOSB TYT-AYT:</strong> 29.287 adet (-%19,0) — İstanbul'da dramatik erime (1.100 adet, GY 23.330 → -%95); Ankara telafi ediyor.</li>
+      <li><span class="dot"></span><strong>EV MSB TYT-AYT:</strong> 25.593 adet (-%6,7) — İstanbul neredeyse sıfırlandı (239 adet); İzmir +%62 ile dengeleme yapıyor.</li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- BÖLÜM 3: RED FLAGS -->
+  <div class="section-title"><span class="icon">🚩</span> Red Flags</div>
+
+  <div class="red-flag-card">
+    <div class="flag-title">İstanbul tek bayide yapısal kırılma var</div>
+    <div class="flag-text">4K KOSB'da -%95,3, EV MSB'da -%94,7, EV TAK-TİK'te sıfıra yakın performans; üç ayrı üründe bu kadar derin bir düşüş, tekil operasyonel bir sorunun işareti olabilir. Bayi kapasitesi, stok erişimi veya önceliklendirme gözden geçirilse etki hızla artabilir.</div>
+  </div>
+
+  <div class="red-flag-card">
+    <div class="flag-title">İzmir'de EV TAK-TİK neredeyse kayboldu</div>
+    <div class="flag-text">Geçen yıl 4.620 olan satış bu yıl 150 adete indi (-%96,8). Ankara'nın parlak büyümesi bu düşüşü toplam tabloda gizliyor; bölge bazlı inceleme yapılmadan kök neden belirsiz kalır.</div>
+  </div>
+
+  <div class="red-flag-card">
+    <div class="flag-title">Ankara konsantrasyonu risk doğuruyor</div>
+    <div class="flag-text">EV TAK-TİK'in %99'u, 4K ESB'nin %96'sı Ankara'dan geliyor. Büyüme görünümü olumlu olsa da tek bölgeye bu kadar bağımlı olmak, olası operasyonel bir aksaklıkta portföy performansını doğrudan etkiler.</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- BÖLÜM 4: HASAN BEY'İN SORULARI -->
+  <div class="section-title"><span class="icon">❓</span> Hasan Bey'in 3 Sorusu</div>
+  <div class="card">
+
+    <div class="soru-item">
+      <span class="soru-no">1.</span>
+      <div class="soru-text"><strong>İstanbul'da ne oldu?</strong> — Birden fazla üründe aynı anda %90'ın üzerinde düşüş görünüyor. Bu bayi kaynaklı mı (kapasite, öncelik, stok), yoksa pazar dinamiği mi? Yönetim bunun farkında mı ve aksiyon planı var mı?</div>
+    </div>
+
+    <div class="soru-item">
+      <span class="soru-no">2.</span>
+      <div class="soru-text"><strong>Ankara büyümesi sürdürülebilir mi?</strong> — EV TAK-TİK ve 3D SB'deki üç haneli büyüme, sezon talebiyle açıklanabilir seviyenin üzerinde. Fiyatlandırma, kampanya ya da ek stok gibi artifisiyel bir etken var mı?</div>
+    </div>
+
+    <div class="soru-item">
+      <span class="soru-no">3.</span>
+      <div class="soru-text"><strong>Bu bizi nereye götürür?</strong> — Genel +%41,8 büyüme sevindirici; ancak 4K KOSB ve EV PDF'deki gerileme sezon sonunda telafi edilebilir mi? Yılsonunda hedef nedir ve mevcut seyirle ulaşabilir miyiz?</div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- BÖLÜM 5: ÖNERİLEN AKSİYON -->
+  <div class="section-title"><span class="icon">🎯</span> Önerilen Aksiyon</div>
+  <div class="card">
+    <table class="aksiyon-table">
+      <thead>
+        <tr>
+          <th>Aksiyon</th>
+          <th>Sahip</th>
+          <th>Tarih</th>
+          <th>Öncelik</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>İstanbul Kitaphane bayisiyle acil görüşme yapılarak 4K KOSB, EV MSB ve EV TAK-TİK düşüşlerinin kök nedeni tespit edilmeli; bayi aksiyon planı alınmalı.</td>
+          <td class="sahip">Satış / Bölge Müdürü</td>
+          <td class="tarih">27 Haziran 2026</td>
+          <td><span class="oncelik yuksek">Yüksek</span></td>
+        </tr>
+        <tr>
+          <td>İzmir'de EV TAK-TİK düşüşü (GY 4.620 → 150) için stok, sipariş ve bayi önceliklendirme süreci incelenmeli; durum notu hazırlanmalı.</td>
+          <td class="sahip">Ürün Yöneticisi</td>
+          <td class="tarih">1 Temmuz 2026</td>
+          <td><span class="oncelik yuksek">Yüksek</span></td>
+        </tr>
+        <tr>
+          <td>4K KOSB ve EV PDF'deki sezonluk gerilemenin yılsonu bütçesine etkisi modellenip Hasan Bey'e özet sunulmalı.</td>
+          <td class="sahip">Planlama / Finans</td>
+          <td class="tarih">4 Temmuz 2026</td>
+          <td><span class="oncelik orta">Orta</span></td>
+        </tr>
+        <tr>
+          <td>Ankara konsantrasyonu göz önüne alınarak İstanbul ve İzmir için bölge aktivasyon planı (hedef, kampanya, stok desteği) hazırlanmalı.</td>
+          <td class="sahip">Satış Direktörü</td>
+          <td class="tarih">11 Temmuz 2026</td>
+          <td><span class="oncelik orta">Orta</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- GS NOTU -->
+  <div class="gs-notu">
+    <span class="gs-label">GS Notu</span>
+    Rapordaki +%41,8 büyüme gerçek ve gurur verici; ancak tablo Ankara'nın gücünü gösterirken İstanbul'daki yapısal kırılmayı ve ürün bazlı consantrasyon riskini örtüyor. Hasan Bey'in toplantıya girmeden önce İstanbul bölge yöneticisinden bir durum notu alınması, olası sürprizleri erkenden masaya yatırır. 4K KOSB ve EV PDF'deki gerileme henüz yönetilebilir düzeyde; erken müdahale sezon kapanmadan etkiyi tersine çevirebilir.
+  </div>
+
+</div>
+</body>
+</html>
