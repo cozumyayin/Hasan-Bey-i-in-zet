@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Bey İçin Özet – Tam Okul / İmpark Platform Karşılaştırması</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #F7F6F3;
+    color: #1A1A1A;
+    line-height: 1.65;
+    font-size: 15px;
+  }
+
+  /* ── ÜST BANT ── */
+  .top-band {
+    background: #C00000;
+    color: #fff;
+    padding: 20px 48px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .top-band .label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+  .top-band .title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    letter-spacing: 0.01em;
+  }
+  .top-band .meta {
+    font-size: 12px;
+    opacity: 0.75;
+    text-align: right;
+  }
+
+  /* ── KONU BAŞLIĞI ── */
+  .subject-bar {
+    background: #fff;
+    border-bottom: 2px solid #E8E4DF;
+    padding: 16px 48px;
+  }
+  .subject-bar h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: #C00000;
+  }
+  .subject-bar p {
+    font-size: 13px;
+    color: #777;
+    margin-top: 3px;
+  }
+
+  /* ── ANA KONTEYNER ── */
+  .container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 24px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  /* ── BÖLÜM KARTI ── */
+  .card {
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid #E8E4DF;
+    padding: 28px 32px;
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #F0EDE8;
+  }
+  .card-header .icon { font-size: 18px; }
+  .card-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    color: #1A1A1A;
+  }
+
+  /* ── 3 CÜMLEDE ÖZET ── */
+  .summary-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #2C2C2C;
+  }
+  .summary-text p + p { margin-top: 10px; }
+
+  /* ── METRİK KARTLAR ── */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .metric-card {
+    background: #F7F6F3;
+    border-radius: 4px;
+    padding: 16px 18px;
+    border-left: 3px solid #C00000;
+  }
+  .metric-card .val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: #C00000;
+    line-height: 1.1;
+  }
+  .metric-card .lbl {
+    font-size: 11px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+  }
+
+  /* ── KARŞILAŞTIRMA TABLOSU ── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 4px;
+  }
+  .compare-col h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 10px;
+  }
+  .compare-col.ahead h3 { color: #1A6B2A; }
+  .compare-col.behind h3 { color: #C00000; }
+  .compare-col ul { list-style: none; }
+  .compare-col ul li {
+    font-size: 14px;
+    padding: 7px 0;
+    border-bottom: 1px solid #F0EDE8;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .compare-col ul li:last-child { border-bottom: none; }
+  .compare-col.ahead ul li::before { content: "✓"; color: #1A6B2A; font-weight: 700; flex-shrink: 0; }
+  .compare-col.behind ul li::before { content: "→"; color: #C00000; font-weight: 700; flex-shrink: 0; }
+
+  /* ── RED FLAGS ── */
+  .red-flag-list { list-style: none; }
+  .red-flag-list li {
+    border-left: 3px solid #C00000;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    background: #FEF6F6;
+    border-radius: 0 3px 3px 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .red-flag-list li:last-child { margin-bottom: 0; }
+  .red-flag-list li strong { color: #C00000; }
+
+  /* ── HASAN BEY SORULARI ── */
+  .question-list { list-style: none; counter-reset: q-counter; }
+  .question-list li {
+    counter-increment: q-counter;
+    padding: 12px 0 12px 48px;
+    border-bottom: 1px solid #F0EDE8;
+    font-size: 14px;
+    position: relative;
+  }
+  .question-list li:last-child { border-bottom: none; }
+  .question-list li::before {
+    content: counter(q-counter);
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 28px;
+    height: 28px;
+    background: #C00000;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 14px;
+  }
+
+  /* ── AKSİYON ── */
+  .action-list { list-style: none; }
+  .action-item {
+    padding: 14px 0;
+    border-bottom: 1px solid #F0EDE8;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: start;
+  }
+  .action-item:last-child { border-bottom: none; }
+  .action-item .action-text { font-size: 14px; line-height: 1.6; }
+  .action-item .action-text strong { display: block; font-weight: 600; color: #1A1A1A; }
+  .action-item .action-text span { color: #555; font-size: 13px; }
+  .badge {
+    display: inline-flex;
+    gap: 6px;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .badge span {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .badge .owner { background: #EEF2FF; color: #3730A3; }
+  .badge .date  { background: #F0FDF4; color: #166534; }
+
+  /* ── GS NOTU ── */
+  .gs-note {
+    border-left: 3px solid #C00000;
+    padding: 14px 20px;
+    background: #FEF6F6;
+    border-radius: 0 4px 4px 0;
+    font-style: italic;
+    font-size: 14px;
+    color: #3D1A1A;
+    line-height: 1.75;
+  }
+
+  @media (max-width: 620px) {
+    .top-band { padding: 16px 20px; }
+    .subject-bar { padding: 14px 20px; }
+    .container { padding: 0 14px 60px; }
+    .card { padding: 20px 18px; }
+    .metric-grid { grid-template-columns: 1fr 1fr; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .action-item { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ÜST BANT -->
+<div class="top-band">
+  <div>
+    <div class="label">İcra Kurulu Genel Sekreteri Çalışması</div>
+    <div class="title">Hasan Bey İçin Özet Rapor</div>
+  </div>
+  <div class="meta">
+    Hazırlanma: 22 Haziran 2026<br>
+    KPI: Rakip Platform Analizi (Q3 Raporu)
+  </div>
+</div>
+
+<!-- KONU BAŞLIĞI -->
+<div class="subject-bar">
+  <h1>Tam Okul – İmpark Platform Karşılaştırması</h1>
+  <p>Birim raporu · Dijital Ürün / Platform · Haziran 2026</p>
+</div>
+
+<div class="container">
+
+  <!-- 1. 3 CÜMLEDE ÖZET -->
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">📋</span>
+      <h2>3 Cümlede Özet</h2>
+    </div>
+    <div class="summary-text">
+      <p>İmpark, kullanıcı tabanı (370K+ öğrenci vs. 60K+), soru havuzu (550K vs. 250K) ve bireysel çalışma planı gibi kritik pedagojik araçlar açısından Tam Okul'un önündedir.</p>
+      <p>Tam Okul ise WhatsApp AI entegrasyonu ve kurumsal raporlama ekosistemiyle farklılaşmakta; ancak tüm soruların çözüm videosu, merkez raporlama, kök analizi ve kitaptan ödev verme gibi beş önemli özellik henüz hayata geçirilmemiştir.</p>
+      <p>Bu boşluklar kapatılmadan Tam Okul'un zincir kurum ve büyük dershane pazarında İmpark'a karşı rekabetçi konumlanması güçleşecektir.</p>
+    </div>
+  </div>
+
+  <!-- 2. ANA BULGULAR -->
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">📊</span>
+      <h2>Ana Bulgular</h2>
+    </div>
+
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="val">6×</div>
+        <div class="lbl">İmpark'ın öğrenci tabanı büyüklüğü</div>
+      </div>
+      <div class="metric-card">
+        <div class="val">2,2×</div>
+        <div class="lbl">İmpark soru havuzu avantajı</div>
+      </div>
+      <div class="metric-card">
+        <div class="val">5</div>
+        <div class="lbl">Tam Okul'da eksik kritik özellik</div>
+      </div>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-col ahead">
+        <h3>Tam Okul Önde</h3>
+        <ul>
+          <li>WhatsApp AI (İmpark'ta yok)</li>
+          <li>Kurumsal raporlama ekosistemi</li>
+        </ul>
+      </div>
+      <div class="compare-col behind">
+        <h3>Geliştirilmesi Gereken</h3>
+        <ul>
+          <li>Bireysel çalışma planı (otomatik)</li>
+          <li>Tüm soruların çözüm videosu</li>
+          <li>Merkez raporlama (zincir kurumlar)</li>
+          <li>Kök raporu / kök analizi</li>
+          <li>Kitaptan ödev verme</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. RED FLAGS -->
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">🚩</span>
+      <h2>Red Flags</h2>
+    </div>
+    <ul class="red-flag-list">
+      <li><strong>Zincir kurum riski:</strong> Merkez raporlama özelliği olsa etki büyük olurdu; çok şubeli okul grupları şu an bu ihtiyaç için İmpark'ı tercih edebilir.</li>
+      <li><strong>Pedagojik tamamlayıcılık:</strong> Bireysel çalışma planı ve kök analizi bir arada olsa öğrenci başarı döngüsü kapanırdı; bu ikisi birlikte "akıllı platform" algısını belirleyici biçimde artırır.</li>
+      <li><strong>Ölçek farkı büyüyor:</strong> İmpark 300K+ öğrenci avantajıyla ağ etkisi yaratmaktadır; bu fark kapanmadıkça ulusal sınav sıralaması gibi özellikler rakip için anlamlı bir çekim gücü olmaya devam eder.</li>
+    </ul>
+  </div>
+
+  <!-- 4. HASAN BEY'İN 3 SORUSU -->
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">❓</span>
+      <h2>Hasan Bey'in 3 Sorusu</h2>
+    </div>
+    <ol class="question-list">
+      <li>Bireysel çalışma planı ve kök raporu için geliştirme takvimi var mı; varsa hangi dönem hedefleniyor?</li>
+      <li>Zincir kurum segmentinde kaç aktif veya potansiyel müşterimiz var ve merkez raporlama eksikliği son 12 ayda kaç fırsatı olumsuz etkiledi?</li>
+      <li>WhatsApp AI avantajımızı ve raporlama üstünlüğümüzü sahaya nasıl yansıtıyoruz — bu özellikler satış sürecinde aktif olarak kullanılıyor mu?</li>
+    </ol>
+  </div>
+
+  <!-- 5. ÖNERİLEN AKSİYON -->
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">🎯</span>
+      <h2>Önerilen Aksiyon</h2>
+    </div>
+    <div class="action-list">
+
+      <div class="action-item">
+        <div class="action-text">
+          <strong>Bireysel Çalışma Planı & Kök Raporu yol haritası netleştirilmeli</strong>
+          <span>Ürün ekibi bu iki özellik için somut bir teslim tarihi ve kaynak planı sunmalı; İcra Kurulu'na raporlanmalı.</span>
+        </div>
+        <div class="badge">
+          <span class="owner">Ürün Müdürü</span>
+          <span class="date">Temmuz 2026</span>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-text">
+          <strong>Zincir kurum segmenti için kayıp fırsat analizi yapılmalı</strong>
+          <span>Satış ekibi geçen 12 ayda merkez raporlama eksikliği nedeniyle kaybedilen veya ertelenen kurumları listeleyen kısa bir not hazırlamalı.</span>
+        </div>
+        <div class="badge">
+          <span class="owner">Satış Direktörü</span>
+          <span class="date">Temmuz 2026</span>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-text">
+          <strong>WhatsApp AI ve raporlama üstünlüğü satış materyaline entegre edilmeli</strong>
+          <span>Mevcut farkımızın saha ekipleri tarafından aktif kullanılması için bir sunum/demo kiti oluşturulmalı.</span>
+        </div>
+        <div class="badge">
+          <span class="owner">Pazarlama + Satış</span>
+          <span class="date">Ağustos 2026</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 6. GS NOTU -->
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">📝</span>
+      <h2>GS Notu</h2>
+    </div>
+    <div class="gs-note">
+      Rapor, İmpark'ın ölçek avantajını net biçimde ortaya koyuyor. Bununla birlikte, Tam Okul'un WhatsApp AI gibi rakip platformlarda henüz bulunmayan bir özelliğe sahip olduğunu not düşmek isterim — bu, doğru konumlandırıldığında anlamlı bir farklılaştırıcı olabilir. Önümüzdeki çeyrekte kritik özellik boşluklarına yönelik somut bir geliştirme takvimi görmeyi ve zincir kurum segmentindeki tablo netleşince konuyu yeniden ele almayı öneririm.
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+</body>
+</html>
