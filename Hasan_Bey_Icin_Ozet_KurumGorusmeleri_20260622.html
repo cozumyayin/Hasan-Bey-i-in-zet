@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Bey İçin Özet – B.Y. Kurum Görüşmeleri</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #F7F6F3;
+    color: #1A1A1A;
+    line-height: 1.65;
+    font-size: 15px;
+  }
+
+  .top-band {
+    background: #C00000;
+    color: #fff;
+    padding: 20px 48px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .top-band .label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+  .top-band .title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+  }
+  .top-band .meta {
+    font-size: 12px;
+    opacity: 0.75;
+    text-align: right;
+  }
+
+  .subject-bar {
+    background: #fff;
+    border-bottom: 2px solid #E8E4DF;
+    padding: 16px 48px;
+  }
+  .subject-bar h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: #C00000;
+  }
+  .subject-bar p {
+    font-size: 13px;
+    color: #777;
+    margin-top: 3px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 24px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid #E8E4DF;
+    padding: 28px 32px;
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #F0EDE8;
+  }
+  .card-header .icon { font-size: 18px; }
+  .card-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    color: #1A1A1A;
+  }
+
+  /* ÖZET */
+  .summary-text { font-size: 15px; line-height: 1.8; color: #2C2C2C; }
+  .summary-text p + p { margin-top: 10px; }
+
+  /* METRİK KARTLAR */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .metric-card {
+    background: #F7F6F3;
+    border-radius: 4px;
+    padding: 16px 18px;
+    border-left: 3px solid #C00000;
+  }
+  .metric-card .val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: #C00000;
+    line-height: 1.1;
+  }
+  .metric-card .lbl {
+    font-size: 11px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+  }
+
+  /* KURUM TABLOSU */
+  .kurum-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  .kurum-table thead tr {
+    background: #F7F6F3;
+    border-bottom: 2px solid #E8E4DF;
+  }
+  .kurum-table thead th {
+    text-align: left;
+    padding: 10px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #888;
+  }
+  .kurum-table tbody tr {
+    border-bottom: 1px solid #F0EDE8;
+  }
+  .kurum-table tbody tr:last-child { border-bottom: none; }
+  .kurum-table tbody td {
+    padding: 11px 12px;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .kurum-table tbody td:first-child { font-weight: 600; color: #1A1A1A; }
+  .badge-kapasite {
+    display: inline-block;
+    background: #EEF2FF;
+    color: #3730A3;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .badge-online {
+    display: inline-block;
+    background: #F0FDF4;
+    color: #166534;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+  .badge-yuz {
+    display: inline-block;
+    background: #FFF7ED;
+    color: #9A3412;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+  .durum-olumlu { color: #166534; font-weight: 600; }
+  .durum-takip  { color: #854D0E; font-weight: 600; }
+
+  /* FIRSATLAR / BULGULAR LİSTESİ */
+  .bulgu-list { list-style: none; }
+  .bulgu-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #F0EDE8;
+    font-size: 14px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.6;
+  }
+  .bulgu-list li:last-child { border-bottom: none; }
+  .bulgu-list li .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #C00000;
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  /* RED FLAGS */
+  .red-flag-list { list-style: none; }
+  .red-flag-list li {
+    border-left: 3px solid #C00000;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    background: #FEF6F6;
+    border-radius: 0 3px 3px 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .red-flag-list li:last-child { margin-bottom: 0; }
+  .red-flag-list li strong { color: #C00000; }
+
+  /* HASAN BEY SORULARI */
+  .question-list { list-style: none; counter-reset: q-counter; }
+  .question-list li {
+    counter-increment: q-counter;
+    padding: 12px 0 12px 48px;
+    border-bottom: 1px solid #F0EDE8;
+    font-size: 14px;
+    position: relative;
+  }
+  .question-list li:last-child { border-bottom: none; }
+  .question-list li::before {
+    content: counter(q-counter);
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 28px;
+    height: 28px;
+    background: #C00000;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 14px;
+  }
+
+  /* AKSİYON */
+  .action-item {
+    padding: 14px 0;
+    border-bottom: 1px solid #F0EDE8;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: start;
+  }
+  .action-item:last-child { border-bottom: none; }
+  .action-item .action-text { font-size: 14px; line-height: 1.6; }
+  .action-item .action-text strong { display: block; font-weight: 600; }
+  .action-item .action-text span { color: #555; font-size: 13px; }
+  .badge-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-end;
+  }
+  .badge-meta span {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .b-owner { background: #EEF2FF; color: #3730A3; }
+  .b-date  { background: #F0FDF4; color: #166534; }
+
+  /* GS NOTU */
+  .gs-note {
+    border-left: 3px solid #C00000;
+    padding: 14px 20px;
+    background: #FEF6F6;
+    border-radius: 0 4px 4px 0;
+    font-style: italic;
+    font-size: 14px;
+    color: #3D1A1A;
+    line-height: 1.75;
+  }
+
+  @media (max-width: 640px) {
+    .top-band, .subject-bar { padding: 14px 18px; }
+    .container { padding: 0 14px 60px; }
+    .card { padding: 20px 16px; }
+    .metric-grid { grid-template-columns: 1fr 1fr; }
+    .action-item { grid-template-columns: 1fr; }
+    .kurum-table { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-band">
+  <div>
+    <div class="label">İcra Kurulu Genel Sekreteri Çalışması</div>
+    <div class="title">Hasan Bey İçin Özet Rapor</div>
+  </div>
+  <div class="meta">
+    Hazırlanma: 22 Haziran 2026<br>
+    KPI: B.Y. Kurum Görüşmeleri (Q4 Raporu)
+  </div>
+</div>
+
+<div class="subject-bar">
+  <h1>B.Y. Kurum Görüşmeleri — Aralık 2025 / Haziran 2026</h1>
+  <p>Birim raporu · Satış / Kurumsal İlişkiler · 8 Kurum · Online + Yüz Yüze</p>
+</div>
+
+<div class="container">
+
+  <!-- 1. 3 CÜMLEDE ÖZET -->
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">📋</span>
+      <h2>3 Cümlede Özet</h2>
+    </div>
+    <div class="summary-text">
+      <p>Aralık 2025 – Haziran 2026 döneminde 8 kurumla (yaklaşık 10.000+ toplam öğrenci potansiyeli) online veya yüz yüze Tam Okul tanıtım görüşmesi gerçekleştirilmiş; tüm görüşmelerde genel ilgi olumlu seyretmiştir.</p>
+      <p>WhatsApp AI ve DAS raporlama modülleri kurumlar tarafından öne çıkan güçlü özellikler olarak değerlendirilirken, ortaokul kademesindeki DAS ürün formatı birden fazla kurumdan çekince almaktadır.</p>
+      <p>Okyanus Okulları (20 kampüs) ve Diltaş/TEDEM gibi büyük hacimli kurumlar somut takip ziyareti aşamasında olup bu fırsatlar sahipli ve takvimli aksiyona dönüştürülmeyi beklemektedir.</p>
+    </div>
+  </div>
+
+  <!-- 2. ANA BULGULAR -->
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">📊</span>
+      <h2>Ana Bulgular</h2>
+    </div>
+
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="val">8</div>
+        <div class="lbl">Görüşülen kurum</div>
+      </div>
+      <div class="metric-card">
+        <div class="val">10K+</div>
+        <div class="lbl">Toplam öğrenci potansiyeli</div>
+      </div>
+      <div class="metric-card">
+        <div class="val">4</div>
+        <div class="lbl">Takip ziyareti gereken kurum</div>
+      </div>
+      <div class="metric-card">
+        <div class="val">3</div>
+        <div class="lbl">Kurumdan gelen ürün geliştirme talebi</div>
+      </div>
+    </div>
+
+    <table class="kurum-table">
+      <thead>
+        <tr>
+          <th>Kurum</th>
+          <th>Tarih</th>
+          <th>Format</th>
+          <th>Kapasite</th>
+          <th>Durum</th>
+          <th>Öne Çıkan Not</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Atayurt Okulları</td>
+          <td>Şub 2026</td>
+          <td><span class="badge-online">Online</span></td>
+          <td><span class="badge-kapasite">~1.200</span></td>
+          <td><span class="durum-takip">Demo verildi</span></td>
+          <td>Demo okul kaydı oluşturuldu</td>
+        </tr>
+        <tr>
+          <td>BCN Koleji</td>
+          <td>Şub 2026</td>
+          <td><span class="badge-online">Online</span></td>
+          <td><span class="badge-kapasite">~500</span></td>
+          <td><span class="durum-takip">Demo verildi</span></td>
+          <td>Demo giriş bilgileri iletildi</td>
+        </tr>
+        <tr>
+          <td>YDS Academy</td>
+          <td>Mar 2026</td>
+          <td><span class="badge-online">Online</span></td>
+          <td><span class="badge-kapasite">4 il</span></td>
+          <td><span class="durum-takip">Takip bekliyor</span></td>
+          <td>WP AI beğenildi; dil şablonu talebi var</td>
+        </tr>
+        <tr>
+          <td>Okyanus Okulları</td>
+          <td>Ara 2025</td>
+          <td><span class="badge-online">Online</span></td>
+          <td><span class="badge-kapasite">20 kampüs / 1K+ öğrenci/sınıf</span></td>
+          <td><span class="durum-takip">Takip bekliyor</span></td>
+          <td>LGS tercih modülü sorusu geldi</td>
+        </tr>
+        <tr>
+          <td>Mersin Yeryüzü</td>
+          <td>Ara 2026*</td>
+          <td><span class="badge-online">Online</span></td>
+          <td>—</td>
+          <td><span class="durum-takip">Takip bekliyor</span></td>
+          <td>Muhasebe modülü + mobil etüt sorusu</td>
+        </tr>
+        <tr>
+          <td>Enes Hocam Akademi</td>
+          <td>Ara 2026*</td>
+          <td><span class="badge-online">Online</span></td>
+          <td>—</td>
+          <td><span class="durum-olumlu">Olumlu</span></td>
+          <td>Edesis'e kıyasla üstün bulundu</td>
+        </tr>
+        <tr>
+          <td>Diltaş Eğitim Kur.</td>
+          <td>Haz 2026</td>
+          <td><span class="badge-yuz">Yüz Yüze</span></td>
+          <td><span class="badge-kapasite">~3.000</span></td>
+          <td><span class="durum-takip">Takip ziyareti planlandı</span></td>
+          <td>Ortaokul DAS yetersiz bulundu; KÖK olumlu</td>
+        </tr>
+        <tr>
+          <td>TEDEM Koleji</td>
+          <td>Haz 2026</td>
+          <td><span class="badge-yuz">Yüz Yüze</span></td>
+          <td><span class="badge-kapasite">~1.600</span></td>
+          <td><span class="durum-takip">Takip ziyareti planlandı</span></td>
+          <td>WP AI çok beğenildi; bayi KÖK'ü üstlenecek</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px;color:#aaa;margin-top:10px;">* Rapordaki tarih "Aralık 2026" olarak geçmektedir; 2025 ya da yazım hatası olabilir, teyit edilmelidir.</p>
+
+    <div style="margin-top:22px;">
+      <ul class="bulgu-list">
+        <li><span class="dot"></span>WhatsApp AI, görüşülen kurumların büyük çoğunluğunda olumlu karşılandı — bu özellik Tam Okul'un en güçlü farklılaştırıcısı olarak öne çıkıyor.</li>
+        <li><span class="dot"></span>Ortaokul kademesinde DAS ürün formatına yönelik çekince Diltaş ve TEDEM'den bağımsız olarak tekrar eden bir tema haline geldi.</li>
+        <li><span class="dot"></span>Kurumlardan gelen ürün talepleri: dil bazlı şablon (YDS Academy), asenkron deneme çözümü (Enes Hocam), LGS tercih modülü (Okyanus).</li>
+        <li><span class="dot"></span>Okyanus Okulları (20 kampüs) raporun en büyük hacimli fırsatı; ancak takip süreci belirsizliğini koruyor.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 3. RED FLAGS -->
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">🚩</span>
+      <h2>Red Flags</h2>
+    </div>
+    <ul class="red-flag-list">
+      <li><strong>Takip süreci sahipsiz:</strong> 8 görüşmenin 5'inde "tekrar ziyaret edilecek" veya "bilgi iletilecek" notu düşülmüş; ancak hiçbirinde sorumlu isim ve tarih belirtilmemiş. Bu boşluk doldurulsa fırsat kaybı riski önemli ölçüde azalır.</li>
+      <li><strong>Ortaokul DAS tekrarlayan çekince:</strong> Hem Diltaş hem TEDEM ortaokul kademesinde DAS ürününü yetersiz buldu. Bu tema ürün ekibiyle paylaşılırsa çözüm süreci başlatılabilir.</li>
+      <li><strong>Tarih tutarsızlığı:</strong> Mersin Yeryüzü ve Enes Hocam toplantı tarihleri "Aralık 2026" olarak yazılmış; rapor Haziran 2026'da üretildiğinden bu tarihler gerçekleşmiş olamaz. Birim teyit etmeli.</li>
+      <li><strong>Okyanus büyüklüğüne orantısız takip:</strong> 20 kampüslü Okyanus Okulları en büyük potansiyel kurum; ancak takip notu "bilgiler Muhsin Bey ile görüşülerek iletilecek" düzeyinde kalmış.</li>
+    </ul>
+  </div>
+
+  <!-- 4. HASAN BEY'İN 3 SORUSU -->
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">❓</span>
+      <h2>Hasan Bey'in 3 Sorusu</h2>
+    </div>
+    <ol class="question-list">
+      <li>Bu 8 görüşmenin kaçı somut bir sonraki adım tarihi olan sahipli aksiyona dönüştü — demo verildi dışında ilerleyen var mı?</li>
+      <li>Ortaokul DAS ürününe yönelik tekrarlayan çekince ürün ekibine iletildi mi; bir geliştirme takvimi var mı?</li>
+      <li>Okyanus Okulları gibi 20 kampüslü bir kuruma yönelik özel bir strateji veya teklifimiz var mı, yoksa standart sunum mı yapıldı?</li>
+    </ol>
+  </div>
+
+  <!-- 5. ÖNERİLEN AKSİYON -->
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">🎯</span>
+      <h2>Önerilen Aksiyon</h2>
+    </div>
+
+    <div class="action-item">
+      <div class="action-text">
+        <strong>Her görüşme için sahip + tarih atanmalı</strong>
+        <span>Takip bekleyen 5 kurum için bir sonraki adım tablosu (kurum / sorumlu BY / tarih) hazırlanmalı ve paylaşılmalı.</span>
+      </div>
+      <div class="badge-meta">
+        <span class="b-owner">Satış Koordinatörü</span>
+        <span class="b-date">Temmuz 2026</span>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-text">
+        <strong>Okyanus Okulları için özel teklif / strateji oluşturulmalı</strong>
+        <span>20 kampüs ölçeğinde merkez raporlama, zincir kurum yönetimi ve fiyatlandırma modeli özelleştirilmeli; Muhsin Bey ile takip toplantısı takvime alınmalı.</span>
+      </div>
+      <div class="badge-meta">
+        <span class="b-owner">Satış Direktörü</span>
+        <span class="b-date">Temmuz 2026</span>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-text">
+        <strong>Ortaokul DAS çekincesi ürün ekibine resmi olarak iletilmeli</strong>
+        <span>Diltaş ve TEDEM'den gelen geri bildirim yazılı hale getirilmeli; ürün ekibinden mevcut durum ve geliştirme planı istenmelidir.</span>
+      </div>
+      <div class="badge-meta">
+        <span class="b-owner">Ürün + Satış</span>
+        <span class="b-date">Temmuz 2026</span>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-text">
+        <strong>Rapordaki tarih tutarsızlıkları teyit edilmeli</strong>
+        <span>Mersin Yeryüzü ve Enes Hocam toplantı tarihleri "Aralık 2026" olarak yazılmış; birim doğru tarihleri ileterek raporu güncellemeli.</span>
+      </div>
+      <div class="badge-meta">
+        <span class="b-owner">Birim Sorumlusu</span>
+        <span class="b-date">Haziran 2026</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 6. GS NOTU -->
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">📝</span>
+      <h2>GS Notu</h2>
+    </div>
+    <div class="gs-note">
+      Rapor, satış ekibinin aktif olduğunu ve kurumlardan olumlu sinyal aldığını gösteriyor — bu teşvik edici. Bununla birlikte, görüşmelerin büyük çoğunluğu "takip edilecek" notunun ötesine geçmemiş; bu da fırsatların henüz fırsatlık aşamasında kaldığı anlamına geliyor. Bir sonraki KPI raporunda her kurumun statüsünü (aktif demo / teklif sürecinde / kaybedildi) gösteren basit bir ilerleme tablosu eklenmesi, Hasan Bey'in "bu bizi nereye götürür?" sorusuna çok daha net bir yanıt verecektir.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
