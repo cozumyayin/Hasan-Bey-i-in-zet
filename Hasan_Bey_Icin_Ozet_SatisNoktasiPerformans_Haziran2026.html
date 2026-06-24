@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Bey İçin Özet Rapor — Satış Noktası Performansı</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f5f4f0;
+    color: #1a1a1a;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* ── ÜST BANT ── */
+  .top-band {
+    background: #C00000;
+    padding: 28px 48px 24px;
+    color: #fff;
+  }
+  .top-band .label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 6px;
+  }
+  .top-band h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+  .top-band .subtitle {
+    margin-top: 6px;
+    font-size: 13px;
+    opacity: 0.80;
+    font-weight: 300;
+  }
+
+  /* ── ANA KAPSAYICI ── */
+  .container {
+    max-width: 860px;
+    margin: 36px auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* ── BÖLÜM KART ── */
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 28px 32px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  }
+
+  .card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: #111;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card-title .icon { font-size: 20px; }
+
+  /* ── 3 CÜMLEDE ÖZET ── */
+  .ozet-text {
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: #2c2c2c;
+    font-weight: 400;
+  }
+  .ozet-text p { margin-bottom: 10px; }
+  .ozet-text p:last-child { margin-bottom: 0; }
+
+  /* ── METRİK KARTLAR ── */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .metric {
+    background: #faf9f7;
+    border: 1px solid #e8e5df;
+    border-radius: 8px;
+    padding: 16px 18px;
+    text-align: center;
+  }
+  .metric .val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: #C00000;
+    line-height: 1.1;
+  }
+  .metric .lbl {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── BULGULAR LİSTE ── */
+  .bulgu-list {
+    list-style: none;
+    padding: 0;
+  }
+  .bulgu-list li {
+    padding: 8px 0 8px 18px;
+    border-bottom: 1px solid #f0ede8;
+    position: relative;
+    font-size: 14.5px;
+    color: #333;
+  }
+  .bulgu-list li:last-child { border-bottom: none; }
+  .bulgu-list li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: #C00000;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  /* ── RED FLAGS ── */
+  .red-flags-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .red-flag-item {
+    border-left: 3px solid #C00000;
+    padding: 10px 16px;
+    background: #fff8f8;
+    border-radius: 0 6px 6px 0;
+    font-size: 14.5px;
+    color: #2c2c2c;
+  }
+  .red-flag-item strong {
+    display: block;
+    color: #C00000;
+    font-weight: 600;
+    margin-bottom: 3px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  /* ── HASAN BEY'İN SORULARI ── */
+  .soru-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    counter-reset: soru;
+  }
+  .soru-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .soru-no {
+    background: #1a1a1a;
+    color: #fff;
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .soru-text {
+    font-size: 15px;
+    color: #2c2c2c;
+    line-height: 1.6;
+    padding-top: 5px;
+  }
+
+  /* ── AKSİYON ── */
+  .aksiyon-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .aksiyon-item {
+    background: #f9f8f5;
+    border: 1px solid #e4e1d9;
+    border-radius: 8px;
+    padding: 14px 18px;
+  }
+  .aksiyon-header {
+    font-weight: 600;
+    font-size: 14.5px;
+    color: #111;
+    margin-bottom: 6px;
+  }
+  .aksiyon-meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .meta-tag {
+    font-size: 12px;
+    font-weight: 500;
+    background: #ebe8e0;
+    padding: 3px 10px;
+    border-radius: 20px;
+    color: #444;
+  }
+  .meta-tag.owner { background: #fff0f0; color: #C00000; border: 1px solid #f5c5c5; }
+  .meta-tag.date  { background: #f0f4ff; color: #2255bb; border: 1px solid #c5d5f5; }
+
+  /* ── GS NOTU ── */
+  .gs-notu {
+    border-left: 3px solid #C00000;
+    padding: 14px 20px;
+    background: #fff;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.7;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .gs-notu strong { font-style: normal; font-weight: 600; color: #C00000; }
+
+  /* ── ALT BİLGİ ── */
+  .footer {
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    padding-bottom: 40px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ÜST BANT -->
+<div class="top-band">
+  <div class="label">İcra Kurulu Genel Sekreteri Çalışması</div>
+  <h1>Hasan Bey İçin Özet Rapor</h1>
+  <div class="subtitle">Satış Noktası Performans Raporu &nbsp;|&nbsp; Haziran 2026 &nbsp;|&nbsp; Kaynak: Piyasa Satış Müdürü Mustafa Gören</div>
+</div>
+
+<div class="container">
+
+  <!-- 1. 3 CÜMLEDE ÖZET -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 3 Cümlede Özet</div>
+    <div class="ozet-text">
+      <p>720 satış noktasının yalnızca 352'si aktif; bu da ağın yüzde kırkının boş çalıştığı anlamına geliyor. Aktif noktaların yaklaşık üçte biri İşler şubelerinden oluşurken bu grup tek başına toplam cirosun yüzde ellisini taşıyor. İşler'e olan bu yoğunlaşma, saha prim dinamiğiyle beslenerek önümüzdeki dönemde bayilik baskısına ve dağıtım ağının stratejik risklerine kapı aralıyor.</p>
+    </div>
+  </div>
+
+  <!-- 2. ANA BULGULAR -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📊</span> Ana Bulgular</div>
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="val">720</div>
+        <div class="lbl">Toplam Satış Noktası</div>
+      </div>
+      <div class="metric">
+        <div class="val">352</div>
+        <div class="lbl">Aktif Nokta</div>
+      </div>
+      <div class="metric">
+        <div class="val">%50</div>
+        <div class="lbl">İşler Ciro Payı</div>
+      </div>
+    </div>
+    <ul class="bulgu-list">
+      <li>Aktif noktaların ~117'si İşler şubelerinden oluşuyor (aktif ağın ⅓'ü).</li>
+      <li>İptal edilen bayiler otomatik satış noktasına dönüştürülüyor ancak bu noktalar sipariş hareketi oluşturmuyor.</li>
+      <li>4K-EV ve 3D Ortaokul'un ayrı kitabevlerine verilmesi mevcut satış noktası sayısını olumsuz etkiliyor.</li>
+      <li>Saha ekipleri, prim avantajı nedeniyle İşler şubelerine bayilik araştırması başlattı.</li>
+      <li>Boş/normal bölgelerde İşler aracılığıyla yapılan satışlar BY primlerini dışarda bırakıyor; bu durum sahada gerilim ve güven erozyonu yaratıyor.</li>
+    </ul>
+  </div>
+
+  <!-- 3. RED FLAGS -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🚩</span> Red Flags</div>
+    <ul class="red-flags-list">
+      <li class="red-flag-item">
+        <strong>Ağın yarısı uyuyor</strong>
+        368 pasif nokta için herhangi bir reaktivasyon planı veya kriter henüz paylaşılmamış. Bu noktaların neden kapandığı ve maliyet yükü netleşse aksiyon kabiliyeti artar.
+      </li>
+      <li class="red-flag-item">
+        <strong>İşler bağımlılığı somutlaşmaya başladı</strong>
+        Aktif ağın %28+ 'i ve cirosunun %50'si tek bir zincirde toplanmış durumda. Bayilik baskısı karşısında somut bir "dur" mekanizması net değil.
+      </li>
+      <li class="red-flag-item">
+        <strong>Prim sistemi yanlış davranışı teşvik ediyor</strong>
+        BY'ların İşler satışlarından prim alamaması, sahada dengesiz bir motivasyon yapısı oluşturuyor. Bu çelişki giderilmezse "kapalı devre bayilik" baskısı artmaya devam eder.
+      </li>
+      <li class="red-flag-item">
+        <strong>İptal bayi → satış noktası dönüşümü sonuç vermiyor</strong>
+        Otomatik statü değişikliği tek başına yeterli değil; bu noktalar neden hareketsiz kalıyor sorusu yanıtsız.
+      </li>
+    </ul>
+  </div>
+
+  <!-- 4. HASAN BEY'İN 3 SORUSU -->
+  <div class="card">
+    <div class="card-title"><span class="icon">❓</span> Hasan Bey'in 3 Sorusu</div>
+    <ul class="soru-list">
+      <li class="soru-item">
+        <div class="soru-no">1</div>
+        <div class="soru-text">368 pasif noktanın maliyeti ne? Bu noktalar geri kazanılabilir mi yoksa tamamen çıkarılmalı mı — ve bu kararı kim, ne zaman verecek?</div>
+      </li>
+      <li class="soru-item">
+        <div class="soru-no">2</div>
+        <div class="soru-text">İşler %50 ciro taşıyan bir ortak iken "satış noktası" sınırında tutulmaya devam edebilir mi? Bağımlılık eşiğini aşmadan önce nasıl bir denge kuruyoruz?</div>
+      </li>
+      <li class="soru-item">
+        <div class="soru-no">3</div>
+        <div class="soru-text">BY prim sistemini değiştirmezsek sahada sürtüşme büyür. Bu düzenleme için yetki kim üzerinde, ne zamana kadar bekleyebiliriz?</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 5. ÖNERİLEN AKSİYON -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🎯</span> Önerilen Aksiyon</div>
+    <ul class="aksiyon-list">
+      <li class="aksiyon-item">
+        <div class="aksiyon-header">İşler şube bayilik taleplerini dondur; üst yönetim onayı zorunlu hale getir</div>
+        <div class="aksiyon-meta">
+          <span class="meta-tag owner">Sahip: Genel Müdür + Satış Direktörü</span>
+          <span class="meta-tag date">Tarih: Temmuz 2026 ilk haftası</span>
+        </div>
+      </li>
+      <li class="aksiyon-item">
+        <div class="aksiyon-header">BY prim çerçevesini güncelle — İşler satış noktası gelirleri prime dahil edilsin</div>
+        <div class="aksiyon-meta">
+          <span class="meta-tag owner">Sahip: İK + Satış Direktörü</span>
+          <span class="meta-tag date">Tarih: Ağustos 2026 sezonu başı</span>
+        </div>
+      </li>
+      <li class="aksiyon-item">
+        <div class="aksiyon-header">368 pasif satış noktası için reaktivasyon / çıkarma analizi yap; kriterleri netleştir</div>
+        <div class="aksiyon-meta">
+          <span class="meta-tag owner">Sahip: Piyasa Satış Müdürü</span>
+          <span class="meta-tag date">Tarih: Temmuz 2026 sonu</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- GS NOTU -->
+  <div class="gs-notu">
+    <strong>GS Notu —</strong> Rapor sahadan gelen gerçek bir sinyal; rakamlar temiz ama analitik derinlik sınırlı. İşler bağımlılığı ve prim çelişkisi için sunulan "ayrıca rapor" henüz elimde değil — o rapor bu özete alınsın mı yoksa ayrı sunulsun mu kararı Hasan Bey'in tercihine göre şekillendirilecektir. Aksiyon maddelerinde sahip ve tarih bilgisi tarafımca tamamlandı; raporun orijinalinde bu bilgiler yer almıyordu.
+  </div>
+
+  <div class="footer">İcra Kurulu Genel Sekreteri &nbsp;·&nbsp; Yalnızca Üst Yönetim Kullanımına Mahsustur &nbsp;·&nbsp; Haziran 2026</div>
+
+</div>
+</body>
+</html>
