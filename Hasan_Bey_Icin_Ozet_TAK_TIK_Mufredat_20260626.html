@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Bey İçin Özet Rapor — TAK/TİK Müfredat Güncellemeleri</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #C00000;
+    --red-light: #f9e8e8;
+    --ink: #1a1a1a;
+    --ink-mid: #3d3d3d;
+    --ink-soft: #6b6b6b;
+    --bg: #fafaf8;
+    --bg-card: #ffffff;
+    --border: #e4e0d8;
+    --accent-gold: #b8860b;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* ── TOP BAND ── */
+  .top-band {
+    background: var(--red);
+    color: white;
+    padding: 22px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .top-band .label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+  .top-band .title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+  .top-band .meta {
+    font-size: 12px;
+    opacity: 0.75;
+    text-align: right;
+  }
+
+  /* ── KPI EYEBROW ── */
+  .kpi-strip {
+    background: #1a1a1a;
+    color: #e8e4dc;
+    padding: 10px 48px;
+    font-size: 11.5px;
+    letter-spacing: 0.07em;
+    font-weight: 500;
+  }
+  .kpi-strip span { color: #f0b8b8; }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 48px 60px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 36px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    border-bottom: 1.5px solid var(--border);
+    padding-bottom: 10px;
+  }
+  .section-icon { font-size: 18px; }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 19px;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  /* ── ÖZET ── */
+  .ozet-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--red);
+    border-radius: 4px;
+    padding: 22px 26px;
+  }
+  .ozet-block p {
+    margin-bottom: 10px;
+    color: var(--ink-mid);
+    font-size: 15px;
+  }
+  .ozet-block p:last-child { margin-bottom: 0; }
+  .ozet-block strong { color: var(--ink); }
+
+  /* ── METRIK KARTLAR ── */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .metric-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px 20px;
+    text-align: center;
+  }
+  .metric-card .num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 34px;
+    color: var(--red);
+    line-height: 1;
+    display: block;
+  }
+  .metric-card .unit {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 6px;
+  }
+
+  /* ── BULGULAR LİSTE ── */
+  .bulgu-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .bulgu-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14.5px;
+    color: var(--ink-mid);
+    padding: 10px 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+  .bulgu-list li::before {
+    content: '→';
+    color: var(--red);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .bulgu-list li strong { color: var(--ink); }
+
+  /* ── RED FLAGS ── */
+  .flag-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .flag-item {
+    border-left: 3.5px solid var(--red);
+    background: var(--red-light);
+    padding: 13px 18px;
+    border-radius: 0 4px 4px 0;
+    font-size: 14.5px;
+    color: var(--ink-mid);
+  }
+  .flag-item strong { color: var(--red); }
+
+  /* ── SORULAR ── */
+  .soru-list {
+    counter-reset: soru;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .soru-item {
+    counter-increment: soru;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 14px 18px;
+    border-radius: 4px;
+  }
+  .soru-item::before {
+    content: counter(soru);
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--red);
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .soru-item p { font-size: 14.5px; color: var(--ink-mid); }
+  .soru-item p strong { color: var(--ink); }
+
+  /* ── AKSİYON ── */
+  .aksiyon-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .aksiyon-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px 18px;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 10px 20px;
+    align-items: start;
+  }
+  .aksiyon-item .aks-text { font-size: 14.5px; color: var(--ink-mid); }
+  .aksiyon-item .aks-text strong { color: var(--ink); }
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .badge-owner {
+    background: #e8f0fe;
+    color: #1a5cbd;
+  }
+  .badge-date {
+    background: #e8f5e9;
+    color: #2e7d32;
+  }
+
+  /* ── GS NOTU ── */
+  .gs-notu {
+    border-left: 3.5px solid var(--red);
+    padding: 14px 20px;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+    background: #fff;
+    border-radius: 0 4px 4px 0;
+  }
+  .gs-notu strong { color: var(--red); font-style: normal; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    padding: 20px 48px 32px;
+    border-top: 1px solid var(--border);
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 640px) {
+    .top-band, main, .kpi-strip { padding-left: 20px; padding-right: 20px; }
+    .aksiyon-item { grid-template-columns: 1fr; }
+    .metric-card .num { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="top-band">
+    <div>
+      <div class="label">İcra Kurulu Genel Sekreteri Çalışması</div>
+      <div class="title">Hasan Bey İçin Özet Rapor</div>
+    </div>
+    <div class="meta">26 Haziran 2026<br>KPI 28 — Ürün İçerik Bilgisi Paylaşımı</div>
+  </div>
+  <div class="kpi-strip">KPI 28 → <span>Yeni Çıkan Ürünlerde İçerik Bilgisinin İlgili Departmanlara Sunulması</span> &nbsp;|&nbsp; Konu: TAK/TİK 2026-2027 Müfredat Güncelleme Paketi</div>
+</header>
+
+<main>
+
+  <!-- 1. 3 CÜMLEDE ÖZET -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">📋</span>
+      <h2 class="section-title">3 Cümlede Özet</h2>
+    </div>
+    <div class="ozet-block">
+      <p>2026-2027 yılı hazırlıkları kapsamında <strong>9. ve 10. sınıf TAK/TİK ürünleri</strong>, Yeni Maarif Modeli'ne tam uyumlu hale getirildi; değişen kazanımlar, tema sıralamaları ve çıkarılan konular sayfa sayısı korunarak yeni föylerle telafi edildi.</p>
+      <p>Paralel olarak <strong>11. sınıf TAK/TİK serisi sıfırdan</strong> tasarlandı: 8 ders dalında 16 ürün hayata geçti; TAK'lara yazılı föy, TİK'lerin tamamına tarama föyü eklenerek ölçme kalitesi standartlaştırıldı.</p>
+      <p>Müfredat uyum ve ürün bilgileri ilgili departmanlara iletildi; <strong>Dizgi, Dijital ve Pazarlama birimlerinin hızlı aksiyon alması</strong> baskı ve satış takvimini belirleyici konumda.</p>
+    </div>
+  </section>
+
+  <!-- 2. ANA BULGULAR -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">📊</span>
+      <h2 class="section-title">Ana Bulgular</h2>
+    </div>
+
+    <div class="metric-grid">
+      <div class="metric-card">
+        <span class="num">16</span>
+        <span class="unit">Yeni 11. Sınıf Ürünü</span>
+      </div>
+      <div class="metric-card">
+        <span class="num">6</span>
+        <span class="unit">Revize 9–10. Sınıf Ürünü</span>
+      </div>
+      <div class="metric-card">
+        <span class="num">8</span>
+        <span class="unit">Ders Dalı</span>
+      </div>
+      <div class="metric-card">
+        <span class="num">100%</span>
+        <span class="unit">Müfredat Uyum Oranı</span>
+      </div>
+    </div>
+
+    <ul class="bulgu-list">
+      <li><strong>9. Sınıf Biyoloji TAK/TİK:</strong> Kazanım 9.1.5–9.1.7 ve 9.2.1–9.2.4 temalar arası aktarıldı; 9.2.8 kaldırıldı. Föy yerleşimi güncellendi.</li>
+      <li><strong>10. Sınıf Fizik TAK/TİK:</strong> "Kuvvet ve Hareket" temasından 3 kazanım 11. sınıfa devredildi; boşluk doldurmak için yeni föyler yazıldı. "Dalgalar" konularının sıralaması yeniden düzenlendi.</li>
+      <li><strong>10. Sınıf Kimya TAK/TİK:</strong> Gaz yasaları ve İdeal Gaz Denklemi hesaplamaları müfredattan çıkarıldı; 7 föy (TAK) ve 4 föy + Yarıyıl Tarama (TİK) buna göre güncellendi.</li>
+      <li><strong>11. Sınıf TAK Serisi:</strong> 8 ürün, 160–288 sayfa aralığında, her biri standart "Yazılı Föy" (4 adet) ile tamamlandı.</li>
+      <li><strong>11. Sınıf TİK Serisi:</strong> 8 ürün, tamamında ilk kez "Tarama Föyü" (3 adet) standart hale getirildi — dönemsel ölçme kapasitesi artırıldı.</li>
+    </ul>
+  </section>
+
+  <!-- 3. RED FLAGS -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">🚩</span>
+      <h2 class="section-title">Red Flags</h2>
+    </div>
+    <div class="flag-list">
+      <div class="flag-item">
+        <strong>Baskı takvimi netleşmemiş.</strong> Föy yerleşimi değişen 9. Sınıf Biyoloji ve 10. Sınıf Fizik ürünlerinin mizanpaj onayları tamamlanmadan baskı başlatılırsa revizyon maliyeti ve gecikme riski doğabilir. Dizgi tamamlanma tarihi rapora yansımamış — bu tarih bilinirse kritik yol netleşir.
+      </div>
+      <div class="flag-item">
+        <strong>Dijital içerik senkronizasyonu belirsiz.</strong> Yeni yazılan föylerin video çözüm ve akıllı tahta entegrasyonları için ne zaman hazır olacağı belirtilmemiş. Ürün rafta olup dijital içerik eksikse müşteri şikâyet oranı artabilir.
+      </div>
+      <div class="flag-item">
+        <strong>Satış argümanları henüz kampanyaya dönüşmemiş.</strong> Tarama föyleri ve müfredat uyumu güçlü USP'ler; ancak bunların bayi ve okul iletişimine ne zaman yansıyacağına dair bir plan görünmüyor. Tanıtım gecikmesi rakiplere pencere açabilir.
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. HASAN BEY'İN 3 SORUSU -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">❓</span>
+      <h2 class="section-title">Hasan Bey'in 3 Sorusu</h2>
+    </div>
+    <div class="soru-list">
+      <div class="soru-item">
+        <p><strong>"16 yeni ürün zamanında baskıya girecek mi?"</strong> — Revize ürünlerin mizanpaj onay takvimi ve 11. sınıf serisi için baskı çıkış tarihleri rapordan okunamamaktadır. Net tarih taahhüdü talep edilmeli.</p>
+      </div>
+      <div class="soru-item">
+        <p><strong>"Dijital içerik kitapla eş zamanlı çıkacak mı?"</strong> — Soru ikameleri ve yeni föyler için video çözüm/akıllı tahta güncellemelerinin teslim tarihi belirtilmemiş. Dijital ekip ne zaman teslim edecek?</p>
+      </div>
+      <div class="soru-item">
+        <p><strong>"Bu güncellemenin satışa etkisi nasıl ölçülecek?"</strong> — Tarama föyü ve müfredat uyumu gibi USP'lerin bayi/okul iletişimine entegre edileceği zaman ve kanallar netleştirilmeli; kampanya KPI'ı konulmalı.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. ÖNERİLEN AKSİYON -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">🎯</span>
+      <h2 class="section-title">Önerilen Aksiyon</h2>
+    </div>
+    <div class="aksiyon-list">
+      <div class="aksiyon-item">
+        <div class="aks-text"><strong>Mizanpaj onay takvimi netleştirilmeli:</strong> 9. Sınıf Biyoloji ve 10. Sınıf Fizik ürünleri için Dizgi birimi ile birlikte "baskıya hazır" tarihi kilitlenmeli.</div>
+        <span class="badge badge-owner">Dizgi / Grafik Müdürü</span>
+        <span class="badge badge-date">10 Temmuz 2026</span>
+      </div>
+      <div class="aksiyon-item">
+        <div class="aks-text"><strong>Dijital içerik güncelleme planı oluşturulmalı:</strong> Yeni/değişen föylerin video çözüm ve akıllı tahta içerikleri için Dijital birimden teslim takvimi alınmalı ve baskı tarihiyle hizalanmalı.</div>
+        <span class="badge badge-owner">Dijital / Akıllı Tahta Müdürü</span>
+        <span class="badge badge-date">15 Temmuz 2026</span>
+      </div>
+      <div class="aksiyon-item">
+        <div class="aks-text"><strong>Satış&Pazarlama'ya ürün USP brifing paketi iletilmeli:</strong> Tarama föyleri ve müfredat uyumunu içeren bayi/okul iletişim materyalleri hazırlanarak sahaya verilmeli.</div>
+        <span class="badge badge-owner">Pazarlama & Satış Direktörü</span>
+        <span class="badge badge-date">20 Temmuz 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- GS NOTU -->
+  <section class="section">
+    <div class="gs-notu">
+      <strong>GS Notu:</strong> Rapor müfredat uyum ve ürün yapısı açısından kapsamlı ve tatmin edici. Güçlü hazırlık sürecini sonuca taşıyacak olan üç bileşen — baskı takvimi, dijital senkronizasyon ve satış iletişimi — henüz tarihsiz. Bu üç tarih netleştiğinde tablonun tamamı yerine oturur. Hasan Bey'e "hazırlık bitti, şimdi çıkış yönetimi aşamasındayız" çerçevesiyle sunulması önerilir.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  İcra Kurulu Genel Sekreteri Çalışması &nbsp;·&nbsp; 26 Haziran 2026 &nbsp;·&nbsp; KPI 28 — TAK/TİK Müfredat Güncelleme Paketi 2026-2027
+</footer>
+
+</body>
+</html>
