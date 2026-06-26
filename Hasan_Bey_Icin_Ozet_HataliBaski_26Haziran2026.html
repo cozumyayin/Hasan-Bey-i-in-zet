@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Bey İçin Özet Rapor — Hatalı Baskı Analizi</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: #F5F4F0; color: #1a1a1a; line-height: 1.65; }
+  .top-band { background: #C00000; padding: 18px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .top-band-label { color: rgba(255,255,255,0.75); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; }
+  .top-band-title { color: #fff; font-family: 'DM Serif Display', serif; font-size: 22px; letter-spacing: -.01em; }
+  .top-band-date { color: rgba(255,255,255,0.65); font-size: 12px; }
+  .page { max-width: 820px; margin: 0 auto; padding: 48px 32px 80px; }
+  .report-subject { font-family: 'DM Serif Display', serif; font-size: 28px; color: #1a1a1a; line-height: 1.2; margin-bottom: 6px; }
+  .report-meta { font-size: 13px; color: #888; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #ddd; }
+  .section { margin-bottom: 40px; }
+  .section-header { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #888; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .section-header::after { content: ''; flex: 1; height: 1px; background: #ddd; }
+  .summary-box { background: #fff; border: 1px solid #e0deda; border-left: 4px solid #C00000; border-radius: 6px; padding: 22px 26px; font-size: 15px; line-height: 1.75; color: #1a1a1a; }
+  .summary-box p + p { margin-top: 10px; }
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  @media (max-width: 600px) { .metrics { grid-template-columns: 1fr 1fr; } }
+  .metric { background: #fff; border: 1px solid #e0deda; border-radius: 8px; padding: 18px 16px 14px; text-align: center; }
+  .metric-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
+  .metric-value { font-family: 'DM Serif Display', serif; font-size: 32px; line-height: 1; margin-bottom: 4px; }
+  .metric-sub { font-size: 11px; color: #aaa; }
+  .mv-neutral { color: #1a1a1a; } .mv-ok { color: #1a6b3a; } .mv-warn { color: #b45309; } .mv-bad { color: #C00000; }
+  .bulgu-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .bulgu-list li { background: #fff; border: 1px solid #e0deda; border-radius: 6px; padding: 12px 16px; font-size: 13.5px; color: #333; line-height: 1.55; display: flex; gap: 10px; align-items: flex-start; }
+  .bulgu-dot { width: 7px; height: 7px; border-radius: 50%; background: #C00000; flex-shrink: 0; margin-top: 6px; }
+  .bulgu-dot.warn { background: #b45309; } .bulgu-dot.ok { background: #1a6b3a; }
+  .flag-box { background: #fff; border: 1px solid #e0deda; border-left: 4px solid #C00000; border-radius: 6px; padding: 16px 20px; margin-bottom: 10px; }
+  .flag-title { font-weight: 600; font-size: 13.5px; color: #C00000; margin-bottom: 4px; }
+  .flag-desc { font-size: 13px; color: #444; line-height: 1.55; }
+  .soru-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .soru-item { background: #fff; border: 1px solid #e0deda; border-radius: 6px; padding: 14px 18px; font-size: 14px; color: #1a1a1a; display: flex; gap: 12px; }
+  .soru-num { font-family: 'DM Serif Display', serif; font-size: 22px; color: #C00000; line-height: 1; flex-shrink: 0; width: 24px; }
+  .soru-text { padding-top: 2px; line-height: 1.6; }
+  .aksiyon-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .aksiyon-item { background: #fff; border: 1px solid #e0deda; border-radius: 6px; padding: 14px 18px; font-size: 13.5px; color: #1a1a1a; line-height: 1.6; }
+  .aksiyon-badges { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 4px; letter-spacing: .02em; }
+  .badge-sahip { background: #f0f4fc; color: #1a4b8c; border: 1px solid #b0c4e8; }
+  .badge-tarih { background: #f0f8f3; color: #1a6b3a; border: 1px solid #90c8a8; }
+  .gs-notu { background: #fff; border-left: 4px solid #C00000; border-radius: 0 6px 6px 0; padding: 18px 22px; font-style: italic; font-size: 13.5px; color: #444; line-height: 1.7; border-top: 1px solid #e0deda; border-right: 1px solid #e0deda; border-bottom: 1px solid #e0deda; }
+  .gs-notu strong { font-style: normal; color: #C00000; }
+  .footer { margin-top: 56px; padding-top: 16px; border-top: 1px solid #ddd; font-size: 11px; color: #bbb; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+</style>
+</head>
+<body>
+
+<div class="top-band">
+  <div>
+    <div class="top-band-label">İcra Kurulu Genel Sekreteri Çalışması</div>
+    <div class="top-band-title">Hasan Bey İçin Özet Rapor</div>
+  </div>
+  <div class="top-band-date">26 Haziran 2026</div>
+</div>
+
+<div class="page">
+
+  <div class="report-subject">Hatalı Baskı / Hasarlı / Eksik Ürün — Takip Analizi</div>
+  <div class="report-meta">Kaynak: Baskı &amp; Lojistik Birimi · Notion Form Export · Aralık 2025 – Haziran 2026 · 94 kayıt</div>
+
+  <div class="section">
+    <div class="section-header">📋 3 Cümlede Özet</div>
+    <div class="summary-box">
+      <p>Son yedi ayda 94 hatalı baskı / hasarlı / eksik ürün kaydı açılmış; bunların %75'i kapatılmış görünse de <strong>"tamamlandı" damgalı 37 kayıtta iade faturası hiç düzenlenmemiş</strong> — yani süreç mali adım atlanarak kapatılıyor.</p>
+      <p>Nisan 2026'da kayıt sayısı aniden aylık ortalamanın (~9) üç katı ötesine, <strong>32'ye</strong> fırlamış; bu artışın kaynağı henüz tespit edilmemiş ve Haziran'da da yükselme sürüyor (16 kayıt, büyük çoğunluğu dünden).</p>
+      <p>Matbaa bazında maliyetin geri alınma oranı <strong>%3.2</strong> (94'ten sadece 3 kayıt); hata matbaadan kaynaklandığında fatura kesilmediği sürece bu maliyet şirkete yansıyor.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">📊 Ana Bulgular</div>
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-label">Toplam Kayıt</div>
+        <div class="metric-value mv-neutral">94</div>
+        <div class="metric-sub">Ara 2025 – Haz 2026</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Kapandı</div>
+        <div class="metric-value mv-ok">71</div>
+        <div class="metric-sub">%75.5 kapanma oranı</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Açık / Bekleyen</div>
+        <div class="metric-value mv-warn">23</div>
+        <div class="metric-sub">%24.5 işlem bekliyor</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Matbaaya Fatura</div>
+        <div class="metric-value mv-bad">3</div>
+        <div class="metric-sub">%3.2 — 94'ten sadece 3</div>
+      </div>
+    </div>
+    <ul class="bulgu-list">
+      <li><span class="bulgu-dot"></span> Hata türlerinde ikili denge: Hatalı baskı 39, hasarlı ürün 39, eksik gönderim 16 — üç ayrı süreçte eş zamanlı kayıp var.</li>
+      <li><span class="bulgu-dot warn"></span> Başak Matbaa, matbaa bazlı kayıtların %54'ünü oluşturuyor (35 kayıt); geri kalan 30 kayıtta matbaa adı hiç girilmemiş.</li>
+      <li><span class="bulgu-dot warn"></span> Süreç tamamlanma oranları: Görsel alındı %47.9 · Ürünler okutuldu %63.8 · İade faturası düzenlendi %42.6 · Matbaaya faturalandırıldı %3.2 — her adımda sızıntı var.</li>
+      <li><span class="bulgu-dot warn"></span> 57 kayıtta "İlgili Birim", 19 kayıtta "Takip Eden" alanı boş; bu kayıtlar fiilen sahipsiz.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-header">🚩 Red Flags</div>
+
+    <div class="flag-box">
+      <div class="flag-title">🔴 ACİL — SEGESTA: 24 Haziran'dan 16 Yeni Kayıt, Tamamı İşlemsiz</div>
+      <div class="flag-desc">Dünkü 16 kaydın tamamında durum boş, iade faturası yok. Bugün müdahale edilmezse bu birikimin Nisan'daki gibi gecikmeyle büyümesi olası. Doğrudan sahip ataması yapılırsa akış hızlanır.</div>
+    </div>
+
+    <div class="flag-box">
+      <div class="flag-title">🔴 "Tamamlandı" ama Fatura Yok — 37 Kayıt</div>
+      <div class="flag-desc">71 kapatılan kaydın yarısından fazlasında iade faturası düzenlenmemiş. Kapatma kriteri mali adımı içermediği sürece bu durum tekrar edecek; aynı zamanda finansal raporlamanın güvenilirliğini etkiliyor.</div>
+    </div>
+
+    <div class="flag-box">
+      <div class="flag-title">🟠 Nisan 2026 Ani Artış — Kök Neden Belirsiz</div>
+      <div class="flag-desc">Ocak–Mart ortalaması 9/ay iken Nisan'da 32'ye ulaşmış. Nisan'a özgü bir baskı, tedarik veya dağıtım sorununun varlığı konusunda birim henüz bir açıklama sunmamış. Haziran'da da artış görülüyor (ay bitmeden 16 kayıt).</div>
+    </div>
+
+    <div class="flag-box">
+      <div class="flag-title">🟠 Matbaa Maliyeti Geri Alınmıyor — %96.8 Fatura Eksikliği</div>
+      <div class="flag-desc">Matbaa kaynaklı hatalarda fatura kesilmeme oranı %96.8. Süreç kuralı olarak "matbaa faturası" adımı zorunlu hale getirilirse bu maliyet büyük ölçüde matbaaya taşınır; şu an şirkette kalıyor.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">❓ Hasan Bey'in 3 Sorusu</div>
+    <ul class="soru-list">
+      <li class="soru-item">
+        <span class="soru-num">1</span>
+        <span class="soru-text"><strong>Nisan artışının kök nedeni neydi?</strong> Matbaa hataları mı, lojistik mi, yoksa o dönemde özgün bir sipariş yoğunluğu mu? Önlem alınmadıysa Haziran'daki artış aynı kaynaktan geliyor olabilir.</span>
+      </li>
+      <li class="soru-item">
+        <span class="soru-num">2</span>
+        <span class="soru-text"><strong>Matbaa faturaları neden kesilmiyor?</strong> Sistem kuralı yok mu, yoksa birim "karşı tarafı yıpratmak istemiyoruz" mu diyor? %3.2 gibi bir oran kasıtlı bir tercih olmadıkça açıklanamaz; netleştirilmesi gerekiyor.</span>
+      </li>
+      <li class="soru-item">
+        <span class="soru-num">3</span>
+        <span class="soru-text"><strong>Bu 94 kaydın toplam mali yükü ne?</strong> Kaç kopya, kaç ürün çeşidi, tahmini maliyet? Rakam ortaya konmadan sorunun büyüklüğü tartışılamaz ve önceliklendirme yapılamaz.</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-header">🎯 Önerilen Aksiyon</div>
+    <ul class="aksiyon-list">
+
+      <li class="aksiyon-item">
+        <strong>SEGESTA kayıtlarını bugün sahiplendirin</strong> — 16 kaydın tamamına sorumlu atansın, bugün iade faturası ve durum bilgisi girilsin.
+        <div class="aksiyon-badges">
+          <span class="badge badge-sahip">Sahip: Didem İMGEL / Buse Nur Doğuçam</span>
+          <span class="badge badge-tarih">Tarih: 26 Haziran 2026</span>
+        </div>
+      </li>
+
+      <li class="aksiyon-item">
+        <strong>Notion'da kapatma kuralı eklensin</strong> — İade faturası ve okutma adımı tamamlanmadan kayıt "Tamamlandı" yapılamasın. Bu tek kural, 37 kayıttaki sorunu gelecekte önler.
+        <div class="aksiyon-badges">
+          <span class="badge badge-sahip">Sahip: Süreç Sorumlusu / Sistem Yöneticisi</span>
+          <span class="badge badge-tarih">Tarih: 4 Temmuz 2026</span>
+        </div>
+      </li>
+
+      <li class="aksiyon-item">
+        <strong>Matbaa faturalandırma politikası netleştirilsin</strong> — Hata matbaadan kaynaklanıyorsa fatura kesilmesi kural olsun; süreçte zorunlu adım olarak işaretlensin.
+        <div class="aksiyon-badges">
+          <span class="badge badge-sahip">Sahip: Finans / Lojistik Yöneticisi</span>
+          <span class="badge badge-tarih">Tarih: 11 Temmuz 2026</span>
+        </div>
+      </li>
+
+      <li class="aksiyon-item">
+        <strong>Nisan artışı için retrospektif açıklama istensin</strong> — Birim, Nisan'daki ani artışın kaynağını ve alınan (veya alınmayan) önlemi kısa not olarak sunacak.
+        <div class="aksiyon-badges">
+          <span class="badge badge-sahip">Sahip: Baskı &amp; Lojistik Birimi</span>
+          <span class="badge badge-tarih">Tarih: 4 Temmuz 2026</span>
+        </div>
+      </li>
+
+      <li class="aksiyon-item">
+        <strong>Notion formunda zorunlu alan tanımlaması yapılsın</strong> — "İlgili Birim" ve "Takip Eden" alanları boş bırakılamasın; 57 sahipsiz kaydın tekrarlanmaması için minimum veri girişi şartı konulsun.
+        <div class="aksiyon-badges">
+          <span class="badge badge-sahip">Sahip: Sistem Yöneticisi</span>
+          <span class="badge badge-tarih">Tarih: 4 Temmuz 2026</span>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-header">GS Notu</div>
+    <div class="gs-notu">
+      Bu raporun en kritik bulgusu sayı değil <strong>süreç açığı</strong>: kapatma kriterinde mali adım yok, matbaa faturalandırması neredeyse hiç yapılmıyor. Her ikisi de kural değişikliğiyle çözülebilir nitelikte — teknik değil, irade meselesi. Hasan Bey'in Nisan artışının kök nedenine yanıt alması ve toplam mali yükün rakamla ortaya konması, önceliklerin doğru sıralanması için gerekli. SEGESTA kaydı bugün aksiyona alınmazsa Haziran sonu rakamı daha da yükselecek.
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Kaynak: Baskı &amp; Lojistik — Notion CSV Export · 94 kayıt · Aralık 2025 – Haziran 2026</span>
+    <span>İcra Kurulu Genel Sekreteri · 26 Haziran 2026</span>
+  </div>
+
+</div>
+</body>
+</html>
