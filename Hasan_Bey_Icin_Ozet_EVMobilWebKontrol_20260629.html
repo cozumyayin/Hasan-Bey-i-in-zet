@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Bey İçin Özet Rapor — EV Mobil & Web Kontrolü</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #F7F6F4;
+    color: #1A1A1A;
+    min-height: 100vh;
+  }
+
+  /* ── TOP BAND ── */
+  .top-band {
+    background: #C00000;
+    padding: 20px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .top-band .label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+  }
+  .top-band h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: #fff;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  .top-band .meta {
+    margin-top: 6px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 400;
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  /* ── SECTION CARD ── */
+  .section {
+    background: #fff;
+    border-radius: 4px;
+    padding: 28px 32px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .section-header .icon { font-size: 18px; }
+  .section-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #1A1A1A;
+  }
+
+  /* ── 3 SENTENCE SUMMARY ── */
+  .summary-text {
+    font-size: 15px;
+    line-height: 1.75;
+    color: #333;
+  }
+  .summary-text p + p { margin-top: 10px; }
+
+  /* ── METRIC CARDS ── */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .metric-card {
+    background: #F7F6F4;
+    border-radius: 4px;
+    padding: 16px 18px;
+    border-top: 3px solid #C00000;
+  }
+  .metric-card .number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: #C00000;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .metric-card .desc {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  /* ── BULLET LIST ── */
+  .finding-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .finding-list li {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+    padding-left: 16px;
+    position: relative;
+  }
+  .finding-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #C00000;
+  }
+
+  /* ── RED FLAGS ── */
+  .red-flag-section {
+    background: #fff;
+    border-radius: 4px;
+    padding: 28px 32px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    border-left: 4px solid #C00000;
+  }
+  .red-flag-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .red-flag-list li {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.65;
+    padding-left: 20px;
+    position: relative;
+  }
+  .red-flag-list li::before {
+    content: '⚑';
+    position: absolute;
+    left: 0;
+    color: #C00000;
+    font-size: 12px;
+    top: 2px;
+  }
+  .red-flag-opportunity {
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+    margin-top: 3px;
+    display: block;
+  }
+
+  /* ── HASAN BEY SORULARI ── */
+  .questions-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .questions-list li {
+    font-size: 14.5px;
+    color: #1A1A1A;
+    line-height: 1.65;
+    padding: 14px 16px;
+    background: #F7F6F4;
+    border-radius: 4px;
+    border-left: 3px solid #999;
+  }
+  .questions-list li strong {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #999;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  /* ── AKSIYON TABLE ── */
+  .action-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  .action-table thead tr {
+    background: #F0F0EE;
+  }
+  .action-table th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #666;
+    border-bottom: 2px solid #E0E0DC;
+  }
+  .action-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid #F0F0EE;
+    color: #333;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .action-table tr:last-child td { border-bottom: none; }
+  .action-table .priority {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 2px 7px;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+  .priority.acil { background: #FDECEA; color: #C00000; }
+  .priority.yuksek { background: #FFF3E0; color: #E65100; }
+  .priority.normal { background: #E8F5E9; color: #2E7D32; }
+
+  /* ── GS NOTU ── */
+  .gs-note {
+    background: #fff;
+    border-radius: 4px;
+    padding: 22px 32px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    border-left: 4px solid #C00000;
+  }
+  .gs-note-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #C00000;
+    margin-bottom: 10px;
+  }
+  .gs-note p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #444;
+    font-style: italic;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: #E8E8E4;
+    margin: 4px 0;
+  }
+
+  @media (max-width: 600px) {
+    .top-band { padding: 18px 20px; }
+    .container { padding: 24px 14px 48px; }
+    .section, .red-flag-section, .gs-note { padding: 20px 18px; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAND -->
+<div class="top-band">
+  <span class="label">İcra Kurulu Genel Sekreteri Çalışması</span>
+  <h1>Hasan Bey İçin Özet Rapor</h1>
+  <span class="meta">EV Mobil Uygulama ve Web Sitesi Kontrolü &nbsp;·&nbsp; KPI-4 &nbsp;·&nbsp; 29 Haziran 2026</span>
+</div>
+
+<div class="container">
+
+  <!-- 1. 3 CÜMLEDE ÖZET -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">📋</span>
+      <h2>3 Cümlede Özet</h2>
+    </div>
+    <div class="divider" style="margin-bottom:16px;"></div>
+    <div class="summary-text">
+      <p>Eğitim Vadisi web sitesi ve mobil uygulaması, temel işlevsellik açısından stabil; QR okutma, video çözüm ve bayi yönlendirme gibi kritik kullanıcı akışları çalışır durumda.</p>
+      <p>Ancak yeni sezon ürünleri olan 11. Sınıf TAK ve TİK'in platforma yansıması tamamlanmamış; slider'lardan cevap anahtarlarına kadar onlarca noktada eksik veya eski içerik mevcut.</p>
+      <p>Tespit edilen aksiyon kalemleri sahiplendirilip önümüzdeki 1–2 hafta içinde kapatılmazsa, sezon başında kullanıcılar hatalı veya eksik içerikle karşılaşacak.</p>
+    </div>
+  </div>
+
+  <!-- 2. ANA BULGULAR -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">📊</span>
+      <h2>Ana Bulgular</h2>
+    </div>
+    <div class="divider" style="margin-bottom:18px;"></div>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="number">2</div>
+        <div class="desc">Platform kontrol edildi<br>(Web + Mobil)</div>
+      </div>
+      <div class="metric-card">
+        <div class="number">14+</div>
+        <div class="desc">Açık aksiyon kalemi tespit edildi</div>
+      </div>
+      <div class="metric-card">
+        <div class="number">5</div>
+        <div class="desc">Kritik eksik içerik alanı<br>(cevap anahtar, sekmeler…)</div>
+      </div>
+      <div class="metric-card">
+        <div class="number">%100</div>
+        <div class="desc">Hedeflenen yayın-dijital uyum<br>henüz sağlanamadı</div>
+      </div>
+    </div>
+
+    <ul class="finding-list">
+      <li>Temel kullanıcı akışları (QR okutma, video oynatma, bayi arama) fonksiyonel durumda.</li>
+      <li>11. Sınıf TAK ve TİK ürünleri; slider, banner, yeni ürünler, kitapları incele ve etkileşimli tahta alanlarından eksik.</li>
+      <li>10. Sınıf TAK ve TİK cevap anahtarlarının büyük bölümü web sitesinde görünmüyor.</li>
+      <li>Sınavlar sayfasında 4 sekme eksik: Sınav Sonuçlarım, Deneme Video Çözümleri, GİS Video Çözümleri, FMT Optik Okuma.</li>
+      <li>Eski sezon içerikleri (deneme reklamları, 9–10. sınıf konu anlatım videoları, 11. sınıf MSB ve PDF'ler) hâlâ aktif; kullanıcıları yanıltabilir.</li>
+      <li>"Akıllı Tahta İçeriklerimiz" etiketi, kurumsal tercihe göre "Etkileşimli Tahta İçeriklerimiz" olarak güncellenmeli.</li>
+    </ul>
+  </div>
+
+  <!-- 3. RED FLAGS -->
+  <div class="red-flag-section">
+    <div class="section-header">
+      <span class="icon">🚩</span>
+      <h2>Red Flags</h2>
+    </div>
+    <ul class="red-flag-list">
+      <li>
+        <strong>Cevap anahtarları eksik (10. Sınıf TAK &amp; TİK).</strong> Biyoloji, Fizik ve TDE dışındaki branşların cevap anahtarları görünmüyor; öğrenci doğrudan etkileniyor.
+        <span class="red-flag-opportunity">Yükleme tamamlanırsa hem güven hem kullanım oranı artar.</span>
+      </li>
+      <li>
+        <strong>Sınavlar sayfası 4 kritik sekme olmadan canlıda.</strong> Öğrenciler sınav sonuçlarına ve video çözümlere buradan erişmeyi bekliyor; sekme olmayınca destek yüküne döner.
+        <span class="red-flag-opportunity">Sekmeler açılırsa müşteri hizmetlerine düşen soru sayısı belirgin azalır.</span>
+      </li>
+      <li>
+        <strong>Eski sezon reklamları slider'da aktif.</strong> Geçmiş deneme reklamları yeni sezonda güvenilirlik sorusu yaratıyor.
+        <span class="red-flag-opportunity">Slider temizlenirse yeni ürün lansmanı daha odaklı görünür.</span>
+      </li>
+      <li>
+        <strong>11. Sınıf TAK &amp; TİK dijital görünürlüğü tamamlanmamış.</strong> Ürün çeşitli platformlarda (etkileşimli tahta sayfası dahil) eksik; satış yolculuğu sekteye uğrayabilir.
+        <span class="red-flag-opportunity">Tüm alanlarda görünürlük sağlanırsa çapraz satış potansiyeli değerlendirilebilir.</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 4. HASAN BEY'İN 3 SORUSU -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">❓</span>
+      <h2>Hasan Bey'in 3 Sorusu</h2>
+    </div>
+    <div class="divider" style="margin-bottom:18px;"></div>
+    <ul class="questions-list">
+      <li>
+        <strong>Soru 1</strong>
+        Bu 14+ aksiyon maddesinin hangi ağırlıkta bir trafiği etkiliyor ve hangisi en geç ne zamana kadar kapatılmazsa gerçek kullanıcı şikâyeti tetikler?
+      </li>
+      <li>
+        <strong>Soru 2</strong>
+        Cevap anahtarları ve sınav sekmeleri gibi kritik eksikler için hangi birim sorumlu, mevcut iş yükü bu süreyi zorluyor mu?
+      </li>
+      <li>
+        <strong>Soru 3</strong>
+        TAK ve TİK ürünlerinin dijital görünürlüğü tamamlandığında bu bizi online satış verisinde nereye taşır — ölçebiliyor muyuz?
+      </li>
+    </ul>
+  </div>
+
+  <!-- 5. ÖNERİLEN AKSİYON -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">🎯</span>
+      <h2>Önerilen Aksiyon</h2>
+    </div>
+    <div class="divider" style="margin-bottom:16px;"></div>
+    <table class="action-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Aksiyon</th>
+          <th>Sahip</th>
+          <th>Tarih</th>
+          <th>Öncelik</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>10. Sınıf TAK &amp; TİK eksik cevap anahtarlarını yükle</td>
+          <td>Dijital İçerik Birimi</td>
+          <td>2 Temmuz</td>
+          <td><span class="priority acil">Acil</span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Sınavlar sayfasına 4 eksik sekmeyi (Sınav Sonuçlarım, Deneme Video Çözümleri, GİS, FMT) ekle</td>
+          <td>Yazılım / Ürün Müdürü</td>
+          <td>4 Temmuz</td>
+          <td><span class="priority acil">Acil</span></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Slider'daki eski deneme reklamlarını kaldır; 11. Sınıf TAK &amp; TİK bannerını yükle</td>
+          <td>Pazarlama / Web Ekibi</td>
+          <td>1 Temmuz</td>
+          <td><span class="priority acil">Acil</span></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Kitapları İncele'ye 11. Sınıf TAK &amp; TİK mokaplarını ekle; MSB &amp; PDF sekmelerini kaldır</td>
+          <td>Web Ekibi</td>
+          <td>3 Temmuz</td>
+          <td><span class="priority yuksek">Yüksek</span></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>"Akıllı Tahta" etiketini "Etkileşimli Tahta" olarak güncelle (web + tahta login sayfası)</td>
+          <td>Web Ekibi</td>
+          <td>3 Temmuz</td>
+          <td><span class="priority normal">Normal</span></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>9–10. Sınıf konu anlatım videolarını ve 11. sınıf MSB/PDF içeriklerini platformdan kaldır</td>
+          <td>Dijital İçerik Birimi</td>
+          <td>7 Temmuz</td>
+          <td><span class="priority normal">Normal</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:#999;margin-top:12px;font-style:italic;">⚠️ Sahip ve tarih bilgisi rapordan çıkarılamayanlar için birim adı önerilmiştir; GS onayı ile netleştirilmeli.</p>
+  </div>
+
+  <!-- GS NOTU -->
+  <div class="gs-note">
+    <div class="gs-note-label">GS Notu</div>
+    <p>
+      Kontrol raporu titiz hazırlanmış; tespit kalitesi yüksek. Asıl mesele tespitlerin maddeleşmesi değil — aksiyonların sahiplenilmesi ve bitirilmesi. 
+      14+ açık maddeyi tek bir takip tablosuna alıp haftada bir statü güncellemesi görmek, Hasan Bey'in "bu bizi nereye götürür" sorusunu çok daha erken cevaplayabilmemizi sağlar. 
+      Önerim: bu listeyi bir sonraki haftalık dijital operasyon toplantısının gündemine taşımak.
+    </p>
+  </div>
+
+</div><!-- /container -->
+</body>
+</html>
