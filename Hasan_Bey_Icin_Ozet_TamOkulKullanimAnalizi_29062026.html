@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Bey İçin Özet Rapor – Tam Okul Kullanım Analizi</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #F7F7F5;
+    color: #1a1a1a;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: #C00000;
+    padding: 28px 48px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .header-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+  }
+  .header-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: #ffffff;
+    line-height: 1.25;
+  }
+  .header-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  /* BODY */
+  .body {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 24px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  /* SECTION */
+  .section {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 28px 32px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: #1a1a1a;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title span.emoji { font-size: 22px; }
+
+  /* 3 CÜMLEDE ÖZET */
+  .summary-text {
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: #2d2d2d;
+  }
+  .summary-text p { margin-bottom: 10px; }
+  .summary-text p:last-child { margin-bottom: 0; }
+
+  /* METRİK KARTLAR */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .metric-card {
+    background: #FAF9F7;
+    border: 1px solid #EBEBEB;
+    border-radius: 10px;
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .metric-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .metric-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 30px;
+    color: #C00000;
+    line-height: 1;
+  }
+  .metric-sub {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.4;
+  }
+  .metric-bar-wrap {
+    background: #EBEBEB;
+    border-radius: 4px;
+    height: 5px;
+    margin-top: 6px;
+  }
+  .metric-bar {
+    height: 5px;
+    border-radius: 4px;
+    background: #C00000;
+  }
+
+  /* BULGULAR LİSTESİ */
+  .findings-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .findings-list li {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: #333;
+    padding-left: 18px;
+    position: relative;
+  }
+  .findings-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #C00000;
+    font-weight: 700;
+  }
+  .findings-list li strong { color: #1a1a1a; }
+
+  /* RED FLAG */
+  .red-flag-section {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 28px 32px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    border-left: 4px solid #C00000;
+  }
+  .flag-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .flag-list li {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: #333;
+    padding-left: 20px;
+    position: relative;
+  }
+  .flag-list li::before {
+    content: "⚑";
+    position: absolute;
+    left: 0;
+    color: #C00000;
+    font-size: 13px;
+  }
+  .flag-list li strong { color: #C00000; }
+
+  /* HASAN BEY SORULARI */
+  .questions-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    counter-reset: q;
+  }
+  .questions-list li {
+    counter-increment: q;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: #2d2d2d;
+    background: #FAF9F7;
+    border: 1px solid #EBEBEB;
+    border-radius: 8px;
+    padding: 14px 16px 14px 50px;
+    position: relative;
+  }
+  .questions-list li::before {
+    content: counter(q);
+    position: absolute;
+    left: 16px;
+    top: 14px;
+    background: #C00000;
+    color: #fff;
+    font-family: 'DM Serif Display', serif;
+    font-size: 14px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  .questions-list li em {
+    display: block;
+    font-style: italic;
+    font-size: 13px;
+    color: #888;
+    margin-top: 4px;
+  }
+
+  /* AKSİYON */
+  .action-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .action-item {
+    background: #FAF9F7;
+    border: 1px solid #EBEBEB;
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .action-desc {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: #1a1a1a;
+    line-height: 1.5;
+  }
+  .action-meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+  .action-badge {
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .badge-owner { background: #FDE8E8; color: #C00000; }
+  .badge-date  { background: #E8F0FD; color: #1a4a9c; }
+
+  /* GS NOTU */
+  .gs-note-section {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 22px 28px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    border-left: 4px solid #C00000;
+  }
+  .gs-note-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #C00000;
+    margin-bottom: 10px;
+  }
+  .gs-note-text {
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.75;
+    color: #444;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    font-size: 11.5px;
+    color: #aaa;
+    padding-bottom: 16px;
+    margin-top: -16px;
+  }
+
+  /* TABLE */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 18px;
+  }
+  .data-table th {
+    background: #FAF9F7;
+    color: #555;
+    font-weight: 600;
+    text-align: left;
+    padding: 9px 12px;
+    border-bottom: 2px solid #EBEBEB;
+  }
+  .data-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #F0F0F0;
+    color: #333;
+    vertical-align: top;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .pill {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .pill-high   { background: #D4EDDA; color: #155724; }
+  .pill-mid    { background: #FFF3CD; color: #856404; }
+  .pill-low    { background: #FDE8E8; color: #C00000; }
+  .pill-full   { background: #D1ECF1; color: #0c5460; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-label">İcra Kurulu Genel Sekreteri Çalışması</div>
+  <div class="header-title">Hasan Bey İçin Özet Rapor</div>
+  <div class="header-sub">Tam Okul – Kullanılmayan Özellikler Analizi &nbsp;|&nbsp; 29 Haziran 2026 &nbsp;|&nbsp; Kaynak: Muhammed Ebrar (25.06.2026)</div>
+</div>
+
+<div class="body">
+
+  <!-- 1. 3 CÜMLEDE ÖZET -->
+  <div class="section">
+    <div class="section-title"><span class="emoji">📋</span> 3 Cümlede Özet</div>
+    <div class="summary-text">
+      <p>213 okuldan seçilen 30 pilot kurumun Tam Okul kullanım verileri incelendi; <strong>Deneme Okutma ve Test Oluşturma</strong> özellikleri geniş benimseme gösterirken (sırasıyla %90 ve %80), <strong>Etüt Oluşturma sadece %27, Flex Ödev ise %37 oranında</strong> kurumlar tarafından kullanılıyor.</p>
+      <p>4 özelliği birden aktif kullanan yalnızca <strong>3 kurum</strong> var (Yönelt Koleji, Farabi Özel Öğretim Kursu, NK Koçak); kullanmayan kurumlardan <strong>net geri bildirim alınamadığından</strong> kullanmama nedenlerine dair planlama henüz yapılamamış durumda.</p>
+      <p>WP Entegrasyon cephesinde tablo daha kritik: 213 kurumun <strong>yalnızca %21,6'sı (46 kurum)</strong> aktif entegrasyon kullanıyor; bu oran platformun potansiyel kitlesine ulaşmadaki en büyük boşluğa işaret ediyor.</p>
+    </div>
+  </div>
+
+  <!-- 2. ANA BULGULAR -->
+  <div class="section">
+    <div class="section-title"><span class="emoji">📊</span> Ana Bulgular</div>
+
+    <!-- Metrik Kartlar -->
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-label">Deneme Okutma</div>
+        <div class="metric-value">27<span style="font-size:16px;color:#999">/30</span></div>
+        <div class="metric-sub">1.392 toplam okutma · <strong>%90 benimseme</strong></div>
+        <div class="metric-bar-wrap"><div class="metric-bar" style="width:90%"></div></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Test Oluşturma</div>
+        <div class="metric-value">24<span style="font-size:16px;color:#999">/30</span></div>
+        <div class="metric-sub">757 test oluşturuldu · <strong>%80 benimseme</strong></div>
+        <div class="metric-bar-wrap"><div class="metric-bar" style="width:80%"></div></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Etüt Oluşturma</div>
+        <div class="metric-value">9<span style="font-size:16px;color:#999">/30</span></div>
+        <div class="metric-sub">7.379 etüt · <strong>%30 benimseme</strong></div>
+        <div class="metric-bar-wrap"><div class="metric-bar" style="width:30%"></div></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Flex Ödev</div>
+        <div class="metric-value">12<span style="font-size:16px;color:#999">/30</span></div>
+        <div class="metric-sub">229 ödev · <strong>%40 benimseme</strong></div>
+        <div class="metric-bar-wrap"><div class="metric-bar" style="width:40%"></div></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">WP Entegrasyon</div>
+        <div class="metric-value">46<span style="font-size:16px;color:#999">/213</span></div>
+        <div class="metric-sub">Tüm ağda · <strong>%21,6 benimseme</strong></div>
+        <div class="metric-bar-wrap"><div class="metric-bar" style="width:21.6%"></div></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Tüm Özellikleri Kullanan</div>
+        <div class="metric-value">3<span style="font-size:16px;color:#999">/30</span></div>
+        <div class="metric-sub">4/4 özellik aktif · <strong>%10 oran</strong></div>
+        <div class="metric-bar-wrap"><div class="metric-bar" style="width:10%"></div></div>
+      </div>
+    </div>
+
+    <!-- Ek Bulgular -->
+    <ul class="findings-list">
+      <li>En yüksek hacimli kullanım <strong>NK Koçak Eğitim Öğretim Kurumları</strong>'nda — tek başına <strong>7.349 etüt</strong> oluşturmuş; bu değer tüm 30 kurumun etüt toplamının %99,6'sı.</li>
+      <li>Deneme Okutma'da lider üç kurum: <strong>Derince Asaf Koleji (146), Detay Deneme Kulübü (137), Özbilgi Özel Öğretim Kursu (119)</strong>.</li>
+      <li>Test Oluşturma'da öne çıkan: <strong>Elvankent Final Okulları (60 test)</strong>, ardından birden fazla kurumun 50'ye ulaştığı görülüyor.</li>
+      <li>Flex Ödev kullanımında <strong>Elvankent Final Okulları 190 ödevle</strong> açık ara birinci; toplam 229 ödevin %83'ünü tek kurum oluşturmuş.</li>
+      <li>Hiç Deneme Okutmayan 3 kurum: <strong>Ender Koleji, Kayseri Fen Lisesi, Farabi Anadolu Lisesi</strong> — bu üçü Test Oluşturma'yı aktif kullanıyor, dolayısıyla platformdan tamamen kopuk değiller.</li>
+    </ul>
+
+    <!-- Top-bottom tablo özeti -->
+    <table class="data-table" style="margin-top:24px">
+      <thead>
+        <tr>
+          <th>Kurum</th>
+          <th>Toplam Kullanım</th>
+          <th>Aktif Özellik</th>
+          <th>Kullanım Seviyesi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>NK Koçak Eğitim Öğretim Kurumları</strong></td><td>7.391</td><td><span class="pill pill-full">4 / 4</span></td><td><span class="pill pill-high">Yüksek</span></td></tr>
+        <tr><td><strong>Elvankent Final Okulları</strong></td><td>263</td><td><span class="pill">3 / 4</span></td><td><span class="pill pill-high">Yüksek</span></td></tr>
+        <tr><td><strong>Derince Asaf Koleji</strong></td><td>196</td><td><span class="pill">2 / 4</span></td><td><span class="pill pill-high">Yüksek</span></td></tr>
+        <tr><td>Yönelt Koleji</td><td>117</td><td><span class="pill pill-full">4 / 4</span></td><td><span class="pill pill-high">Yüksek</span></td></tr>
+        <tr><td>Farabi Özel Öğretim Kursu</td><td>95</td><td><span class="pill pill-full">4 / 4</span></td><td><span class="pill pill-mid">Orta</span></td></tr>
+        <tr><td style="color:#C00000">Çizgi Akademi</td><td>15</td><td><span class="pill">2 / 4</span></td><td><span class="pill pill-low">Düşük</span></td></tr>
+        <tr><td style="color:#C00000">Özel Adana Yükseliş Okulları</td><td>11</td><td><span class="pill">2 / 4</span></td><td><span class="pill pill-low">Düşük</span></td></tr>
+        <tr><td style="color:#C00000">Bilgi Kalesi Kişisel Gelişim Kursu</td><td>38</td><td><span class="pill">2 / 4</span></td><td><span class="pill pill-low">Düşük</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 3. RED FLAGS -->
+  <div class="red-flag-section">
+    <div class="section-title"><span class="emoji">🚩</span> Red Flags — Dikkat Noktaları</div>
+    <ul class="flag-list">
+      <li><strong>Geri bildirim mekanizması eksik:</strong> Özellikleri kullanmayan kurumlara dönüş yapılmış; ancak kullanmama nedenine ilişkin net veri alınamamış. Neden anlaşılmadan aksiyona geçilemiyor — bu döngü önümüzdeki çeyrekte de devam ederse KPI kapatılamaz.</li>
+      <li><strong>Etüt ve Flex Ödev benimsemesi kritik düzeyde düşük:</strong> 30 kurumun sırasıyla %70 ve %60'ı bu özelliklere hiç dokunmamış. NK Koçak dışında Etüt verisi neredeyse yok; bu özellikler ürün değer önermesinin önemli bir parçasıysa sahada varlığını gösteremiyor demektir.</li>
+      <li><strong>Tek kurum bağımlılığı – Etüt:</strong> 7.379 etüdün 7.349'u (%99,6) yalnızca NK Koçak'tan geliyor. Bu kurum çıkarıldığında özellik neredeyse kullanılmıyor görünür; istatistik sağlıklı bir benimseme tablosu değil, bir aykırı değer.</li>
+      <li><strong>WP Entegrasyon yaygınlaşması durma noktasında:</strong> 213 kurumda %21,6 penetrasyon; bu oran sezon başından bu yana anlamlı bir artış göstermediyse ciddi bir yaygınlaştırma boşluğu var demektir.</li>
+      <li><strong>Sahip ve zaman damgası bilgisi eksik:</strong> Raporun "Sonuç ve Öneriler" bölümünde aksiyon planı yok — kimin, ne zaman harekete geçeceği netleştirilmemiş. Bu durum çeyreksonu KPI kapanışını riske ediyor.</li>
+    </ul>
+  </div>
+
+  <!-- 4. HASAN BEY'İN 3 SORUSU -->
+  <div class="section">
+    <div class="section-title"><span class="emoji">❓</span> Hasan Bey'in Muhtemelen Soracağı 3 Soru</div>
+    <ol class="questions-list">
+      <li>
+        "Neden kullanmıyorlar — bunu öğrenebildik mi, yoksa hâlâ tahmin aşamasında mıyız?"
+        <em>Rapor net bir neden sunamazken aksiyona geçilmesi güçleşiyor. Yapılandırılmış bir saha görüşmesi ya da anket olsa bu boşluk kapanabilir.</em>
+      </li>
+      <li>
+        "Bu veriler bize 213 kurumun tamamı hakkında ne söylüyor — 30 pilot yeterince temsil edici mi?"
+        <em>30/213 oran yaklaşık %14. Pilot seçim kriterlerinin şeffaflaştırılması, sonuçların genellenebilirliğini artırır.</em>
+      </li>
+      <li>
+        "4. çeyrek bitmeden bu tabloyu değiştirebilir miyiz — elimizde ne kadar zaman kaldı?"
+        <em>KPI 4. Çeyrek kapanışına bağlı. Kalan sürede hangi kurumların müdahaleye en açık olduğunu önceliklendirmek gerekiyor.</em>
+      </li>
+    </ol>
+  </div>
+
+  <!-- 5. ÖNERİLEN AKSİYON -->
+  <div class="section">
+    <div class="section-title"><span class="emoji">🎯</span> Önerilen Aksiyon</div>
+    <div class="action-list">
+
+      <div class="action-item">
+        <div class="action-desc">1. <strong>Kullanmama Nedeni Araştırması:</strong> Özellikleri hiç kullanmayan kurumlara kısa yapılandırılmış anket / saha görüşmesi yapılması; "bilmiyorlar mı, ihtiyaç duymuyorlar mı, teknik engel mi?" sorusunun yanıtlanması.</div>
+        <div class="action-meta">
+          <span class="action-badge badge-owner">Sahip: Ürün / Saha Ekibi</span>
+          <span class="action-badge badge-date">Tarih: 11 Temmuz 2026'ya kadar</span>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-desc">2. <strong>Etüt & Flex Ödev Aktivasyon Kampanyası:</strong> Düşük kullanım gösteren 21 (Etüt) ve 18 (Flex Ödev) kuruma yönelik hedefli onboarding / hatırlatma; NK Koçak başarı hikâyesini örnek vaka olarak kullanan kısa tanıtım materyali hazırlanması.</div>
+        <div class="action-meta">
+          <span class="action-badge badge-owner">Sahip: Müşteri Başarı Ekibi</span>
+          <span class="action-badge badge-date">Tarih: 18 Temmuz 2026'ya kadar</span>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-desc">3. <strong>WP Entegrasyon Yayılım Planı:</strong> 213 kurumda %21,6 olan entegrasyon oranını 4. çeyrek kapanışına kadar ölçülebilir bir hedefe bağlamak; sorumlu birimi ve haftalık takip frekansını netleştirmek.</div>
+        <div class="action-meta">
+          <span class="action-badge badge-owner">Sahip: Entegrasyon / Teknoloji Ekibi</span>
+          <span class="action-badge badge-date">Tarih: 4. Çeyrek Kapanışı</span>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-desc">4. <strong>KPI Sahipliği Netleştirme:</strong> "Kullanmama nedenlerinin raporlanması" KPI'ının bitiş tarihini, çıktı formatını ve onay merciini yazılı olarak belgelemek; mevcut raporun bu boşluğu kapatabilmesi için sorumlu kişi atanması.</div>
+        <div class="action-meta">
+          <span class="action-badge badge-owner">Sahip: Genel Sekreterlik</span>
+          <span class="action-badge badge-date">Tarih: 4 Temmuz 2026</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 6. GS NOTU -->
+  <div class="gs-note-section">
+    <div class="gs-note-label">GS Notu</div>
+    <div class="gs-note-text">
+      Rapor teknik olarak eksiksiz ve dürüst bir veri sunumu yapıyor — verileri gizleme ya da kırpma yok. Bununla birlikte, KPI'ın özünde "nedensellik" beklentisi var: yalnızca "kim kullanmıyor" değil, "neden kullanmıyor ve nasıl değişir" sorusunun da cevaplanması gerekiyor. Bu yanıt henüz mevcut değil. Hasan Bey'e, ekibin sorunu fark edip belgelediğini, ancak "neden" sorusunu yanıtlayacak saha verisine ihtiyaç duyduğunu; bir sonraki güncellemede bunu kapatmayı hedeflediklerini aktarmak yerinde olur.
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">Hazırlayan: İcra Kurulu Genel Sekreterliği &nbsp;|&nbsp; 29 Haziran 2026 &nbsp;|&nbsp; Kaynak rapor: Muhammed Ebrar / Kullanılmayan Özellikler İle Alakalı Rapor (25.06.2026)</div>
+
+</body>
+</html>
