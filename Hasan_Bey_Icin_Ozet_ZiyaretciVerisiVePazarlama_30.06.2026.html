@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Hasan Bey İçin Özet Rapor — Ziyaretçi Verisi ve Pazarlama Araçları</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#C00000;
+    --ink:#1f1f1f;
+    --muted:#6b6b6b;
+    --bg-soft:#f7f7f8;
+    --card-border:#e7e7e9;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'DM Sans', sans-serif;
+    color:var(--ink);
+    background:#ffffff;
+    line-height:1.55;
+  }
+  .topband{
+    background:var(--red);
+    color:#fff;
+    padding:28px 48px;
+  }
+  .topband .tag{
+    font-size:13px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    opacity:.85;
+    margin-bottom:6px;
+  }
+  .topband h1{
+    font-family:'DM Serif Display', serif;
+    font-size:32px;
+    margin:0;
+    font-weight:400;
+  }
+  .meta{
+    background:var(--bg-soft);
+    padding:10px 48px;
+    font-size:13px;
+    color:var(--muted);
+    border-bottom:1px solid var(--card-border);
+  }
+  .container{
+    max-width:880px;
+    margin:0 auto;
+    padding:40px 48px 64px;
+  }
+  section{margin-bottom:44px;}
+  h2{
+    font-family:'DM Serif Display', serif;
+    font-size:22px;
+    font-weight:400;
+    margin:0 0 16px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .summary-box{
+    background:var(--bg-soft);
+    border-radius:10px;
+    padding:22px 26px;
+    font-size:17px;
+  }
+  .summary-box p{margin:0 0 10px;}
+  .summary-box p:last-child{margin-bottom:0;}
+  .metric-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-bottom:22px;
+  }
+  .metric-card{
+    border:1px solid var(--card-border);
+    border-radius:10px;
+    padding:18px 18px;
+    background:#fff;
+  }
+  .metric-card .label{
+    font-size:12px;
+    letter-spacing:.04em;
+    color:var(--muted);
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .metric-card .value{
+    font-family:'DM Serif Display', serif;
+    font-size:26px;
+    color:var(--red);
+    margin-bottom:4px;
+  }
+  .metric-card .sub{
+    font-size:12.5px;
+    color:var(--muted);
+  }
+  ul.findings{
+    margin:0;
+    padding-left:20px;
+  }
+  ul.findings li{
+    margin-bottom:10px;
+    font-size:15.5px;
+  }
+  .flag{
+    border-left:4px solid var(--red);
+    background:#fff8f7;
+    padding:14px 20px;
+    margin-bottom:14px;
+    border-radius:0 8px 8px 0;
+  }
+  .flag .flag-title{
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .flag .flag-body{
+    font-size:14.5px;
+    color:#3a3a3a;
+  }
+  .questions{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .question{
+    background:var(--bg-soft);
+    border-radius:8px;
+    padding:14px 20px;
+    font-size:15.5px;
+  }
+  .question .qnum{
+    color:var(--red);
+    font-weight:700;
+    margin-right:6px;
+  }
+  table.actions{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14.5px;
+  }
+  table.actions th{
+    text-align:left;
+    font-size:12px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--muted);
+    border-bottom:2px solid var(--card-border);
+    padding:8px 10px;
+  }
+  table.actions td{
+    padding:12px 10px;
+    border-bottom:1px solid var(--card-border);
+    vertical-align:top;
+  }
+  .missing{
+    color:var(--red);
+    font-weight:600;
+    font-size:13px;
+  }
+  .gs-note{
+    border-left:4px solid var(--red);
+    padding:16px 22px;
+    background:var(--bg-soft);
+    font-style:italic;
+    font-size:14.5px;
+    color:#3a3a3a;
+    border-radius:0 8px 8px 0;
+  }
+  .gs-note strong{font-style:normal;}
+  footer{
+    text-align:center;
+    font-size:12px;
+    color:var(--muted);
+    padding:24px 0 8px;
+    border-top:1px solid var(--card-border);
+  }
+</style>
+</head>
+<body>
+
+<div class="topband">
+  <div class="tag">İcra Kurulu Genel Sekreteri Çalışması</div>
+  <h1>Hasan Bey İçin Özet Rapor</h1>
+</div>
+<div class="meta">
+  Konu: Ziyaretçi Verisi Analizi ve Pazarlama Araçları Kullanımı (YNRG-39, KPI Raporu) &nbsp;·&nbsp; Birim: Pazarlama Departmanı &nbsp;·&nbsp; Dönem: Ocak–Haziran 2026 &nbsp;·&nbsp; Rapor Tarihi: 30.06.2026
+</div>
+
+<div class="container">
+
+  <section>
+    <h2>📋 3 Cümlede Özet</h2>
+    <div class="summary-box">
+      <p>Pazarlama, elindeki iki kanal üzerinden (mobil bildirim ve SMS) dönemde 482.537 bildirim ve 229.975 SMS göndermiş, Trendyol'daki "5 Al 4 Öde" kampanyasından 116.530 ₺ ciro elde etmiş.</p>
+      <p>Ancak KPI maddesinin asıl beklentisi olan web sitesi ve sorgulama ekranı ziyaretçi verisi hiç toplanamıyor — Yazılım Departmanı bu altyapının olmadığını teyit etmiş.</p>
+      <p>Yani rapor, var olan iki kanalın performansını gösteriyor; KPI'nın kapsadığı asıl hedefe henüz dokunulamamış durumda.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>📊 Ana Bulgular</h2>
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="label">Toplam Mobil Bildirim</div>
+        <div class="value">482.537</div>
+        <div class="sub">6 gönderim · %97,8'i 3D Yayınları</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Toplam SMS Gönderimi</div>
+        <div class="value">229.975</div>
+        <div class="sub">4 gönderim · 3 farklı mesaj içeriği</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Trendyol Brüt Ciro</div>
+        <div class="value">116.530 ₺</div>
+        <div class="sub">568 adet · 5 dönemin tamamı tamamlandı</div>
+      </div>
+    </div>
+    <ul class="findings">
+      <li>3D Yayınları mobil bildirimde baskın kanal (471.971 / 482.537) — 4K Yayınları'nın uygulama kullanıcı tabanı çok daha sınırlı (sadece 10.566 bildirim).</li>
+      <li>SMS'in büyük kısmı deneme sınavı duyurusu (%42,9) ve Trendyol kampanya bildirimi (%43,2); bu dönemde ilk kez Canva iş birliği eğitim duyurusu da denenmiş (%13,9).</li>
+      <li>Trendyol kampanyasında 12-22 Mayıs dönemi tek başına toplam cironun %79'unu oluşturmuş — performans büyük ölçüde bu tek döneme bağlı.</li>
+      <li>SMS ve mobil bildirim kanalları yalnızca "deneme sınavına kayıt olan" ve "mobil uygulama kullanan" kitleyle sınırlı; web sitesi trafiğinin tamamı bu pazarlama döngüsünün dışında kalıyor.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🚩 Red Flags</h2>
+    <div class="flag">
+      <div class="flag-title">Web sitesi ve sorgulama ekranı verisi hâlâ toplanamıyor</div>
+      <div class="flag-body">Yazılım Departmanı'nın teyidine göre bu kanallarda ziyaretçi datası sistemsel olarak tutulmuyor. KPI maddesinin temel beklentisi bu olduğu için, bu altyapı kurulsa raporun etkisi ve pazarlama erişimi önemli ölçüde artar.</div>
+    </div>
+    <div class="flag">
+      <div class="flag-title">Trendyol cirosu tek bir döneme aşırı bağımlı</div>
+      <div class="flag-body">116.530 ₺'nin %79'u tek bir 10 günlük dönemden geliyor. Bu dönemde ne farklı olduğunun (zamanlama, fiyat, görünürlük) analiz edilip diğer dönemlere uygulanması, kampanyanın istikrarını artırır.</div>
+    </div>
+    <div class="flag">
+      <div class="flag-title">4K Yayınları mobil erişimi çok sınırlı</div>
+      <div class="flag-body">4K'nın bildirim hacmi toplamın yalnızca %2,2'si. Bu kanalın büyütülmesi (uygulama kurulum/üyelik artışı) toplam erişimi büyük ölçüde genişletir.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>❓ Hasan Bey'in 3 Sorusu</h2>
+    <div class="questions">
+      <div class="question"><span class="qnum">1.</span> Web sitesi ve sorgulama ekranı veri altyapısı ne zaman kurulacak, bu olmadan KPI maddesi gerçek anlamda karşılanabilir mi?</div>
+      <div class="question"><span class="qnum">2.</span> Trendyol'daki 12-22 Mayıs döneminin başarısını tekrarlamak için somut bir plan var mı?</div>
+      <div class="question"><span class="qnum">3.</span> Mevcut iki kanal (SMS + mobil bildirim) ile sınırlı kalan pazarlamanın 2. dönemde büyüme hedefi nedir?</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>🎯 Önerilen Aksiyon</h2>
+    <table class="actions">
+      <tr>
+        <th>Aksiyon</th>
+        <th>Sahip</th>
+        <th>Tarih</th>
+      </tr>
+      <tr>
+        <td>Web sitesi / sorgulama ekranı ziyaretçi verisi toplama altyapısı için Yazılım Departmanı ile fizibilite görüşmesi yapılması</td>
+        <td><span class="missing">⚠ Belirtilmemiş — raporda sahip atanmamış, takip için netleştirilmesi gerekiyor</span></td>
+        <td><span class="missing">⚠ Belirtilmemiş</span></td>
+      </tr>
+      <tr>
+        <td>12-22 Mayıs Trendyol kampanya döneminin başarı faktörlerinin analiz edilip 2. dönem kampanya takvimine uygulanması</td>
+        <td><span class="missing">⚠ Belirtilmemiş</span></td>
+        <td><span class="missing">⚠ Belirtilmemiş</span></td>
+      </tr>
+    </table>
+  </section>
+
+  <div class="gs-note">
+    <strong>GS Notu:</strong> Rapor, mevcut iki kanaldaki (SMS + mobil bildirim) performansı net şekilde gösteriyor; ancak KPI maddesinin asıl kapsamı olan web/sorgulama ekranı verisi konusunda ilerleme yok. Önerilen aksiyonlarda sahip ve tarih bilgisi raporda yer almıyor — bu eklenirse aksiyonların takip edilebilirliği artar.
+  </div>
+
+</div>
+
+<footer>Çözüm Yayın Grubu · İcra Kurulu Kullanımı İçindir · YNRG-39 Raporlama Yönergesi Kapsamında Hazırlanmıştır</footer>
+
+</body>
+</html>
