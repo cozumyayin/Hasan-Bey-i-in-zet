@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Hasan Bey İçin Özet Rapor - Rakip Analizi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#C00000;
+    --ink:#1f1f1f;
+    --muted:#5b5b5b;
+    --bg-card:#f7f7f7;
+    --border:#e3e3e3;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'DM Sans', sans-serif;
+    color:var(--ink);
+    background:#ffffff;
+    line-height:1.6;
+  }
+  .top-band{
+    background:var(--red);
+    color:#fff;
+    padding:28px 40px;
+  }
+  .top-band .tag{
+    font-size:13px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    opacity:.85;
+    margin-bottom:8px;
+  }
+  .top-band h1{
+    font-family:'DM Serif Display', serif;
+    font-weight:400;
+    font-size:34px;
+    margin:0;
+  }
+  .container{
+    max-width:840px;
+    margin:0 auto;
+    padding:36px 40px 60px;
+  }
+  section{
+    margin-bottom:42px;
+  }
+  h2{
+    font-family:'DM Serif Display', serif;
+    font-weight:400;
+    font-size:22px;
+    color:var(--ink);
+    margin:0 0 16px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .ozet-cumle{
+    font-size:16px;
+    margin:0 0 10px;
+    padding-left:14px;
+    border-left:3px solid #ddd;
+  }
+  .metric-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-bottom:20px;
+  }
+  .metric-card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:16px;
+    text-align:center;
+  }
+  .metric-card .num{
+    font-family:'DM Serif Display', serif;
+    font-size:26px;
+    color:var(--red);
+  }
+  .metric-card .lbl{
+    font-size:12.5px;
+    color:var(--muted);
+    margin-top:4px;
+  }
+  ul.bulgu-list{
+    margin:0;
+    padding-left:20px;
+  }
+  ul.bulgu-list li{
+    margin-bottom:10px;
+  }
+  .flag{
+    border-left:4px solid var(--red);
+    background:#fff6f6;
+    padding:12px 16px;
+    margin-bottom:12px;
+    border-radius:0 6px 6px 0;
+  }
+  .flag .baslik{
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .flag .etki{
+    color:var(--muted);
+    font-size:14px;
+  }
+  .soru-list{
+    margin:0;
+    padding:0;
+    list-style:none;
+  }
+  .soru-list li{
+    padding:14px 0;
+    border-bottom:1px solid var(--border);
+    font-size:16px;
+  }
+  .soru-list li:last-child{border-bottom:none;}
+  .soru-list .no{
+    color:var(--red);
+    font-weight:700;
+    margin-right:8px;
+    font-family:'DM Serif Display', serif;
+  }
+  table.aksiyon{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14.5px;
+  }
+  table.aksiyon th{
+    text-align:left;
+    background:var(--bg-card);
+    padding:10px 12px;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--muted);
+    border-bottom:2px solid var(--border);
+  }
+  table.aksiyon td{
+    padding:12px;
+    border-bottom:1px solid var(--border);
+    vertical-align:top;
+  }
+  .sahip{
+    font-weight:700;
+  }
+  .tarih-uyari{
+    color:var(--red);
+    font-size:13px;
+    font-style:italic;
+  }
+  .gs-not{
+    border-left:4px solid var(--red);
+    background:#fff6f6;
+    padding:18px 20px;
+    font-style:italic;
+    color:var(--ink);
+    border-radius:0 6px 6px 0;
+    font-size:15px;
+  }
+  .footer-line{
+    text-align:center;
+    color:var(--muted);
+    font-size:12px;
+    margin-top:40px;
+  }
+  @media (max-width:600px){
+    .metric-grid{grid-template-columns:repeat(2,1fr);}
+    .container{padding:24px 20px 40px;}
+    .top-band{padding:22px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="top-band">
+  <div class="tag">İcra Kurulu Genel Sekreteri Çalışması</div>
+  <h1>Hasan Bey İçin Özet Rapor</h1>
+</div>
+
+<div class="container">
+
+  <section>
+    <h2>📋 3 Cümlede Özet</h2>
+    <p class="ozet-cumle">Sahadan gelen bölge yöneticisi raporları, rekabetin merkezinde müfredat geçiş hızı, kurumsal deneme sınavı konumlandırması ve dijital platform (Tam Okul) stratejisinin yer aldığını gösteriyor.</p>
+    <p class="ozet-cumle">Ortaokul soru bankası boşluğu (5-6-7. sınıf) büyüme fırsatı olarak öne çıkarken, 3D markasının internet kanalındaki kontrolsüz iskontoları bayi ve perakende kanalını zayıflatıyor.</p>
+    <p class="ozet-cumle">Üç bölge yöneticisi de ortak olarak marka mimarisinin netleştirilmesini, Maarif Modeli TYT kitaplarının hızlandırılmasını, iskonto tavanlamasını ve Tam Okul'un bağımsız satılabilir hale getirilmesini öneriyor.</p>
+  </section>
+
+  <section>
+    <h2>📊 Ana Bulgular</h2>
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="num">6</div>
+        <div class="lbl">Ortaokulda öne çıkan güçlü rakip (Fenomen, İşler, Hız, Ankara, Hiper Zekâ, Günay)</div>
+      </div>
+      <div class="metric-card">
+        <div class="num">3</div>
+        <div class="lbl">Öneri paketi sunan Bölge Yöneticisi</div>
+      </div>
+      <div class="metric-card">
+        <div class="num">5-7</div>
+        <div class="lbl">Soru bankası boşluğu tespit edilen sınıf aralığı</div>
+      </div>
+      <div class="metric-card">
+        <div class="num">%20</div>
+        <div class="lbl">Önerilen internet kanalı iskonto tavanı</div>
+      </div>
+    </div>
+    <ul class="bulgu-list">
+      <li>Müfredat geçişinde hız kritik rekabet faktörü haline geldi; İşler ve Yanıt Paraf, TYT kitaplarını erken çıkararak avantaj sağladı.</li>
+      <li>Kurumsal deneme sınavları artık bağımsız bir satış kalemi değil, marka algısı ve kitap satışına giriş aracı olarak konumlanıyor.</li>
+      <li>Lise grubunda İşler, Paraf/Yanıt Paraf ve 345 markalarının baskısı sürekli artıyor.</li>
+      <li>Tam Okul dijital platformu rekabetinde rakiplerin (Toprak, Limit, Paraf, İşler, Hız) platformu ücretsiz hediye etme stratejisi ortak tehdit olarak öne çıkıyor.</li>
+      <li>Ara ürün (kamp kitabı, TKT, fasikül) formatlarında rakiplerin yenilikçi ürünleri pazar payı kazanıyor.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🚩 Red Flags</h2>
+    <div class="flag">
+      <div class="baslik">İnternet kanalı iskonto disiplini</div>
+      <div class="etki">3D markasının internet kanalındaki kontrolsüz iskontoları, tavanlama uygulansa fiziksel bayi ve perakende satışları üzerindeki baskı azalır.</div>
+    </div>
+    <div class="flag">
+      <div class="baslik">Deneme sınavı fiyat standardizasyonu</div>
+      <div class="etki">Fiyatlandırma merkezi bir politika yerine saha ve bayi baskısıyla şekilleniyor; merkezi bir fiyat çerçevesi olsa marka algısı güçlenir.</div>
+    </div>
+    <div class="flag">
+      <div class="baslik">Kurumsal karar gecikmesi</div>
+      <div class="etki">Öğrenci sayısı belirsizliği ve kampanya bekleyişi erken siparişi geciktiriyor; deneme takviminin erken paylaşılması bu etkiyi azaltabilir.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>❓ Hasan Bey'in 3 Sorusu</h2>
+    <ul class="soru-list">
+      <li><span class="no">1.</span> İskonto tavanlaması (internet %20, bayi %40-45) uygulanmazsa mevcut kanal dengesizliği bizi nereye götürür?</li>
+      <li><span class="no">2.</span> Ortaokul 5-6-7. sınıf soru bankası boşluğunu kapatmak için hangi bütçe ve süre gerekiyor?</li>
+      <li><span class="no">3.</span> Tam Okul'u fiziksel ürün şartından bağımsızlaştırmak kısa vadede gelir kaybı mı yaratır, yoksa dijital büyümeyi mi hızlandırır?</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🎯 Önerilen Aksiyon</h2>
+    <table class="aksiyon">
+      <tr>
+        <th>Aksiyon</th>
+        <th>Sahip</th>
+        <th>Tarih</th>
+      </tr>
+      <tr>
+        <td>Marka mimarisinin netleştirilmesi (3D üst segment, 4K fiyat/performans, Eğitim Vadisi kurumsal)</td>
+        <td class="sahip">Muhsin Özbalcı</td>
+        <td class="tarih-uyari">Belirtilmemiş</td>
+      </tr>
+      <tr>
+        <td>Maarif Modeli'ne uyumlu TYT kitaplarının acil öncelikle sahaya sürülmesi</td>
+        <td class="sahip">Vedat Adsan</td>
+        <td class="tarih-uyari">Belirtilmemiş</td>
+      </tr>
+      <tr>
+        <td>İnternet kanalı iskonto tavanının %20'ye, bayi iskontosunun %40-45 bandına çekilmesi</td>
+        <td class="sahip">Vedat Adsan</td>
+        <td class="tarih-uyari">Belirtilmemiş</td>
+      </tr>
+      <tr>
+        <td>Ortaokul ara sınıf soru bankalarının devlet okulu sezonuna yetiştirilmesi</td>
+        <td class="sahip">Süleyman Ispınar</td>
+        <td class="tarih-uyari">Belirtilmemiş</td>
+      </tr>
+      <tr>
+        <td>Tam Okul dijital platformunun fiziksel ürün şartı olmadan bağımsız satılabilir hale getirilmesi</td>
+        <td class="sahip">Süleyman Ispınar</td>
+        <td class="tarih-uyari">Belirtilmemiş</td>
+      </tr>
+    </table>
+  </section>
+
+  <div class="gs-not">
+    GS Notu: Sahiplerin tamamı raporda net şekilde belirtilmiş, bu iyi bir başlangıç. Her aksiyon maddesine bir hedef tarih eklenirse takip ve önceliklendirme kolaylaşır, Hasan Bey'in sıklıkla sorduğu "bu bizi nereye götürür, ne zaman görürüz" sorusuna daha net cevap verilebilir.
+  </div>
+
+  <div class="footer-line">İcra Kurulu Genel Sekreterliği · KPI 22 – Rakip Analizleri Özeti</div>
+
+</div>
+</body>
+</html>
