@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Bey İçin Özet Rapor</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --red: #C00000;
+    --red-light: #f9eaea;
+    --dark: #1a1a1a;
+    --gray: #595959;
+    --gray-light: #f5f5f5;
+    --border: #e0e0e0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f2f0ed;
+    color: var(--dark);
+    padding: 40px 20px;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    background: #fff;
+    border-top: 6px solid var(--red);
+    box-shadow: 0 4px 40px rgba(0,0,0,0.10);
+    padding: 52px 60px 60px;
+  }
+
+  /* Header */
+  .header { margin-bottom: 36px; }
+
+  .header-meta {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 34px;
+    font-weight: 400;
+    color: var(--dark);
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .header-sub {
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 20px;
+  }
+
+  .header-divider {
+    height: 2px;
+    background: linear-gradient(to right, var(--red) 60px, var(--border) 60px);
+  }
+
+  /* Sections */
+  .section { margin-bottom: 36px; }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--red);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--red);
+    margin-bottom: 16px;
+  }
+
+  .section-title .icon { font-size: 14px; }
+
+  /* Özet */
+  .ozet-text {
+    font-size: 14.5px;
+    line-height: 1.8;
+    color: var(--dark);
+    background: var(--gray-light);
+    border-left: 4px solid var(--red);
+    padding: 16px 20px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* Metrik kartlar */
+  .metrik-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+
+  .metrik-kart {
+    background: var(--gray-light);
+    border-radius: 6px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+
+  .metrik-deger {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--red);
+    line-height: 1.15;
+  }
+
+  .metrik-etiket {
+    font-size: 10px;
+    color: var(--gray);
+    margin-top: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  /* Ana Bulgular */
+  .bulgu-group { margin-bottom: 16px; }
+
+  .bulgu-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 8px;
+    padding-left: 4px;
+  }
+
+  .bulgu-item {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--dark);
+    padding: 5px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .bulgu-item:last-child { border-bottom: none; }
+
+  .dash { color: var(--red); font-weight: 700; flex-shrink: 0; }
+
+  /* Red Flags */
+  .flag-item {
+    display: flex;
+    gap: 14px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    background: var(--red-light);
+    border-left: 3px solid var(--red);
+    border-radius: 0 4px 4px 0;
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+
+  .flag-num {
+    font-weight: 700;
+    color: var(--red);
+    flex-shrink: 0;
+    width: 18px;
+  }
+
+  /* Sorular */
+  .soru-item {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--dark);
+    font-style: italic;
+  }
+  .soru-item:last-child { border-bottom: none; }
+  .soru-num {
+    font-family: 'DM Serif Display', serif;
+    font-style: normal;
+    font-size: 18px;
+    color: var(--red);
+    flex-shrink: 0;
+  }
+
+  /* Aksiyon */
+  .aksiyon-item {
+    display: grid;
+    grid-template-columns: 20px 1fr auto;
+    gap: 10px 14px;
+    align-items: start;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .aksiyon-item:last-child { border-bottom: none; }
+
+  .aksiyon-num {
+    font-weight: 700;
+    color: var(--red);
+    padding-top: 1px;
+  }
+
+  .aksiyon-text { font-size: 13.5px; line-height: 1.65; color: var(--dark); }
+  .aksiyon-text strong { color: var(--dark); }
+  .aksiyon-uyari { color: var(--red); font-size: 12px; display: block; margin-top: 3px; }
+
+  .aksiyon-tarih {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--red);
+    white-space: nowrap;
+    background: var(--red-light);
+    padding: 3px 10px;
+    border-radius: 20px;
+    align-self: center;
+  }
+
+  .aksiyon-tarih.uyari-badge {
+    background: #fff3cd;
+    color: #8a6d00;
+  }
+
+  /* GS Notu */
+  .gs-notu {
+    font-family: 'DM Serif Display', serif;
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--gray);
+    font-style: italic;
+    border-left: 5px solid var(--red);
+    padding: 16px 24px;
+    background: var(--gray-light);
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 44px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: #aaa;
+  }
+
+  b { font-weight: 600; }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; border-top: 6px solid var(--red); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-meta">İcra Kurulu Genel Sekreteri Çalışması</div>
+    <h1>Hasan Bey İçin Özet Rapor</h1>
+    <div class="header-sub">Bayi Satış Müdürlüğü (OSU) — Haziran 2026 Bayi Performans Değerlendirmesi &nbsp;|&nbsp; 4 Bölge: Muhsin Özbalcı, Süleyman İşpınar, 7. Bölge, Vedat Adsan &nbsp;|&nbsp; 04 Temmuz 2026</div>
+    <div class="header-divider"></div>
+  </div>
+
+  <!-- 3 Cümlede Özet -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📋</span> 3 Cümlede Özet</div>
+    <div class="ozet-text">
+      Haziran sonu itibarıyla 2026 BY hedefine göre gerçek satış erişimi <b>%31,39</b> (172,6 M TL / 550 M TL) — taahhüt bazlı görünen %27,55'ten daha iyi bir tablo, ama yılın yarısında hâlâ düşük bir seviye. Bölgeler taahhüdü hedefin <b>%113,9'una şişirerek</b> (626,7 M TL) dağıtmış; bu şişirme en zayıf bölge olan <b style="color:var(--red)">7. Bölge'nin (%27,76 erişim)</b> aynı zamanda yazılı BY açıklaması da sunmamasıyla birleşince görünürlüğü zayıflatıyor. Ayrıca <b>Eğitim Vadisi</b> markası dört bölgede de sistematik olarak en zayıf grup (%12,5–%22,2) — bu bölgesel değil, markaya özgü yapısal bir konu.
+    </div>
+  </div>
+
+  <!-- Ana Bulgular -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📊</span> Ana Bulgular</div>
+
+    <div class="metrik-grid">
+      <div class="metrik-kart">
+        <div class="metrik-deger">550 M</div>
+        <div class="metrik-etiket">2026 BY HEDEFİ (TL)</div>
+      </div>
+      <div class="metrik-kart">
+        <div class="metrik-deger">626,7 M</div>
+        <div class="metrik-etiket">BAYİ TAAHHÜDÜ — %113,9</div>
+      </div>
+      <div class="metrik-kart">
+        <div class="metrik-deger">172,6 M</div>
+        <div class="metrik-etiket">GERÇEKLEŞEN SATIŞ (TL)</div>
+      </div>
+      <div class="metrik-kart">
+        <div class="metrik-deger">%31,39</div>
+        <div class="metrik-etiket">HEDEFE ERİŞİM ORANI</div>
+      </div>
+    </div>
+
+    <div class="bulgu-group">
+      <div class="bulgu-label">Sayısal</div>
+      <div class="bulgu-item"><span class="dash">—</span><span>Bölge sıralaması (gerçek erişim, en iyiden en zayıfa): <b>Süleyman İşpınar %35,99</b> → <b>Muhsin Özbalcı %31,98</b> → <b>Vedat Adsan %29,29</b> → <b>7. Bölge %27,76</b></span></div>
+      <div class="bulgu-item"><span class="dash">—</span><span>525 bayi sözleşmesinin <b>%89'u</b> hâlâ %50 saha hedefinin altında — en iyi bölge (Süleyman İşpınar) dahil</span></div>
+      <div class="bulgu-item"><span class="dash">—</span><span>Satışın <b>%58,5'i</b> kurumsal karar sürecine bağlı — darboğaz saha performansından çok B2B sürecin yavaşlığından kaynaklanıyor</span></div>
+      <div class="bulgu-item"><span class="dash">—</span><span>3D Lise her bölgede en güçlü grup (%28,5–%43,3); Eğitim Vadisi her bölgede en zayıf grup (%12,5–%22,2)</span></div>
+    </div>
+
+    <div class="bulgu-group">
+      <div class="bulgu-label">Niteliksel</div>
+      <div class="bulgu-item"><span class="dash">—</span><span><b>393 bayi açıklaması</b> incelendi (Muhsin Özbalcı, Süleyman İşpınar, Vedat Adsan bölgelerinden); 7. Bölge'de yazılı açıklama bulunmuyor</span></div>
+      <div class="bulgu-item"><span class="dash">—</span><span>İl Millî Eğitim kaynaklı yönlendirme sorunu (5 bayi, Süleyman İşpınar), deprem etkisi (3 bayi), franchise kurumların merkezi kaynak seçimi (2 bayi) — sayıca az ama yapısal/kalıcı kısıtlar</span></div>
+      <div class="bulgu-item"><span class="dash">—</span><span>Temmuz-Ağustos'a ertelenen sipariş beklentisi gerekçesi açıklamaların <b>%51,4'ünde</b> geçiyor — her dönem tekrarlanan, doğrulaması zor bir söylem</span></div>
+    </div>
+  </div>
+
+  <!-- Red Flags -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🚩</span> Red Flags</div>
+    <div class="flag-item"><span class="flag-num">1.</span><span><b>7. Bölge'de yazılı saha gerekçesi yok:</b> En düşük hedef erişimine (%27,76) sahip bölgeden yazılı BY açıklaması gelmiyor. Bu bölge de diğer üç bölge gibi bayi/kurum/tutar bazlı yazılı raporlama yapsa, düşük erişimin kök nedeni netleşir ve aksiyon daha isabetli kurulur.</span></div>
+    <div class="flag-item"><span class="flag-num">2.</span><span><b>Eğitim Vadisi markası tüm bölgelerde zayıf:</b> %12,5–%22,2 bandında, bölgesel değil markaya özgü bir örüntü. Markaya özel bir aksiyon planı (kampanya, fiyat veya hedef revizyonu) devreye girerse, dört bölgenin ayrı ayrı harcadığı çaba tek noktadan güçlendirilebilir.</span></div>
+    <div class="flag-item"><span class="flag-num">3.</span><span><b>Taahhüt-erişim makası açık:</b> Bölgeler hedefin %113,9'u kadar taahhüt vermişken gerçek erişim %31,39'da kalıyor. Taahhüt planlamasının bir sonraki dönemde gerçekleşme oranına daha yakın kurulması, raporun ilk bakışta verdiği "iyimser" izlenimi azaltır.</span></div>
+    <div class="flag-item"><span class="flag-num">4.</span><span><b>Ertelenen siparişler henüz somutlaşmamış:</b> Temmuz-Ağustos beklentisi taşıyan bekleyen kurum siparişlerinin çoğu (örn. Alya Kitap ~750K TL, Pozitif Bölge ~2M TL) kurum adı ve tutar bazında teyit edilmiş değil. Bu kalemler tarih/tutar bazında somutlaştırılırsa, gerçekleşme takibi çok daha görünür hâle gelir.</span></div>
+  </div>
+
+  <!-- Hasan Bey'in 3 Sorusu -->
+  <div class="section">
+    <div class="section-title"><span class="icon">❓</span> Hasan Bey'in 3 Sorusu</div>
+    <div class="soru-item"><span class="soru-num">1.</span><span>Bu tempoyla yıl sonunda 550 M TL hedefe ulaşıyor muyuz — yoksa %31,39'luk yarı yıl erişimi bizi nereye götürür?</span></div>
+    <div class="soru-item"><span class="soru-num">2.</span><span>Bayi taahhüdünün hedefin %113,9'una şişirilmesi gerçek bir güvenlik payı mı, yoksa sadece kağıt üzerinde iyi görünme çabası mı?</span></div>
+    <div class="soru-item"><span class="soru-num">3.</span><span>7. Bölge'den yazılı açıklama gelmemesi bir raporlama boşluğu mu, yoksa sahada gerçekten paylaşılacak somut bir gerekçe mi bulunmuyor?</span></div>
+  </div>
+
+  <!-- Önerilen Aksiyon -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🎯</span> Önerilen Aksiyon — Onayla + Takibe Al</div>
+    <div class="aksiyon-item">
+      <span class="aksiyon-num">1.</span>
+      <span class="aksiyon-text"><b>Osman Selçuk Uğur (Bayi Satış Müdürü)</b> — 7. Bölge'den, %50 hedef altında kalan 113 sözleşme için bayi/kurum/tutar/tarih bazlı yazılı gözlem ve aksiyon planı talep etsin.</span>
+      <span class="aksiyon-tarih">31 Ağu 2026</span>
+    </div>
+    <div class="aksiyon-item">
+      <span class="aksiyon-num">2.</span>
+      <span class="aksiyon-text"><b>Muhsin Özbalcı, Süleyman İşpınar, Vedat Adsan (Bölge Yöneticileri)</b> — Temmuz'a ertelenen bekleyen kurum siparişlerinin (Edebali, Uşak Kitap, Kıyak Yay. Dağ., Umut Kırtasiye, Pozitif Bölge) sonucunu kurum adı ve tutar bazında OSU'ya raporlasın.</span>
+      <span class="aksiyon-tarih">31 Tem 2026</span>
+    </div>
+    <div class="aksiyon-item">
+      <span class="aksiyon-num">3.</span>
+      <span class="aksiyon-text"><b>Osman Selçuk Uğur (Bayi Satış Müdürü)</b> — Eğitim Vadisi markası için markaya özel bir aksiyon önerisi (kampanya / fiyat / hedef revizyonu) hazırlayıp İcra Kurulu'na sunsun.
+      <span class="aksiyon-uyari">⚠ Kaynak raporda bu madde için tarih belirtilmemiş — GS tarafından netleştirilmesi önerilir.</span></span>
+      <span class="aksiyon-tarih uyari-badge">Tarih belirlenmeli</span>
+    </div>
+  </div>
+
+  <!-- GS Notu -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📌</span> GS Notu</div>
+    <div class="gs-notu">
+      "Haziran'da hedefe erişim %31,39 — taahhüt rakamlarına bakınca göründüğünden daha zayıf, ama tek başına bayi taahhüdüne bakarak yapılan bir önceki okumadan daha dengeli bir tablo bu. En kritik nokta 7. Bölge: hem en düşük erişim hem de elimizde yazılı bir gerekçesi yok — bunu önceliklendirdim. Eğitim Vadisi'nin dört bölgede de aynı zayıflığı göstermesi ise bence bölgesel değil, ürüne dair bir konuşmayı gerektiriyor."
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <span>İcra Kurulu Genel Sekreteri — 04.07.2026</span>
+    <span>Bayi Performans / Haziran 2026</span>
+  </div>
+
+</div>
+</body>
+</html>
