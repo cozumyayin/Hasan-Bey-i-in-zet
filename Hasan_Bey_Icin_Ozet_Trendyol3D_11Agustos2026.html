@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Bey İçin Özet Rapor - Trendyol 3D Mağazası</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#C00000;
+    --red-light:#fdeaea;
+    --ink:#1f1f1f;
+    --muted:#6b6b6b;
+    --bg:#f7f6f4;
+    --card:#ffffff;
+    --border:#e7e3df;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    font-family:'DM Sans', sans-serif;
+    color:var(--ink);
+    line-height:1.6;
+  }
+  .topbar{
+    background:var(--red);
+    color:#fff;
+    padding:28px 40px;
+  }
+  .topbar .label{
+    font-size:13px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    opacity:0.9;
+    font-weight:700;
+    margin-bottom:8px;
+  }
+  .topbar h1{
+    font-family:'DM Serif Display', serif;
+    font-size:34px;
+    margin:0;
+    font-weight:400;
+  }
+  .meta{
+    padding:16px 40px;
+    background:#fff;
+    border-bottom:1px solid var(--border);
+    font-size:13px;
+    color:var(--muted);
+    display:flex;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .container{
+    max-width:900px;
+    margin:0 auto;
+    padding:36px 40px 60px;
+  }
+  section{margin-bottom:40px;}
+  h2{
+    font-family:'DM Serif Display', serif;
+    font-size:24px;
+    font-weight:400;
+    margin:0 0 18px;
+    color:var(--ink);
+  }
+  .summary-box{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:24px 28px;
+    font-size:17px;
+  }
+  .summary-box p{margin:0 0 12px;}
+  .summary-box p:last-child{margin-bottom:0;}
+  .metric-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(190px, 1fr));
+    gap:16px;
+    margin-bottom:22px;
+  }
+  .metric-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:18px 20px;
+  }
+  .metric-card .value{
+    font-family:'DM Serif Display', serif;
+    font-size:26px;
+    color:var(--red);
+  }
+  .metric-card .label{
+    font-size:13px;
+    color:var(--muted);
+    margin-top:4px;
+  }
+  ul.findings{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:20px 26px;
+    margin:0;
+  }
+  ul.findings li{margin-bottom:10px;}
+  ul.findings li:last-child{margin-bottom:0;}
+  .flag{
+    background:var(--red-light);
+    border-left:4px solid var(--red);
+    border-radius:6px;
+    padding:16px 20px;
+    margin-bottom:14px;
+  }
+  .flag:last-child{margin-bottom:0;}
+  .flag .flag-title{
+    font-weight:700;
+    color:var(--red);
+    margin-bottom:6px;
+  }
+  .questions{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .question{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:18px 22px;
+  }
+  .question .q{
+    font-weight:700;
+    margin-bottom:6px;
+  }
+  .question .a{color:var(--muted);}
+  table.actions{
+    width:100%;
+    border-collapse:collapse;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  table.actions th{
+    background:#f2f0ed;
+    text-align:left;
+    padding:12px 16px;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+    color:var(--muted);
+  }
+  table.actions td{
+    padding:14px 16px;
+    border-top:1px solid var(--border);
+    font-size:14.5px;
+    vertical-align:top;
+  }
+  .owner-tag{
+    display:inline-block;
+    background:#f2f0ed;
+    border-radius:20px;
+    padding:3px 10px;
+    font-size:12.5px;
+    font-weight:500;
+  }
+  .date-tag{
+    display:inline-block;
+    background:var(--red-light);
+    color:var(--red);
+    border-radius:20px;
+    padding:3px 10px;
+    font-size:12.5px;
+    font-weight:700;
+  }
+  .gs-note{
+    background:var(--red-light);
+    border-left:4px solid var(--red);
+    border-radius:6px;
+    padding:20px 24px;
+    font-style:italic;
+    color:#444;
+  }
+  .gs-note strong{font-style:normal;color:var(--red);}
+  footer{
+    text-align:center;
+    font-size:12px;
+    color:var(--muted);
+    padding:24px 40px 40px;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="label">İcra Kurulu Genel Sekreteri Çalışması</div>
+  <h1>Hasan Bey İçin Özet Rapor</h1>
+</div>
+
+<div class="meta">
+  <span><strong>Konu:</strong> Trendyol 3D Yayınları Mağazası — Satış Performansı</span>
+  <span><strong>Kaynak Rapor Tarihi:</strong> 11.08.2026</span>
+  <span><strong>Hazırlayan:</strong> Mustafa Gören, Piyasa Satış Müdürü</span>
+</div>
+
+<div class="container">
+
+  <section>
+    <h2>📋 3 Cümlede Özet</h2>
+    <div class="summary-box">
+      <p>3D Yayınları mağazası Ağustos ayında 31.136 adet brüt satışla 7 milyon TL'nin üzerinde ciro üretti ve net satış oranı %96,7 ile sağlıklı seviyede kaldı.</p>
+      <p>En büyük risk alanı, iadelerin üçte birini oluşturan "teslim edilemeyen gönderi" kalemi — bu durum aynı zamanda mağazanın kazanamadığı Hızlı Satıcı Rozeti ile doğrudan bağlantılı.</p>
+      <p>Mağaza Altın seviyede ve Elmas seviyeye (yüksek kupon avantajı) sadece 20.640 puan uzakta; kargo süreci düzeltilirse hem iade oranı düşecek hem rozet ve seviye hedefleri birlikte ilerleyecek.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>📊 Ana Bulgular</h2>
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="value">6.752.704 TL</div>
+        <div class="label">Net Satış Tutarı</div>
+      </div>
+      <div class="metric-card">
+        <div class="value">%96,7</div>
+        <div class="label">Net Satış / Brüt Satış Adedi</div>
+      </div>
+      <div class="metric-card">
+        <div class="value">%0,78</div>
+        <div class="label">İade Oranı (Brüt Adede Göre)</div>
+      </div>
+      <div class="metric-card">
+        <div class="value">79.360 / 100.000</div>
+        <div class="label">Gelişim Puanı (Elmas Seviyeye 20.640 Puan Kaldı)</div>
+      </div>
+    </div>
+    <ul class="findings">
+      <li>Brüt satış: 31.136 adet / 7.046.067 TL — iptal ve iade sonrası net satış: 30.115 adet / 6.752.704 TL.</li>
+      <li>Ortalama komisyon oranı %11,35, toplam komisyon tutarı 766.317,97 TL; komisyon yapısı ürün genelinde homojen uygulanıyor.</li>
+      <li>244 iadenin %33'ü "Teslim Edilemeyen Gönderi" kaynaklı (81 adet) — en büyük tekil iade nedeni.</li>
+      <li>Başarılı Satıcı Rozeti ve Resmi Satıcı Rozeti kazanıldı; Hızlı Satıcı Rozeti 4 koşuldan 3'ü tamamlanarak kazanılamadı (yenileme: 01 Eylül 2026).</li>
+      <li>Ürün bazında en yüksek iptal oranı TYT Türkçe Simülasyon Denemeleri'nde (%3,53), en düşük ise AYT Edebiyat Sosyal Bilimler 1'de (%1,69).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🚩 Red Flags</h2>
+    <div class="flag">
+      <div class="flag-title">Kargo/Teslimat Kaynaklı İade Riski</div>
+      Teslim edilemeyen gönderiler iadelerin en büyük kalemi; kargo süreci iyileştirilirse hem iade oranı düşer hem Hızlı Satıcı Rozeti şansı artar.
+    </div>
+    <div class="flag">
+      <div class="flag-title">Hızlı Satıcı Rozeti Eksik</div>
+      4 koşuldan 3'ü tamamlanmış durumda; yenileme tarihine (01 Eylül 2026) 21 gün kala eksik koşulun netleştirilmesi etkiyi artırır.
+    </div>
+    <div class="flag">
+      <div class="flag-title">Ürün Bazlı İptal Farklılığı Detaylandırılmamış</div>
+      TYT Türkçe Simülasyon Denemeleri'nin ortalamanın üzerindeki iptal oranının kök nedeni raporda belirtilmemiş — bu bilgi eklense öneri daha isabetli olur.
+    </div>
+  </section>
+
+  <section>
+    <h2>❓ Hasan Bey'in 3 Sorusu</h2>
+    <div class="questions">
+      <div class="question">
+        <div class="q">Bu bizi nereye götürür?</div>
+        <div class="a">Kargo sürecinin düzeltilmesi hem iade oranını azaltır hem Hızlı Satıcı Rozeti'ni kazandırır; bu da Elmas seviyeye giden puan birikimini hızlandırır ve komisyon avantajlarını artırır.</div>
+      </div>
+      <div class="question">
+        <div class="q">Rakamların kanıtı nedir?</div>
+        <div class="a">Veriler 11.08.2026 tarihinde Trendyol Satıcı Paneli'nden alınan Satış Özeti, İptal & İade Özeti, Diğer Metrikler ve Satıcı Rozetleri modüllerine dayanıyor.</div>
+      </div>
+      <div class="question">
+        <div class="q">Sonuç ne, hangi büyük resme bağlanıyor?</div>
+        <div class="a">Mağaza sağlıklı bir satış hacmiyle çalışıyor; asıl kaldıraç operasyonel (kargo/lojistik) iyileştirme — bu, e-ticaret kanallarının düzenli takibi KPI'ına doğrudan katkı sağlar.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>🎯 Önerilen Aksiyon</h2>
+    <table class="actions">
+      <tr>
+        <th>Aksiyon</th>
+        <th>Sahip</th>
+        <th>Tarih</th>
+      </tr>
+      <tr>
+        <td>Teslim edilemeyen gönderi kaynaklı iade oranını düşürmek için kargo/lojistik süreçlerinin gözden geçirilmesi</td>
+        <td><span class="owner-tag">Operasyon Birimi</span></td>
+        <td><span class="date-tag">25 Ağustos 2026</span></td>
+      </tr>
+      <tr>
+        <td>Hızlı Satıcı Rozeti'nin eksik koşulunun tespiti ve iyileştirilmesi (cumartesi gönderim personeli önerisi dahil)</td>
+        <td><span class="owner-tag">Satış Operasyonları Birimi</span></td>
+        <td><span class="date-tag">01 Eylül 2026</span></td>
+      </tr>
+      <tr>
+        <td>Elmas seviyeye geçiş için puan kazandıran görev/kampanyalara katılım planlanması</td>
+        <td><span class="owner-tag">Dijital Kanallar Birimi</span></td>
+        <td><span class="date-tag">Bir sonraki raporlama dönemi</span></td>
+      </tr>
+      <tr>
+        <td>Aylık periyotlarla metriklerin yeniden derlenip trend takibi yapılması</td>
+        <td><span class="owner-tag">Dijital Kanallar Birimi</span></td>
+        <td><span class="date-tag">Aylık (sürekli)</span></td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>GS Notu</h2>
+    <div class="gs-note">
+      Rapor genel olarak sağlam kanıtlarla destekleniyor; ancak <strong>TYT Türkçe Simülasyon Denemeleri</strong>'nin yüksek iptal oranının kök nedeni belirtilse etki daha net görülür. Ayrıca 3. ve 4. aksiyon maddelerinde net bir takvim tarihi yerine "bir sonraki dönem" ifadesi kullanılmış — buna somut bir tarih eklenmesi takibi kolaylaştırır.
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Bu özet, İcra Kurulu Genel Sekreterliği tarafından Genel Müdür Hasan Bey için hazırlanmıştır.
+</footer>
+
+</body>
+</html>
