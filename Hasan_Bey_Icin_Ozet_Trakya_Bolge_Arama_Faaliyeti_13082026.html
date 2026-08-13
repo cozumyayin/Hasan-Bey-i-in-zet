@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Bey İçin Özet Rapor - Trakya Bölge Arama Faaliyeti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C00000;
+    --dark: #1a1a1a;
+    --gray-text: #444;
+    --light-bg: #f7f7f8;
+    --border-gray: #e2e2e2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--dark);
+    background: #ffffff;
+    line-height: 1.6;
+  }
+  .top-band {
+    background: var(--red);
+    color: #fff;
+    padding: 32px 48px;
+  }
+  .top-band .tag {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.85;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .top-band h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    margin: 0;
+    font-weight: 400;
+  }
+  .top-band .meta {
+    margin-top: 12px;
+    font-size: 13px;
+    opacity: 0.9;
+  }
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 40px 48px 60px;
+  }
+  section {
+    margin-bottom: 44px;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0 0 18px 0;
+    color: var(--dark);
+  }
+  .summary-box {
+    background: var(--light-bg);
+    border-radius: 10px;
+    padding: 24px 28px;
+    font-size: 17px;
+    color: var(--gray-text);
+  }
+  .summary-box p { margin: 0 0 10px 0; }
+  .summary-box p:last-child { margin-bottom: 0; }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 22px;
+  }
+  .metric-card {
+    background: var(--light-bg);
+    border-radius: 10px;
+    padding: 18px 16px;
+    text-align: center;
+  }
+  .metric-card .value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: var(--red);
+    display: block;
+  }
+  .metric-card .label {
+    font-size: 12.5px;
+    color: var(--gray-text);
+    margin-top: 4px;
+  }
+  ul.findings {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--gray-text);
+    font-size: 15.5px;
+  }
+  ul.findings li { margin-bottom: 10px; }
+
+  .flag {
+    border-left: 4px solid var(--red);
+    background: #fff5f5;
+    padding: 14px 20px;
+    margin-bottom: 14px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    color: var(--gray-text);
+  }
+  .flag strong { color: var(--dark); }
+
+  .questions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .question-item {
+    background: var(--light-bg);
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 15.5px;
+    color: var(--dark);
+    display: flex;
+    gap: 12px;
+  }
+  .question-item .qnum {
+    font-family: 'DM Serif Display', serif;
+    color: var(--red);
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .action-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+  .action-table th {
+    text-align: left;
+    padding: 10px 14px;
+    background: var(--dark);
+    color: #fff;
+    font-weight: 500;
+    font-size: 13px;
+  }
+  .action-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border-gray);
+    color: var(--gray-text);
+    vertical-align: top;
+  }
+  .action-table tr:last-child td { border-bottom: none; }
+  .owner-tag {
+    display: inline-block;
+    background: #eef1f5;
+    color: var(--dark);
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .date-tag {
+    display: inline-block;
+    background: #fdeaea;
+    color: var(--red);
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .missing-tag {
+    display: inline-block;
+    background: #fff3cd;
+    color: #8a6d00;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .gs-note {
+    border-left: 4px solid var(--red);
+    background: #fafafa;
+    padding: 16px 22px;
+    font-style: italic;
+    color: var(--gray-text);
+    font-size: 14.5px;
+    border-radius: 0 8px 8px 0;
+  }
+
+  @media (max-width: 640px) {
+    .top-band { padding: 24px 24px; }
+    .top-band h1 { font-size: 26px; }
+    .container { padding: 28px 24px 40px; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-band">
+  <div class="tag">İcra Kurulu Genel Sekreteri Çalışması</div>
+  <h1>Hasan Bey İçin Özet Rapor</h1>
+  <div class="meta">Konu: Trakya Bölgesi Arama Faaliyeti Raporu (Tekirdağ / Air Table) &nbsp;•&nbsp; Tarih: 13.08.2026</div>
+</div>
+
+<div class="container">
+
+  <section>
+    <h2>📋 3 Cümlede Özet</h2>
+    <div class="summary-box">
+      <p>Tekirdağ Bölge Yöneticisi Mustafa Gören sorumluluğunda toplam 68 sevkiyat ile 938 ürün gönderilmiş, iskontolu satış bedeli 161.814 TL, kargo maliyeti 1.365,25 TL olarak gerçekleşmiş.</p>
+      <p>Sevkiyat adedinde Ortaokul kademesi öne çıkarken (%53), ciro ve ürün adedinde Lise kademesi ağırlığı taşımış — yani hacim ile ciro farklı kademelerden geliyor.</p>
+      <p>Edirne'de Özel Edirne Polinom Yıldız Kursu'nda satış tamamlanmış, iki kurumda görüşme/deneme süreci devam ediyor; Air Table'a işleniş tanımlanmış durumda.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>📊 Ana Bulgular</h2>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <span class="value">68</span>
+        <span class="label">Toplam Sevkiyat</span>
+      </div>
+      <div class="metric-card">
+        <span class="value">938</span>
+        <span class="label">Gönderilen Ürün Adedi</span>
+      </div>
+      <div class="metric-card">
+        <span class="value">161.814 TL</span>
+        <span class="label">İskontolu Toplam Bedel</span>
+      </div>
+      <div class="metric-card">
+        <span class="value">1.365 TL</span>
+        <span class="label">Toplam Kargo Maliyeti</span>
+      </div>
+    </div>
+    <ul class="findings">
+      <li><strong>3D Lise:</strong> 32 sevkiyat, 529 ürün, 95.902 TL bedel, 786,90 TL kargo — ürün adedi ve ciroda ağırlıklı kademe.</li>
+      <li><strong>3D Ortaokul:</strong> 36 sevkiyat, 409 ürün, 65.912 TL bedel, 578,35 TL kargo — sevkiyat sayısında öne çıkan kademe (%53).</li>
+      <li>Tekirdağ/Çorlu bölgesi Air Table üzerinde tanımlanmış; Edirne'deki işlem gören kurumlar bayiye yönlendirilmiş.</li>
+      <li>Özel Edirne Polinom Yıldız Kursu: 28 Temmuz 2026 itibarıyla ürün ve deneme satışı tamamlandı.</li>
+      <li>Selçuk Morkan ile yayın görüşmesi sürerken deneme satışı gerçekleştirildi; Özel Ün Pratik Gelişim ile görüşme randevusu alındı.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🚩 Red Flags</h2>
+    <div class="flag">
+      <strong>Kanıt eksik:</strong> Raporda kurum bazlı detay tablosu metinde geçiyor ("tabloda belirtilen kurumlar") ancak tablo görsel/ek olarak rapora eklenmemiş — tablo eklense Hasan Bey'in kurum bazlı doğrulama yapması kolaylaşır.
+    </div>
+    <div class="flag">
+      <strong>Kıyas eksik:</strong> Bu haftaki 68 sevkiyat / 938 ürün rakamları önceki dönemle (geçen hafta/ay) kıyaslanmamış — trend eklense büyüme mi düşüş mü olduğu netleşir.
+    </div>
+    <div class="flag">
+      <strong>Diğer iller belirsiz:</strong> Rapor başlığı "Trakya Bölgesi" ancak içerik sadece Tekirdağ'a ait; Edirne'de sadece 2 kurum örneği var, Kırklareli hiç geçmiyor — bölge genelinde tam kapsama eklense resim daha bütünsel olur.
+    </div>
+  </section>
+
+  <section>
+    <h2>❓ Hasan Bey'in 3 Sorusu</h2>
+    <div class="questions">
+      <div class="question-item">
+        <span class="qnum">1</span>
+        <span>68 sevkiyat / 161.814 TL bu ay için hedefin neresinde — planı geçtik mi, altında mıyız?</span>
+      </div>
+      <div class="question-item">
+        <span class="qnum">2</span>
+        <span>Edirne'deki karar sürecindeki kurumlar (Polinom, Ün Pratik) ne zaman kesin satışa dönüşür, bu bizi hangi ciroya taşır?</span>
+      </div>
+      <div class="question-item">
+        <span class="qnum">3</span>
+        <span>Kırklareli neden raporda yok — bölgede çalışma yapılmadı mı, yoksa sonuç henüz alınmadı mı?</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>🎯 Önerilen Aksiyon</h2>
+    <table class="action-table">
+      <tr>
+        <th>Aksiyon</th>
+        <th>Sahip</th>
+        <th>Tarih</th>
+      </tr>
+      <tr>
+        <td>Kurum bazlı detay tablosunun rapora ek olarak eklenmesi</td>
+        <td><span class="owner-tag">Mustafa Gören</span></td>
+        <td><span class="missing-tag">Belirtilmemiş — netleştirilmeli</span></td>
+      </tr>
+      <tr>
+        <td>Edirne'deki karar sürecindeki kurumların (Polinom, Ün Pratik) satış durumunun haftalık takibe alınması</td>
+        <td><span class="owner-tag">Mustafa Gören</span></td>
+        <td><span class="date-tag">20.08.2026</span></td>
+      </tr>
+      <tr>
+        <td>Kırklareli bölgesi için ayrı bir durum bilgisi talep edilmesi</td>
+        <td><span class="owner-tag">Bölge Sorumlusu</span></td>
+        <td><span class="missing-tag">Belirtilmemiş — netleştirilmeli</span></td>
+      </tr>
+    </table>
+  </section>
+
+  <div class="gs-note">
+    <strong>GS Notu:</strong> Rapor, Tekirdağ özelinde net rakamlarla geliyor ve bu iyi — ancak başlık "Trakya Bölgesi" derken içerik tek ile odaklanmış durumda. Sahip/tarih bilgisi eksik olan iki aksiyon maddesi için ilgili birimden teyit alınması gerekiyor; bu netleşince rapor Hasan Bey'in önüne daha güçlü çıkar.
+  </div>
+
+</div>
+</body>
+</html>
