@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Bey İçin Özet Rapor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#C00000;
+    --red-light:#FDEAEA;
+    --ink:#1F2328;
+    --gray:#5B6570;
+    --line:#E6E8EB;
+    --bg:#F7F7F8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'DM Sans',sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+  }
+  .topband{
+    background:var(--red);
+    color:#fff;
+    padding:28px 40px;
+  }
+  .topband .tag{
+    font-size:13px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    opacity:0.9;
+    font-weight:700;
+  }
+  .topband h1{
+    font-family:'DM Serif Display',serif;
+    font-size:34px;
+    margin:6px 0 4px 0;
+    font-weight:400;
+  }
+  .topband .subtitle{
+    font-size:15px;
+    opacity:0.95;
+  }
+  .container{
+    max-width:880px;
+    margin:0 auto;
+    padding:32px 40px 60px 40px;
+  }
+  section{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:26px 30px;
+    margin-bottom:22px;
+  }
+  h2.section-title{
+    font-family:'DM Serif Display',serif;
+    font-size:22px;
+    font-weight:400;
+    margin:0 0 16px 0;
+    color:var(--ink);
+  }
+  .ozet-cumle{
+    font-size:16px;
+  }
+  .ozet-cumle b{color:var(--red);}
+  .metric-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-bottom:20px;
+  }
+  .metric-card{
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:16px 14px;
+    text-align:center;
+  }
+  .metric-card .num{
+    font-family:'DM Serif Display',serif;
+    font-size:28px;
+    color:var(--red);
+    display:block;
+  }
+  .metric-card .lbl{
+    font-size:12.5px;
+    color:var(--gray);
+    margin-top:4px;
+    display:block;
+  }
+  ul.bulgu-list{
+    margin:0;
+    padding-left:20px;
+  }
+  ul.bulgu-list li{
+    margin-bottom:8px;
+    font-size:15px;
+  }
+  .flag{
+    border-left:4px solid var(--red);
+    background:var(--red-light);
+    padding:12px 16px;
+    margin-bottom:12px;
+    border-radius:0 6px 6px 0;
+    font-size:15px;
+  }
+  .flag b{color:var(--red);}
+  .questions{
+    list-style:none;
+    padding:0;
+    margin:0;
+    counter-reset:q;
+  }
+  .questions li{
+    counter-increment:q;
+    margin-bottom:14px;
+    padding-left:36px;
+    position:relative;
+    font-size:15px;
+  }
+  .questions li::before{
+    content:counter(q);
+    position:absolute;
+    left:0;
+    top:0;
+    width:24px;
+    height:24px;
+    background:var(--red);
+    color:#fff;
+    border-radius:50%;
+    text-align:center;
+    line-height:24px;
+    font-size:13px;
+    font-weight:700;
+  }
+  table.aksiyon{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14.5px;
+  }
+  table.aksiyon th{
+    text-align:left;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+    color:var(--gray);
+    border-bottom:2px solid var(--line);
+    padding:8px 10px;
+  }
+  table.aksiyon td{
+    padding:12px 10px;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  table.aksiyon td.sahip{
+    font-weight:700;
+    white-space:nowrap;
+  }
+  table.aksiyon td.tarih{
+    white-space:nowrap;
+    color:var(--red);
+    font-weight:700;
+  }
+  .gs-note{
+    border-left:4px solid var(--red);
+    background:var(--red-light);
+    padding:18px 20px;
+    font-style:italic;
+    font-size:15.5px;
+    border-radius:0 6px 6px 0;
+  }
+  .footer{
+    text-align:center;
+    color:var(--gray);
+    font-size:13px;
+    margin-top:10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="topband">
+  <div class="tag">İcra Kurulu Genel Sekreteri Çalışması</div>
+  <h1>Hasan Bey İçin Özet Rapor</h1>
+  <div class="subtitle">4K Yayınları — ÇİM Talep Analizi (18.04.2026 – 13.08.2026) | 17 Ağustos 2026</div>
+</div>
+
+<div class="container">
+
+  <section>
+    <h2 class="section-title">📋 3 Cümlede Özet</h2>
+    <p class="ozet-cumle">
+      18.04.2026 – 13.08.2026 arasında 4K Web Sitesi'nden ÇİM'e gelen <b>67 talebin %59,7'si 5 dakika veya daha kısa sürede</b> kapatılmış; hızlı dönüş genel olarak sağlanıyor. Ancak taleplerin <b>%44,8'i hata çağrısı</b> ve bunların büyük bölümü QR kod/video çözüm erişimi, cevap anahtarı erişimi ve hatalı soru-çözüm bildirimlerinde yoğunlaşıyor — yani hız iyi ama kaynak tekrar ediyor. En uzun kapanış süresi (960 dk / 16 saat) iptalle sonuçlanan bir kayıtta; tamamlanan talepler içinde en uzun süre 360 dk (6 saat).
+    </p>
+  </section>
+
+  <section>
+    <h2 class="section-title">📊 Ana Bulgular</h2>
+    <div class="metric-grid">
+      <div class="metric-card"><span class="num">67</span><span class="lbl">Toplam Talep</span></div>
+      <div class="metric-card"><span class="num">34,9 dk</span><span class="lbl">Ortalama Kapanış Süresi</span></div>
+      <div class="metric-card"><span class="num">%59,7</span><span class="lbl">≤5 dk'da Kapanan</span></div>
+    </div>
+    <ul class="bulgu-list">
+      <li><b>Kategori dağılımı:</b> Hata Çağrısı 30 adet (%44,8) · Yeni Talep 21 adet (%31,3) · Bilgi Talebi 16 adet (%23,9)</li>
+      <li><b>Hata çağrılarının ana kaynağı:</b> QR kod / video çözüm erişimi, cevap anahtarı erişimi, hatalı soru-çözüm bildirimleri</li>
+      <li><b>Yeni taleplerde öne çıkanlar:</b> örnek kitap, kitap temini, iş birliği ve içerik talepleri</li>
+      <li><b>Süre uçları:</b> minimum 0 dk, maksimum 960 dk (16 saat — iptal edilen bir yeni talep); tamamlanan kayıtlar içinde en uzunu 360 dk (6 saat)</li>
+      <li><b>Kanal:</b> incelenen 67 kaydın tamamı 4K Yayınları Web Sitesi üzerinden gelmiş</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="section-title">🚩 Red Flags</h2>
+    <div class="flag">
+      <b>Hata çağrıları oranı yüksek ve tekrarlayan:</b> Taleplerin neredeyse yarısı (%44,8) hata bildirimi; QR kod, video çözüm ve cevap anahtarı erişimi tekrar eden temalar. Kaynak bazlı (ürün/baskı bazında) inceleme yapılsa, hem talep hacmi düşer hem de kullanıcı memnuniyeti artar.
+    </div>
+    <div class="flag">
+      <b>Maksimum süre 16 saat — ama sonucu "İptal":</b> En uzun bekleyen kayıt tamamlanmamış, iptalle kapanmış. Bu tür kayıtların ayrı izlenmesi (tamamlanan/iptal ayrımı raporlarda net gösterilse) süre performansının gerçek resmi daha net yansıtır.
+    </div>
+    <div class="flag">
+      <b>Kök neden analizi henüz raporda yok:</b> Hangi kitap/baskı/QR grubunun hatalarda öne çıktığına dair ürün bazlı kırılım paylaşılmamış. Bu kırılım eklense, hangi baskıya öncelik verileceği daha hızlı netleşir.
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">❓ Hasan Bey'in 3 Sorusu</h2>
+    <ul class="questions">
+      <li><b>Bu bizi nereye götürür?</b> Hata çağrılarının kaynağı (QR/video/cevap anahtarı) düzeltilmezse, önümüzdeki dönemde talep hacmi benzer seviyede kalır; düzeltilirse hem talep sayısı hem ortalama süre aşağı çekilebilir.</li>
+      <li><b>%59,7'lik hızlı çözüm oranı hangi kanıtla destekleniyor, sürdürülebilir mi?</b> Şablon yanıtların ve yönlendirmelerin güncelliği periyodik kontrol edilmezse bu oran zamanla düşebilir — takip mekanizması var mı?</li>
+      <li><b>Hangi ürün/baskı hata çağrılarının kaynağı?</b> Rapor hata türünü söylüyor ama hangi kitap/sınıf/baskıda yoğunlaştığını söylemiyor — bu kırılım olmadan kaynağa müdahale zor.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="section-title">🎯 Önerilen Aksiyon</h2>
+    <table class="aksiyon">
+      <tr><th>Aksiyon</th><th>Sahip</th><th>Tarih</th></tr>
+      <tr>
+        <td>QR kod, video çözüm, cevap anahtarı hatalarının ürün/baskı bazlı kök neden analizi yapılsın</td>
+        <td class="sahip">Selin DOĞAN</td>
+        <td class="tarih">31 Ağu 2026</td>
+      </tr>
+      <tr>
+        <td>Hata çağrısı başvuru formuna ürün adı, sınıf düzeyi, test/sayfa/soru bilgisi ve QR kod/ekran görüntüsü alanları eklensin</td>
+        <td class="sahip">Selin DOĞAN</td>
+        <td class="tarih">07 Eyl 2026</td>
+      </tr>
+      <tr>
+        <td>Şablon yanıtlar ve yönlendirme ekranları gözden geçirilip güncellensin; sık tekrar eden konular (cevap anahtarı, video çözüm, QR) için otomatik yönlendirme planlansın</td>
+        <td class="sahip">Selin DOĞAN</td>
+        <td class="tarih">15 Eyl 2026</td>
+      </tr>
+    </table>
+  </section>
+
+  <div class="gs-note">
+    📌 <b>GS Notu:</b> "4K ÇİM taleplerinde hız iyi — taleplerin altısı yedide beşi 5 dakikada kapanıyor. Asıl mesele hız değil tekrar: talepler in yaklaşık yarısı QR kod, video çözüm ve cevap anahtarı gibi aynı birkaç kaynaktan geliyor. Bunu ürün bazlı kök neden analizine bağladık; düzeltilirse hem talep hacmi hem yük azalır."
+  </div>
+
+  <div class="footer">İcra Kurulu Genel Sekreteri — 17.08.2026 · 4K Yayınları / ÇİM Talep Analizi</div>
+
+</div>
+</body>
+</html>
