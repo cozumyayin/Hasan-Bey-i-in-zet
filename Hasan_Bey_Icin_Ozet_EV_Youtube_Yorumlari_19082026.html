@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Bey İçin Özet Rapor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#C00000;
+    --red-light:#FDEAEA;
+    --ink:#1F2328;
+    --gray:#5B6570;
+    --line:#E6E8EB;
+    --bg:#F7F7F8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'DM Sans',sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+  }
+  .topband{
+    background:var(--red);
+    color:#fff;
+    padding:28px 40px;
+  }
+  .topband .tag{
+    font-size:13px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    opacity:0.9;
+    font-weight:700;
+  }
+  .topband h1{
+    font-family:'DM Serif Display',serif;
+    font-size:34px;
+    margin:6px 0 4px 0;
+    font-weight:400;
+  }
+  .topband .subtitle{
+    font-size:15px;
+    opacity:0.95;
+  }
+  .container{
+    max-width:880px;
+    margin:0 auto;
+    padding:32px 40px 60px 40px;
+  }
+  section{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:26px 30px;
+    margin-bottom:22px;
+  }
+  h2.section-title{
+    font-family:'DM Serif Display',serif;
+    font-size:22px;
+    font-weight:400;
+    margin:0 0 16px 0;
+    color:var(--ink);
+  }
+  .ozet-cumle{
+    font-size:16px;
+  }
+  .ozet-cumle b{color:var(--red);}
+  .metric-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-bottom:20px;
+  }
+  .metric-card{
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:16px 14px;
+    text-align:center;
+  }
+  .metric-card .num{
+    font-family:'DM Serif Display',serif;
+    font-size:24px;
+    color:var(--red);
+    display:block;
+  }
+  .metric-card .lbl{
+    font-size:12.5px;
+    color:var(--gray);
+    margin-top:4px;
+    display:block;
+  }
+  ul.bulgu-list{
+    margin:0;
+    padding-left:20px;
+  }
+  ul.bulgu-list li{
+    margin-bottom:8px;
+    font-size:15px;
+  }
+  .flag{
+    border-left:4px solid var(--red);
+    background:var(--red-light);
+    padding:12px 16px;
+    margin-bottom:12px;
+    border-radius:0 6px 6px 0;
+    font-size:15px;
+  }
+  .flag b{color:var(--red);}
+  .questions{
+    list-style:none;
+    padding:0;
+    margin:0;
+    counter-reset:q;
+  }
+  .questions li{
+    counter-increment:q;
+    margin-bottom:14px;
+    padding-left:36px;
+    position:relative;
+    font-size:15px;
+  }
+  .questions li::before{
+    content:counter(q);
+    position:absolute;
+    left:0;
+    top:0;
+    width:24px;
+    height:24px;
+    background:var(--red);
+    color:#fff;
+    border-radius:50%;
+    text-align:center;
+    line-height:24px;
+    font-size:13px;
+    font-weight:700;
+  }
+  table.aksiyon{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14.5px;
+  }
+  table.aksiyon th{
+    text-align:left;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+    color:var(--gray);
+    border-bottom:2px solid var(--line);
+    padding:8px 10px;
+  }
+  table.aksiyon td{
+    padding:12px 10px;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  table.aksiyon td.sahip{
+    font-weight:700;
+    white-space:nowrap;
+  }
+  table.aksiyon td.tarih{
+    white-space:nowrap;
+    color:var(--red);
+    font-weight:700;
+  }
+  .gs-note{
+    border-left:4px solid var(--red);
+    background:var(--red-light);
+    padding:18px 20px;
+    font-style:italic;
+    font-size:15.5px;
+    border-radius:0 6px 6px 0;
+  }
+  .footer{
+    text-align:center;
+    color:var(--gray);
+    font-size:13px;
+    margin-top:10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="topband">
+  <div class="tag">İcra Kurulu Genel Sekreteri Çalışması</div>
+  <h1>Hasan Bey İçin Özet Rapor</h1>
+  <div class="subtitle">Eğitim Vadisi — YouTube Yorumları Analizi | 19 Ağustos 2026</div>
+</div>
+
+<div class="container">
+
+  <section>
+    <h2 class="section-title">📋 3 Cümlede Özet</h2>
+    <p class="ozet-cumle">
+      Eğitim Vadisi kanalında etkileşim, deneme sınavı takvimine sıkı sıkıya bağlı — sınav dönemlerinde yorum trafiği yükselirken aralarda kanal öğrenciler arası bir yardımlaşma alanına dönüşüyor. İçerik kalitesi genel olarak olumlu karşılanmış (özellikle AYT Kimya ve Türk Dili çözümleri övülmüş) ama <b>TYT Fen Bilimleri sınavı zorluk eleştirisi</b> ve bir öğrencinin sorularda 3D Yayınları benzerliği iddiası dikkat çekici. En büyük ve tekrar eden şikayet ise içerikten değil operasyondan geliyor: <b>aşırı reklam yoğunluğu</b> ve <b>cevap anahtarına toplu erişim eksikliği</b>.
+    </p>
+  </section>
+
+  <section>
+    <h2 class="section-title">📊 Ana Bulgular</h2>
+    <div class="metric-grid">
+      <div class="metric-card"><span class="num">3</span><span class="lbl">Yayına Alınan Deneme Grubu</span></div>
+      <div class="metric-card"><span class="num">1</span><span class="lbl">Çok Eleştirilen Bölüm (TYT Fen)</span></div>
+      <div class="metric-card"><span class="num">2</span><span class="lbl">Ana Operasyonel Şikayet</span></div>
+    </div>
+    <ul class="bulgu-list">
+      <li><b>İçerik/hoca performansı:</b> AYT Fen Bilimleri (Kimya) ve AYT B Kitapçığı Türk Dili-Sosyal Bilimler çözümleri, tüm şıkların tek tek açıklanması nedeniyle beğenilmiş</li>
+      <li><b>Zorluk algısı:</b> YKS 5. Deneme "en az 3D denemesi kadar zor" bulunmuş; TYT Fen Bilimleri ÖSYM formatından uzak ve gereksiz zor eleştirisi almış; AYT Matematik orta-kolay bulunmuş, trigonometri soruları hariç</li>
+      <li><b>Dikkat çeken tekil geri bildirim:</b> Bir öğrenci TYT Fen sorularının 3D Yayınları sorularına benzediğini iddia etmiş</li>
+      <li><b>Operasyonel şikayetler:</b> TYT Türkçe/Fen/Matematik videolarında aynı reklamın art arda 7 kez oynatıldığı bildirilmiş; toplu cevap anahtarı/PDF linki eksikliği öğrencileri videoları tek tek gezmeye zorluyor</li>
+      <li><b>Düşük etkileşimli içerikler:</b> 9-10-11. Sınıf 4. Deneme çözümleri ve Çözüm Koleji YKS Deneme çözümleri, YKS seviyesinde olmasına rağmen beklenenin altında yorum trafiği almış; Çözüm Kolej 8-9-10. Deneme çözümleri farklı kanalda (Çözüm Eğitim Kurumları) yayınlanmış</li>
+      <li><b>Henüz veri yok:</b> 11. Sınıf TAK/TİK video çözümleri sisteme yüklü ama henüz genel erişime açılmadığından yorum trafiği oluşmamış</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="section-title">🚩 Red Flags</h2>
+    <div class="flag">
+      <b>Aşırı reklam yoğunluğu marka algısını zedeliyor:</b> Aynı reklamın art arda 7 kez oynatıldığı bildirilmiş. Reklam sıklığı/tekrar ayarı gözden geçirilse, izleme konforu ve marka algısı doğrudan iyileşir.
+    </div>
+    <div class="flag">
+      <b>Cevap anahtarına toplu erişim yok:</b> Öğrenciler cevapları kontrol etmek için tek tek video gezmek zorunda kalıyor. Video açıklamasına sabit bir PDF/link eklenmesi, hem şikayeti giderir hem de tekrar izlenme ve zaman kaybı algısını azaltır.
+    </div>
+    <div class="flag">
+      <b>Soru benzerliği iddiası doğrulanmamış:</b> Bir öğrencinin TYT Fen sorularının 3D Yayınları'na benzediği yönündeki tekil yorumu rapor sadece not düşmüş. Bu iddianın soru bankası/kaynak ekibi tarafından doğrulanması, olası bir itibar riskini erken aşamada netleştirir.
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">❓ Hasan Bey'in 3 Sorusu</h2>
+    <ul class="questions">
+      <li><b>Bu bizi nereye götürür?</b> Reklam ve cevap anahtarı sorunları operasyonel ve hızlı çözülebilir konular — düzeltilirse içerik kalitesi zaten olumlu olan kanalın izleyici memnuniyeti kısa vadede artar; düzeltilmezse tekrar eden şikayet olarak birikmeye devam eder.</li>
+      <li><b>TYT Fen Bilimleri zorluk eleştirisi ve 3D benzerliği iddiası ne kadar ciddiye alınmalı?</b> Bu tekil bir yorum mu yoksa geniş bir öğrenci kesiminin ortak görüşü mü — yorum hacmine dair sayısal veri raporda yok.</li>
+      <li><b>Düşük etkileşimli içerikler (9-10-11. Sınıf 4. Deneme, Çözüm Koleji YKS) neden beklenenin altında kaldı?</b> Yayın zamanlaması, duyuru eksikliği mi yoksa kanal/kitle uyumsuzluğu mu — kök neden netleşmeden benzer içerikler için tekrar aynı sonuç alınabilir.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="section-title">🎯 Önerilen Aksiyon</h2>
+    <table class="aksiyon">
+      <tr><th>Aksiyon</th><th>Sahip</th><th>Tarih</th></tr>
+      <tr>
+        <td>Reklam sıklığı ve tekrar ayarı YouTube kanal yönetiminde gözden geçirilsin</td>
+        <td class="sahip">EV Yayın Müdürü</td>
+        <td class="tarih">28 Ağu 2026</td>
+      </tr>
+      <tr>
+        <td>Video açıklama kısmına sabit cevap anahtarı/PDF linki eklensin (web sitesindeki cevap anahtarı alanına yönlendirme)</td>
+        <td class="sahip">EV Yayın Müdürü</td>
+        <td class="tarih">28 Ağu 2026</td>
+      </tr>
+      <tr>
+        <td>TYT Fen sorularının 3D Yayınları ile benzerlik iddiası soru bankası/kaynak ekibiyle doğrulansın</td>
+        <td class="sahip">EV Yayın Müdürü</td>
+        <td class="tarih">31 Ağu 2026</td>
+      </tr>
+      <tr>
+        <td>Sınav aralarındaki durgun dönemler için topluluk anketi, günlük quiz ve Shorts içerik takvimi hazırlansın</td>
+        <td class="sahip">EV Yayın Müdürü</td>
+        <td class="tarih">15 Eyl 2026</td>
+      </tr>
+    </table>
+  </section>
+
+  <div class="gs-note">
+    📌 <b>GS Notu:</b> "EV kanalında içerik kalitesi zaten öğrenciler tarafından takdir ediliyor — asıl kayıp puan operasyonel: reklam yoğunluğu ve cevap anahtarı erişimi. Bu ikisi düzeltilebilir ve hızlı etkisi görülür türden. Zorluk algısı ve benzerlik iddiası ise doğrulama bekleyen konular; erken netleştirilirse büyümeden çözülür."
+  </div>
+
+  <div class="footer">İcra Kurulu Genel Sekreteri — 19.08.2026 · Eğitim Vadisi / YouTube Yorumları Analizi</div>
+
+</div>
+</body>
+</html>
