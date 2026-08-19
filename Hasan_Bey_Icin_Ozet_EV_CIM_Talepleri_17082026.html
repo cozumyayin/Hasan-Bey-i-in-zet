@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Bey İçin Özet Rapor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#C00000;
+    --red-light:#FDEAEA;
+    --ink:#1F2328;
+    --gray:#5B6570;
+    --line:#E6E8EB;
+    --bg:#F7F7F8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'DM Sans',sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+  }
+  .topband{
+    background:var(--red);
+    color:#fff;
+    padding:28px 40px;
+  }
+  .topband .tag{
+    font-size:13px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    opacity:0.9;
+    font-weight:700;
+  }
+  .topband h1{
+    font-family:'DM Serif Display',serif;
+    font-size:34px;
+    margin:6px 0 4px 0;
+    font-weight:400;
+  }
+  .topband .subtitle{
+    font-size:15px;
+    opacity:0.95;
+  }
+  .container{
+    max-width:880px;
+    margin:0 auto;
+    padding:32px 40px 60px 40px;
+  }
+  section{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:26px 30px;
+    margin-bottom:22px;
+  }
+  h2.section-title{
+    font-family:'DM Serif Display',serif;
+    font-size:22px;
+    font-weight:400;
+    margin:0 0 16px 0;
+    color:var(--ink);
+  }
+  .ozet-cumle{
+    font-size:16px;
+  }
+  .ozet-cumle b{color:var(--red);}
+  .metric-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-bottom:20px;
+  }
+  .metric-card{
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:16px 14px;
+    text-align:center;
+  }
+  .metric-card .num{
+    font-family:'DM Serif Display',serif;
+    font-size:28px;
+    color:var(--red);
+    display:block;
+  }
+  .metric-card .lbl{
+    font-size:12.5px;
+    color:var(--gray);
+    margin-top:4px;
+    display:block;
+  }
+  ul.bulgu-list{
+    margin:0;
+    padding-left:20px;
+  }
+  ul.bulgu-list li{
+    margin-bottom:8px;
+    font-size:15px;
+  }
+  .flag{
+    border-left:4px solid var(--red);
+    background:var(--red-light);
+    padding:12px 16px;
+    margin-bottom:12px;
+    border-radius:0 6px 6px 0;
+    font-size:15px;
+  }
+  .flag b{color:var(--red);}
+  .questions{
+    list-style:none;
+    padding:0;
+    margin:0;
+    counter-reset:q;
+  }
+  .questions li{
+    counter-increment:q;
+    margin-bottom:14px;
+    padding-left:36px;
+    position:relative;
+    font-size:15px;
+  }
+  .questions li::before{
+    content:counter(q);
+    position:absolute;
+    left:0;
+    top:0;
+    width:24px;
+    height:24px;
+    background:var(--red);
+    color:#fff;
+    border-radius:50%;
+    text-align:center;
+    line-height:24px;
+    font-size:13px;
+    font-weight:700;
+  }
+  table.aksiyon{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14.5px;
+  }
+  table.aksiyon th{
+    text-align:left;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+    color:var(--gray);
+    border-bottom:2px solid var(--line);
+    padding:8px 10px;
+  }
+  table.aksiyon td{
+    padding:12px 10px;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  table.aksiyon td.sahip{
+    font-weight:700;
+    white-space:nowrap;
+  }
+  table.aksiyon td.tarih{
+    white-space:nowrap;
+    color:var(--red);
+    font-weight:700;
+  }
+  .gs-note{
+    border-left:4px solid var(--red);
+    background:var(--red-light);
+    padding:18px 20px;
+    font-style:italic;
+    font-size:15.5px;
+    border-radius:0 6px 6px 0;
+  }
+  .footer{
+    text-align:center;
+    color:var(--gray);
+    font-size:13px;
+    margin-top:10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="topband">
+  <div class="tag">İcra Kurulu Genel Sekreteri Çalışması</div>
+  <h1>Hasan Bey İçin Özet Rapor</h1>
+  <div class="subtitle">EV Yayınları — ÇİM Talep Analizi (Mayıs – Ağustos 2026) | 17 Ağustos 2026</div>
+</div>
+
+<div class="container">
+
+  <section>
+    <h2 class="section-title">📋 3 Cümlede Özet</h2>
+    <p class="ozet-cumle">
+      Mayıs–Ağustos döneminde ÇİM-EV Web Sitesi ve EV Mobil üzerinden gelen <b>113 talebin %96'sı kapatılmış</b>, ortalama çözüm süresi 14 saat. Talep yükünün çoğunluğu (%57) bilgi talebi, hata çağrısı payı ise düşük (%12) — yani sistem sorunlu değil, kullanıcı bilgi ihtiyacı yoğun. İş yükü dengesi konusunda dikkat gereken bir nokta var: <b>iki personel (Hatem KARADEMİR, Faruk ÇAKIR) toplam yükün yaklaşık %70'ini</b> taşıyor.
+    </p>
+  </section>
+
+  <section>
+    <h2 class="section-title">📊 Ana Bulgular</h2>
+    <div class="metric-grid">
+      <div class="metric-card"><span class="num">113</span><span class="lbl">Toplam Talep</span></div>
+      <div class="metric-card"><span class="num">%96</span><span class="lbl">Kapatma Oranı</span></div>
+      <div class="metric-card"><span class="num">14 sa</span><span class="lbl">Ortalama Çözüm Süresi</span></div>
+    </div>
+    <ul class="bulgu-list">
+      <li><b>Talep tipi dağılımı:</b> Bilgi Talebi 64 adet (%57) · Yeni Talep 35 adet (%31) · Hata Çağrısı 14 adet (%12)</li>
+      <li><b>Öncelik dağılımı:</b> Normal 49 adet (%43) · Düşük 46 adet (%41) · Yüksek 17 adet (%15) · Kritik 1 adet (%1)</li>
+      <li><b>En yüksek iş yükü:</b> Hatem KARADEMİR (44 talep, %98 kapatma, 4 sa ortalama) ve Faruk ÇAKIR (34 talep, %100 kapatma, 10 sa ortalama)</li>
+      <li><b>En hızlı müdahale:</b> Esin ÇAKMAK KUTLU — 2 dakika kapatma süresi, %100 başarı oranı</li>
+      <li><b>Açık talepler (5 adet):</b> Merve KARAKÖK 3 · Elifnur ALÇİN 1 · Hatem KARADEMİR 1</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="section-title">🚩 Red Flags</h2>
+    <div class="flag">
+      <b>İş yükü iki kişide yoğunlaşmış:</b> Hatem KARADEMİR ve Faruk ÇAKIR toplam talebin yaklaşık %70'ini üstleniyor. Görev dağılımı ekip geneline daha dengeli yayılsa, tekil kişiye bağımlılık azalır ve süreklilik riski düşer.
+    </div>
+    <div class="flag">
+      <b>Faruk ÇAKIR'da ortalama süre diğerlerine göre yüksek:</b> %100 kapatma oranı güçlü, ancak 10 saatlik ortalama süre — Hatem KARADEMİR'in 4 saatine göre belirgin fark var. Bu farkın kaynağı (talep türü karmaşıklığı mı, kapasite mi) netleşse, süre optimizasyonu daha isabetli olur.
+    </div>
+    <div class="flag">
+      <b>Açık taleplerden 3'ü 1 günü aşmış görünüyor:</b> Merve KARAKÖK'teki açık taleplerin süre detayı raporda net değil. Bu 3 talebin yaşı ve nedeni eklense, hangisinin önce kapatılması gerektiği daha hızlı görülür.
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">❓ Hasan Bey'in 3 Sorusu</h2>
+    <ul class="questions">
+      <li><b>Bu bizi nereye götürür?</b> Bilgi taleplerinin %57'lik payı bir SSS/dokümantasyon merkeziyle karşılanırsa, ekibin kapasitesi yeni taleplere ve hata çözümüne kayabilir; aksi halde hacim aynı iki kişi üzerinden büyümeye devam eder.</li>
+      <li><b>%70'lik iş yükü yoğunlaşması sürdürülebilir mi?</b> Hatem KARADEMİR ve Faruk ÇAKIR'ın izin, hastalık veya ayrılma durumunda ekip bu hacmi karşılayabilir mi — yedekleme planı var mı?</li>
+      <li><b>Faruk ÇAKIR'daki 10 saatlik ortalama sürenin kaynağı ne?</b> Talep karmaşıklığından mı yoksa kapasite kısıtından mı kaynaklanıyor — bu ayrım yapılmadan iyileştirme hedefi belirlemek zor.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="section-title">🎯 Önerilen Aksiyon</h2>
+    <table class="aksiyon">
+      <tr><th>Aksiyon</th><th>Sahip</th><th>Tarih</th></tr>
+      <tr>
+        <td>Sık sorulan bilgi taleplerine yönelik SSS/dokümantasyon merkezi oluşturulsun</td>
+        <td class="sahip">EV Yayın Müdürü</td>
+        <td class="tarih">15 Eyl 2026</td>
+      </tr>
+      <tr>
+        <td>Açık kalan 5 talep (özellikle 1 günü aşan 3 talep) gözden geçirilip kapatılsın</td>
+        <td class="sahip">EV Yayın Müdürü</td>
+        <td class="tarih">24 Ağu 2026</td>
+      </tr>
+      <tr>
+        <td>Hatem KARADEMİR ve Faruk ÇAKIR üzerindeki iş yükü ekip geneline yeniden dağıtılsın, görev dağılımı periyodik gözden geçirilsin</td>
+        <td class="sahip">EV Yayın Müdürü</td>
+        <td class="tarih">30 Eyl 2026</td>
+      </tr>
+    </table>
+  </section>
+
+  <div class="gs-note">
+    📌 <b>GS Notu:</b> "EV ÇİM tarafında görünüm sağlıklı — %96 kapatma oranı ve düşük hata çağrısı oranı bunu destekliyor. Asıl dikkat edilmesi gereken nokta performans değil dağılım: iş yükünün büyük kısmı iki kişide toplanmış durumda. Bunu dengeleme aksiyonuna bağladık; erken müdahale edilirse süreklilik riski oluşmadan çözülür."
+  </div>
+
+  <div class="footer">İcra Kurulu Genel Sekreteri — 17.08.2026 · EV Yayınları / ÇİM Talep Analizi</div>
+
+</div>
+</body>
+</html>
