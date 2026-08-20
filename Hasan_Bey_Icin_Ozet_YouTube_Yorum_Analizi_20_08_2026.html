@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Bey İçin Özet Rapor</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --red: #C00000;
+    --red-light: #f9eaea;
+    --dark: #1a1a1a;
+    --gray: #595959;
+    --gray-light: #f5f5f5;
+    --border: #e0e0e0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f2f0ed;
+    color: var(--dark);
+    padding: 40px 20px;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    background: #fff;
+    border-top: 6px solid var(--red);
+    box-shadow: 0 4px 40px rgba(0,0,0,0.10);
+    padding: 52px 60px 60px;
+  }
+
+  /* Header */
+  .header { margin-bottom: 36px; }
+
+  .header-meta {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 34px;
+    font-weight: 400;
+    color: var(--dark);
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .header-sub {
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 20px;
+  }
+
+  .header-divider {
+    height: 2px;
+    background: linear-gradient(to right, var(--red) 60px, var(--border) 60px);
+  }
+
+  /* Sections */
+  .section { margin-bottom: 36px; }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--red);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--red);
+    margin-bottom: 16px;
+  }
+
+  .section-title .icon { font-size: 14px; }
+
+  /* Özet */
+  .ozet-text {
+    font-size: 14.5px;
+    line-height: 1.8;
+    color: var(--dark);
+    background: var(--gray-light);
+    border-left: 4px solid var(--red);
+    padding: 16px 20px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* Ana Bulgular */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .metric-card {
+    background: var(--gray-light);
+    border-radius: 6px;
+    padding: 14px 16px;
+    text-align: left;
+  }
+
+  .metric-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--red);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .metric-label {
+    font-size: 10.5px;
+    color: var(--gray);
+    letter-spacing: 0.03em;
+  }
+
+  .bulgu-group { margin-bottom: 16px; }
+
+  .bulgu-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 8px;
+    padding-left: 4px;
+  }
+
+  .bulgu-item {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--dark);
+    padding: 5px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .bulgu-item:last-child { border-bottom: none; }
+
+  .dash { color: var(--red); font-weight: 700; flex-shrink: 0; }
+
+  /* Red Flags */
+  .flag-item {
+    display: flex;
+    gap: 14px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    background: var(--red-light);
+    border-left: 3px solid var(--red);
+    border-radius: 0 4px 4px 0;
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+
+  .flag-num {
+    font-weight: 700;
+    color: var(--red);
+    flex-shrink: 0;
+    width: 18px;
+  }
+
+  /* Sorular */
+  .soru-item {
+    display: flex;
+    gap: 14px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    background: var(--gray-light);
+    border-radius: 4px;
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+
+  .soru-num {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    color: var(--red);
+    flex-shrink: 0;
+    font-size: 18px;
+  }
+
+  /* Aksiyon */
+  .aksiyon-item {
+    display: grid;
+    grid-template-columns: 20px 1fr auto;
+    gap: 10px 14px;
+    align-items: start;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .aksiyon-item:last-child { border-bottom: none; }
+
+  .aksiyon-num {
+    font-weight: 700;
+    color: var(--red);
+    padding-top: 1px;
+  }
+
+  .aksiyon-text { font-size: 13.5px; line-height: 1.65; color: var(--dark); }
+  .aksiyon-text strong { color: var(--dark); }
+
+  .aksiyon-tarih {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--red);
+    white-space: nowrap;
+    background: var(--red-light);
+    padding: 3px 10px;
+    border-radius: 20px;
+    align-self: center;
+  }
+
+  /* GS Notu */
+  .gs-notu {
+    font-family: 'DM Serif Display', serif;
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--gray);
+    font-style: italic;
+    border-left: 5px solid var(--red);
+    padding: 16px 24px;
+    background: var(--gray-light);
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 44px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: #aaa;
+  }
+
+  b { font-weight: 600; }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; border-top: 6px solid var(--red); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-meta">İcra Kurulu Genel Sekreteri Çalışması</div>
+    <h1>Hasan Bey İçin Özet Rapor</h1>
+    <div class="header-sub">4K Yayınları — YouTube Yorumlarının Raporlanması (Nisan–Ağustos 2026) &nbsp;|&nbsp; 20 Ağustos 2026</div>
+    <div class="header-divider"></div>
+  </div>
+
+  <!-- 3 Cümlede Özet -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📋</span> 3 Cümlede Özet</div>
+    <div class="ozet-text">
+      Nisan–Ağustos 2026 döneminde 4K YouTube kanalına eklenen 29 oynatma listesindeki <b>1.066 yorum</b> incelendiğinde, öğrenci etkileşiminin ezici çoğunlukla <b>Türkiye Geneli Deneme Sınavları</b> çözüm videolarında (özellikle Matematik ve Fen Bilimleri) yoğunlaştığı görülüyor. Olumlu geri bildirimler deneme kalitesi, ÖSYM tarzına yakınlık ve öğretmen anlatımı etrafında toplanırken; olumsuz geri bildirimler <b style="color:var(--red)">soru/bilgi doğruluğu hataları, sayfa düzeninde işlem alanı yetersizliği ve bazı öğretmen anlatım şikâyetleri</b> üzerinde yoğunlaşıyor. Gelişim İzleme Sınavı ve Etkinlikli Soru Bankası içerikleri ise henüz eğitim-öğretim yılı başlamadığı için düşük etkileşimde kalmış durumda.
+    </div>
+  </div>
+
+  <!-- Ana Bulgular -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📊</span> Ana Bulgular</div>
+
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-value">1.066</div>
+        <div class="metric-label">Toplam yorum kaydı (ana + alt yanıt)</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">29</div>
+        <div class="metric-label">Yeni oynatma listesi (Nisan–Ağustos)</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">%76</div>
+        <div class="metric-label">Yorumların Matematik + Fen Bilimleri'nde toplanma oranı (486+320/1066)</div>
+      </div>
+    </div>
+
+    <div class="bulgu-group">
+      <div class="bulgu-label">Sayısal</div>
+      <div class="bulgu-item"><span class="dash">—</span><span>Branş dağılımı: <b>Matematik 486</b>, <b>Fen Bilimleri 320</b>, Türkçe 114, Sosyal Bilimler 97, TDE/Sosyal-1 49 yorum</span></div>
+      <div class="bulgu-item"><span class="dash">—</span><span>En çok yorum alan video: <b>4 AYT A – Fen Bilimleri (134 yorum)</b>; onu 5 TYT A – Temel Matematik (121) ve 4 TYT A – Temel Matematik (96) izliyor</span></div>
+      <div class="bulgu-item"><span class="dash">—</span><span>29 listenin dağılımı: 8'i Türkiye Geneli Deneme Sınavı, 6'sı Gelişim İzleme Sınavı, 15'i Etkinlikli Soru Bankası</span></div>
+      <div class="bulgu-item"><span class="dash">—</span><span>3 kitapçığın (4 AYT A, 5 AYT A, 5 TYT A) ham veri kontrolünde toplam <b>761 satır</b> yorum/alt-yanıt doğrulandı — raporda anılan sıralama ve branş ağırlıkları veriyle örtüşüyor</span></div>
+    </div>
+
+    <div class="bulgu-group">
+      <div class="bulgu-label">Niteliksel</div>
+      <div class="bulgu-item"><span class="dash">—</span><span>Olumlu temalar: deneme kalitesi, ÖSYM tarzına yakınlık, öğretmenin şıkları gerekçeli açıklaması, öğretici soru yapısı</span></div>
+      <div class="bulgu-item"><span class="dash">—</span><span>Olumsuz temalar: soru/bilgi hataları (tarih, kimya), işlem alanı yetersizliği, bazı öğretmen anlatımlarına yönelik memnuniyetsizlik, ses/görüntü kalitesi</span></div>
+      <div class="bulgu-item"><span class="dash">—</span><span>Kanal yönetimi olumsuz yorumların büyük kısmına aktif ve yapıcı yanıt veriyor (özür, teşekkür, "ekibe iletildi" mesajları) — bu, marka algısını olumlu yönde destekliyor</span></div>
+    </div>
+  </div>
+
+  <!-- Red Flags -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🚩</span> Red Flags</div>
+    <div class="flag-item"><span class="flag-num">1.</span><span><b>Soru/bilgi doğruluğu şikâyetleri tekrarlıyor:</b> "6. sorudaki bilgi yanlışı", "kurulan mektep 1915'te kurulmuş, tarihi yanlış" gibi örnekler farklı kitapçıklarda çıkıyor. Yayın öncesi akademik kontrol adımı netleştirilirse bu tekrar azalabilir.</span></div>
+    <div class="flag-item"><span class="flag-num">2.</span><span><b>Rapordaki bazı sayılar ham veriyle tam örtüşmüyor:</b> Raporda "5 AYT A Matematik – 90 yorum" deniyor, yüklenen Excel'de bu video 100 satır gösteriyor. Fark küçük olsa da kaynak/tarih aralığı netleştirilirse rakamların güvenilirliği artar.</span></div>
+    <div class="flag-item"><span class="flag-num">3.</span><span><b>Fizik branşında tekrarlayan öğretmen/yazar şikâyeti:</b> "Fizik yazarı yine şaşırtmadı, değiştirilmeli" gibi yorumlar birden fazla videoda görülüyor. Kişi bazlı geri bildirim takibi olsa etkisi daha net ölçülür.</span></div>
+    <div class="flag-item"><span class="flag-num">4.</span><span><b>Gelişim İzleme Sınavı ve Etkinlikli Soru Bankası etkileşimi çok düşük kaldı:</b> Bu içerikler 21 listenin (29'un %72'si) çoğunluğunu oluşturuyor ama yorum hacminde neredeyse görünmüyor. Sezon başı bir etkileşim planı olsa bu içeriklerin geri bildirim değeri artar.</span></div>
+  </div>
+
+  <!-- Hasan Bey'in 3 Sorusu -->
+  <div class="section">
+    <div class="section-title"><span class="icon">❓</span> Hasan Bey'in 3 Sorusu</div>
+    <div class="soru-item"><span class="soru-num">1</span><span>Bu bizi nereye götürür? — Matematik/Fen'de yüksek etkileşim, doğru kullanılırsa (soru bankası + öğretmen seçimi için) ürün geliştirme sinyali; kullanılmazsa yalnızca "beğeni ölçer" olarak kalır.</span></div>
+    <div class="soru-item"><span class="soru-num">2</span><span>Sayıların kanıtı nedir? — 1.066 toplam yorum ve branş kırılımı, 3 kitapçığın ham Excel verisiyle (761 satır) çapraz kontrol edildi; genel eğilim doğrulandı, tek video bazlı bir rakamda (5 AYT A Matematik) küçük fark tespit edildi (yukarıda 2. red flag).</span></div>
+    <div class="soru-item"><span class="soru-num">3</span><span>Tekrar eden sorun mu, tek seferlik mi? — Soru/bilgi hatası ve fizik anlatımı şikâyetleri birden fazla kitapçıkta tekrarlıyor; bu, tek seferlik değil sistemik bir kalite-kontrol konusu olarak görünüyor.</span></div>
+  </div>
+
+  <!-- Önerilen Aksiyon -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🎯</span> Önerilen Aksiyon — Onayla + Takibe Al</div>
+    <div class="aksiyon-item">
+      <span class="aksiyon-num">1.</span>
+      <span class="aksiyon-text"><b>[Sahip belirtilmedi — Yayın Müdürü'nden teyit istenmeli]</b> — Soru/bilgi doğruluğu şikâyeti gelen kalemler (tarih, kimya, fizik) için yayın öncesi akademik kontrol sürecinin güçlendirilmesi.</span>
+      <span class="aksiyon-tarih">[Tarih belirtilmedi]</span>
+    </div>
+    <div class="aksiyon-item">
+      <span class="aksiyon-num">2.</span>
+      <span class="aksiyon-text"><b>[Sahip belirtilmedi]</b> — Matematik/sayısal kitapçıklarda işlem alanı genişletme talebinin sayfa tasarımına yansıtılması.</span>
+      <span class="aksiyon-tarih">[Tarih belirtilmedi]</span>
+    </div>
+    <div class="aksiyon-item">
+      <span class="aksiyon-num">3.</span>
+      <span class="aksiyon-text"><b>[Sahip belirtilmedi]</b> — Gelişim İzleme Sınavı / Etkinlikli Soru Bankası videolarında etkileşimi artıracak bir sezon-başı içerik planı (soru çağrısı, yorum teşviki) hazırlanması.</span>
+      <span class="aksiyon-tarih">[Tarih belirtilmedi]</span>
+    </div>
+    <div class="aksiyon-item">
+      <span class="aksiyon-num">!</span>
+      <span class="aksiyon-text" style="color:var(--red);">Yayın Müdürü'nün raporunda aksiyon maddeleri için sahip ve tarih belirtilmemiş. Bu bilgiler eklenirse takip ve hesap verebilirlik netleşir.</span>
+      <span></span>
+    </div>
+  </div>
+
+  <!-- GS Notu -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📌</span> GS Notu</div>
+    <div class="gs-notu">
+      "4K'nın YouTube yorumları öğrencinin nabzını net veriyor: Matematik ve Fen'e yoğun ilgi var, kanal da geri bildirimlere aktif yanıt vermiş — bu iyi bir alışkanlık. Tek eksik, önerilerin sahipsiz ve tarihsiz kalması; kim ne zaman yapacak netleşirse bu geri bildirim akışı gerçek bir kalite döngüsüne dönüşür."
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <span>İcra Kurulu Genel Sekreteri — 20.08.2026</span>
+    <span>4K Yayınları / YouTube Yorumları</span>
+  </div>
+
+</div>
+</body>
+</html>
