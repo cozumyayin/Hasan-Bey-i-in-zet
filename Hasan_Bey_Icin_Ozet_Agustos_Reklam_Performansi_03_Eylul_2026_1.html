@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Bey İçin Özet Rapor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background:#eef0f2;
+    color:#222831;
+    line-height:1.65;
+    padding: 30px 16px 60px;
+  }
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    background:#fff;
+    border-radius:10px;
+    box-shadow:0 4px 18px rgba(0,0,0,0.08);
+    overflow:hidden;
+  }
+  .topband {
+    background:#C00000;
+    color:#fff;
+    padding:26px 40px 22px;
+  }
+  .topband .tag {
+    font-family:'DM Sans', sans-serif;
+    font-size:12px;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    opacity:0.9;
+    margin-bottom:8px;
+    font-weight:700;
+  }
+  .topband h1 {
+    font-family:'DM Serif Display', serif;
+    font-size:34px;
+    font-weight:400;
+    line-height:1.2;
+  }
+  .topband .meta {
+    margin-top:10px;
+    font-size:13px;
+    opacity:0.92;
+  }
+  .content { padding: 36px 40px 10px; }
+  .section { margin-bottom:36px; }
+  .section-title {
+    font-family:'DM Serif Display', serif;
+    font-size:21px;
+    color:#C00000;
+    margin-bottom:16px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  /* Özet */
+  .summary-card {
+    background:#fbf6f6;
+    border-left:4px solid #C00000;
+    padding:20px 24px;
+    border-radius:6px;
+    font-size:15px;
+  }
+  .summary-card p { margin-bottom:10px; }
+  .summary-card p:last-child { margin-bottom:0; }
+  /* Metrik kartları */
+  .metric-grid {
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:14px;
+    margin-bottom:22px;
+  }
+  .metric-card {
+    background:#f7f4ef;
+    border:1px solid #e7e0d5;
+    border-radius:8px;
+    padding:16px 14px;
+    text-align:center;
+  }
+  .metric-card .val {
+    font-family:'DM Serif Display', serif;
+    font-size:22px;
+    color:#8a2c2c;
+    line-height:1.1;
+  }
+  .metric-card .lbl {
+    font-size:11.5px;
+    color:#6b6b6b;
+    margin-top:6px;
+    text-transform:uppercase;
+    letter-spacing:0.3px;
+  }
+  .brand-list { display:flex; flex-direction:column; gap:12px; }
+  .brand-item {
+    border:1px solid #e6e6e6;
+    border-left:4px solid #8a2c2c;
+    border-radius:6px;
+    padding:14px 18px;
+    background:#fcfcfc;
+  }
+  .brand-item .b-title {
+    font-weight:700;
+    font-size:14.5px;
+    color:#222831;
+    margin-bottom:4px;
+  }
+  .brand-item .b-detail { font-size:13.5px; color:#4a4a4a; }
+  /* Red flags */
+  .red-flags {
+    border-left:4px solid #C00000;
+    background:#fdf1f1;
+    padding:20px 24px;
+    border-radius:6px;
+  }
+  .red-flags ol { margin-left:18px; }
+  .red-flags li { margin-bottom:12px; font-size:14.5px; }
+  .red-flags li:last-child { margin-bottom:0; }
+  .red-flags strong { color:#C00000; }
+  /* Sorular */
+  .qa-list { display:flex; flex-direction:column; gap:14px; }
+  .qa-item {
+    background:#f6f8fb;
+    border-radius:6px;
+    padding:16px 20px;
+    border:1px solid #e2e7ee;
+  }
+  .qa-item .q {
+    font-weight:700;
+    font-size:14.5px;
+    color:#1b3a5c;
+    margin-bottom:6px;
+  }
+  .qa-item .a { font-size:14px; color:#333; }
+  /* Aksiyon */
+  .action-list { display:flex; flex-direction:column; gap:0; border-radius:6px; overflow:hidden; border:1px solid #dfe8e2; }
+  .action-item {
+    padding:14px 20px;
+    border-bottom:1px solid #dfe8e2;
+    background:#f4faf6;
+  }
+  .action-item:last-child { border-bottom:none; }
+  .action-owner {
+    display:inline-block;
+    font-weight:700;
+    font-size:12.5px;
+    color:#fff;
+    background:#2f7d4f;
+    border-radius:4px;
+    padding:2px 9px;
+    margin-bottom:6px;
+  }
+  .action-task { font-size:14.5px; color:#222831; margin-bottom:4px; }
+  .action-date { font-size:12.5px; color:#5b6b60; font-weight:500; }
+  .action-warning {
+    margin-top:14px;
+    font-size:12.5px;
+    color:#8a6d1a;
+    background:#fff8e6;
+    border-left:3px solid #e0ac00;
+    padding:10px 14px;
+    border-radius:4px;
+  }
+  /* GS Notu */
+  .gs-note {
+    border-left:4px solid #C00000;
+    background:#fbf6f6;
+    padding:20px 24px;
+    border-radius:6px;
+    font-style:italic;
+    font-size:14.5px;
+    color:#3a2a2a;
+  }
+  .note-signature {
+    margin-top:14px;
+    font-size:12.5px;
+    color:#8a2c2c;
+    text-align:right;
+    font-style:normal;
+    font-weight:700;
+  }
+  footer {
+    text-align:center;
+    font-size:11px;
+    color:#a3a3a3;
+    padding:18px 0 24px;
+  }
+  @media (max-width:600px) {
+    .content { padding:26px 20px 10px; }
+    .topband { padding:22px 20px 18px; }
+    .topband h1 { font-size:26px; }
+    .metric-grid { grid-template-columns: repeat(2,1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="topband">
+    <div class="tag">İcra Kurulu Genel Sekreteri Çalışması</div>
+    <h1>Hasan Bey İçin Özet Rapor</h1>
+    <div class="meta">Ağustos 2026 Konsolide Dijital Reklam Performans Raporu — 4 Marka (3D Ortaokul, 3D Yayınları, 4K Yayınları, Eğitim Vadisi) | 03 Eylül 2026</div>
+  </div>
+
+  <div class="content">
+
+    <div class="section">
+      <div class="section-title">📋 3 Cümlede Özet</div>
+      <div class="summary-card">
+        <p>Ağustos'ta 4 markamız için Instagram ve YouTube'da toplam <strong>259.257 TL</strong> reklam bütçesi harcandı ve bu bütçe <strong>2.252.132 tıklama</strong> ile <strong>7.224.306 izlenme</strong> üretti.</p>
+        <p>Bütçenin %59'u YKS segmentindeki <strong>3D Yayınları</strong>'na ayrıldı ve tekil erişim %117,9 artışla en güçlü büyümeyi burada gösterdi; <strong>4K Yayınları</strong> ise en düşük bütçeyle (46.347 TL) YouTube'da normalin +191,5 bin üzerinde izlenme yakalayarak en verimli marka oldu.</p>
+        <p>Ortak resim şu: Instagram veli/öğretmen kitlesinde güven kuruyor, YouTube'da Shorts izlenmeyi taşıyor ama aboneliğe çok az dönüşüyor — Eylül'ün yoğun LGS-YKS döneminde bu iki nokta büyütülürse görünürlük daha güçlü sonuca dönüşür.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📊 Ana Bulgular</div>
+      <div class="metric-grid">
+        <div class="metric-card"><div class="val">259.257 TL</div><div class="lbl">Toplam Bütçe (IG+YouTube)</div></div>
+        <div class="metric-card"><div class="val">2,25 Mn</div><div class="lbl">Toplam Tıklama</div></div>
+        <div class="metric-card"><div class="val">7,22 Mn</div><div class="lbl">Toplam İzlenme</div></div>
+        <div class="metric-card"><div class="val">4</div><div class="lbl">Marka, Eş Zamanlı Yayında</div></div>
+      </div>
+      <div class="brand-list">
+        <div class="brand-item">
+          <div class="b-title">3D Ortaokul (LGS · 5-8. Sınıf) — 15.349 TL bütçe</div>
+          <div class="b-detail">Instagram takipçi +%8,3 (9.937); YouTube görüntüleme normalin altında (281,1B, -67,9B) ve net -77 abone; TikTok izlenme -%44. En düşük bütçeli marka, en dikkat gerektiren YouTube performansı.</div>
+        </div>
+        <div class="brand-item">
+          <div class="b-title">3D Yayınları (YKS · Lise) — 153.574 TL bütçe (grubun %59'u)</div>
+          <div class="b-detail">Instagram tekil erişim +%117,9 (1,17 Mn); YouTube +2,2B yeni abone, 5,6 Mn görüntüleme; TikTok izleyici -%31,8. Bütçenin en büyük payını alıyor ve en yüksek geri dönüşü Instagram ile YouTube'da veriyor.</div>
+        </div>
+        <div class="brand-item">
+          <div class="b-title">4K Yayınları (TYT-AYT · Yeni Müfredat) — 46.347 TL bütçe</div>
+          <div class="b-detail">Instagram görüntüleyen +%337,5 (336.842); YouTube normalin +191,5B üzerinde (531,5B); TikTok 18-34 yaş payı %78,3. Düşük bütçeyle en yüksek oransal büyüme burada.</div>
+        </div>
+        <div class="brand-item">
+          <div class="b-title">Eğitim Vadisi (9-12. Sınıf · PDF Föy) — 43.988 TL bütçe</div>
+          <div class="b-detail">Instagram 636.260 görüntüleme ama net takipçi -7; YouTube normalin +307,2B üzerinde (579,2B) fakat yeni abone sadece +5; TikTok izleyici 855 (%91,9 yeni). Trafik büyük ama kalıcı bağlanma en zayıf marka.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🚩 Red Flags</div>
+      <div class="red-flags">
+        <ol>
+          <li><strong>3D Ortaokul YouTube kanalı net -77 abone kaybetti</strong> — seri içerik ve oynatma listesi kurgusu eklense bu kanalın etkisi hızla normale dönebilir.</li>
+          <li><strong>Eğitim Vadisi Instagram'da %97,7 dış erişime rağmen net takipçi -7</strong> — trafiği kalıcı takipçiye çeviren bir takip çağrısı (CTA) eklense bu kayıp tersine döner.</li>
+          <li><strong>Dört markanın tamamında YouTube "düzenli izleyici" oranı %0,3-0,8 arasında çok düşük</strong> — Shorts'tan uzun içeriğe yönlendiren oynatma listesi eklense sadakat oranı belirgin şekilde büyür.</li>
+          <li><strong>Bütçenin %59'u tek markada (3D Yayınları) toplanmış, 3D Ortaokul en düşük payla (%5,9) LGS döneminde temsil ediliyor</strong> — Eylül'ün yoğun LGS-YKS dönemi öncesi denge biraz 3D Ortaokul'a kaydırılsa büyüme fırsatı genişler.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">❓ Hasan Bey'in Soruları</div>
+      <div class="qa-list">
+        <div class="qa-item">
+          <div class="q">1. YouTube'da milyonlarca izlenme varken neden abone sayımız buna paralel artmıyor?</div>
+          <div class="a">Yapısal bir format sorunu: Shorts izlenmenin %90'ından fazlasını üretiyor ama abone dönüşümü çok zayıf; uzun video ve oynatma listesi stratejisiyle çözülebilecek, tüm markalarda tekrar eden bir konu.</div>
+        </div>
+        <div class="qa-item">
+          <div class="q">2. Bütçe dağılımında Eylül için bir değişiklik gerekiyor mu?</div>
+          <div class="a">Eylül'de LGS dönemi başlarken 3D Ortaokul'a ek bütçe düşünülmesi öneriliyor.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🎯 Önerilen Aksiyon</div>
+      <div class="action-list">
+        <div class="action-item">
+          <div class="action-owner">Pazarlama Birimi</div>
+          <div class="action-task">3D Ortaokul YouTube kanalı için seri içerik ve oynatma listesi kurgusu oluşturup net abone kaybını tersine çevirsin.</div>
+          <div class="action-date">Deadline: 15 Eylül 2026</div>
+        </div>
+        <div class="action-item">
+          <div class="action-owner">Pazarlama Birimi</div>
+          <div class="action-task">Eğitim Vadisi Instagram hesabına takipçi kalıcılığını artıracak bir takip çağrısı (CTA) stratejisi eklesin.</div>
+          <div class="action-date">Deadline: 15 Eylül 2026</div>
+        </div>
+        <div class="action-item">
+          <div class="action-owner">Pazarlama Birimi</div>
+          <div class="action-task">Dört markada da YouTube Shorts'tan uzun videoya yönlendiren oynatma listesi yapısını kursun.</div>
+          <div class="action-date">Deadline: 20 Eylül 2026</div>
+        </div>
+        <div class="action-item">
+          <div class="action-owner">Pazarlama Birimi</div>
+          <div class="action-task">Eylül LGS-YKS yoğun dönemi öncesi bütçe dağılımını (3D Ortaokul payı artırılarak) gözden geçirip Genel Müdür'e sunsun.</div>
+          <div class="action-date">Deadline: 10 Eylül 2026</div>
+        </div>
+      </div>
+      <div class="action-warning">⚠️ Not: Kaynak rapor bu aksiyonlar için özel bir sahip/tarih belirtmiyor; yukarıdaki sahip ve tarihler GS tarafından önerilmiştir, Pazarlama Birimi ile teyit edilmesi gerekir.</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📌 GS Notu</div>
+      <div class="gs-note">
+        "Ağustos'ta 4 markamız 259 bin TL reklam bütçesiyle 7,2 milyon izlenme ve 2,25 milyon tıklama üretti — görünürlük tarafı sağlıklı gidiyor. Asıl büyütülecek yer YouTube'daki Shorts izlenmesini kalıcı aboneliğe çevirmek ve Eylül'ün yoğun LGS-YKS döneminde 3D Ortaokul'a biraz daha bütçe ayırmak; bu iki adım atılırsa görünürlük satışa/kayda daha güçlü dönecek."
+        <div class="note-signature">İcra Kurulu Genel Sekreteri — 03.09.2026</div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>Çözüm Yayın Grubu — İcra Kurulu Genel Sekreteri Çalışması</footer>
+</div>
+</body>
+</html>
